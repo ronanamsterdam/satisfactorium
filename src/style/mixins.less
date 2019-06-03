@@ -1,0 +1,204 @@
+.fill() {
+	height:     100%;
+	left:       0;
+	position:   absolute;
+	top:        0;
+	width:      100%;
+}
+
+.scroll() {
+	overflow:           auto;
+	overflow-scrolling: touch;
+
+	& > .inner {
+		overflow:   hidden;
+		position:   relative;
+		transform:  translateZ(0);
+	}
+}
+
+.fullscreen-fixed() {
+    left:       0;
+    right:      0;
+    top:        0;
+    bottom:     0;
+    position:   fixed;
+}
+
+.top-left-right-absolute() {
+    left:       0;
+    right:      0;
+    top:        0;
+    position:   absolute;
+}
+
+.transition(...) {
+    transition-duration:        @app-transition-time;
+    transition-timing-function: @app-transition-type;
+    transition-delay:           initial;
+
+    @props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+
+    -webkit-transition-property:    @props;
+    -moz-transition-property:       @props;
+    -o-transition-property:         @props;
+    transition-property:            @props;
+}
+
+.flex-justify-align() {
+    align-items:        center;
+    display:            flex;
+    justify-content:    center;
+}
+
+.app-button() {
+    background:         none;
+    border-radius:      @app-border-radius;
+    box-sizing:         border-box;
+    color:              inherit;
+    cursor:             pointer;
+    font:               inherit;
+    font-family:        @font-family;
+    height:             100%;
+    line-height:        normal;
+    max-width:          100%;
+    margin:             0;
+    overflow:           visible;
+    padding:            10px;
+    position:           relative;
+    text-align:         center;
+    text-overflow:      ellipsis;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+
+    &:hover, &.selected {
+        background-color: @brand-menu-hover;
+        color:            @white;
+    }
+
+    &[disabled] {
+        color: lightgray;
+        cursor: default;
+
+        &:hover, &.selected {
+            background-color: gray;
+            color: inherit;
+        }
+    }
+}
+
+.app-gen-input {
+    .transition(min-width);
+    border:             @menu-border;
+    border-radius:      @app-main-ui-radius;
+    color:              @app-font-main-color-black;
+    font-size:          inherit;
+    height:             100%;
+    padding:            5px 10px;
+    min-width:          50px;
+    text-overflow:      ellipsis;
+
+    &:focus {
+        min-width:  120px;
+        outline:    none;
+    }
+
+    &[type=button]{
+        cursor: pointer;
+    }
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: darken(@font-light-gray, 10%);
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: darken(@font-light-gray, 10%);
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: darken(@font-light-gray, 10%);
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+        color: darken(@font-light-gray, 10%);
+    }
+}
+
+.cardEnterAnimation() {
+    .cardAppear {
+        opacity: 0.01;
+        transition-delay: 1s;
+        .transition(opacity);
+
+        .content {
+            transition-delay: 1s;
+            .transition(margin-top, box-shadow);
+
+            margin-top:     40px;
+            box-shadow:     none;
+        }
+    }
+
+    .cardAppear.cardAppearActive {
+        opacity: 1;
+        .content {
+            margin-top:     1px;
+            box-shadow:     none;
+        }
+    }
+
+    .cardAppear.cardAppearActiveNoShadow {
+        opacity: 1;
+        .content {
+            margin-top:     1px;
+            box-shadow:     none;
+        }
+    }
+}
+
+.opacityEnterAnimation() {
+    .cardAppear {
+        opacity: 0.01;
+        .transition(opacity);
+    }
+
+    .cardAppear.cardAppearActive {
+        opacity: 1;
+    }
+
+    .cardEnter {
+        opacity: 0.01;
+        .transition(opacity);
+    }
+
+    .cardEnter.cardEnterActive {
+        opacity: 1;
+    }
+}
+
+.form-bordering {
+    border-top:     @menu-border;
+    border-bottom:  @menu-border;
+}
+
+.labelInfo {
+    font-size: @font-small-s;
+    color:     gray;
+}
+
+.labelWarning {
+    color:              @white;
+    background-color:   @date-attention-bg-c;
+    border-radius:      @app-main-ui-radius;
+    margin-bottom:      10px;
+    padding:            10px;
+}
+
+.list {
+  .flex-justify-align();
+  padding:  0;
+  width:    100%;
+
+  .listItem {
+    margin:     10px;
+    min-width:  130px;
+    text-align: center;
+  }
+}

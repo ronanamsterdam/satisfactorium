@@ -1,0 +1,147 @@
+@import '~style/helpers';
+
+@list-item-height: 100%;
+@card-item-height: 280px;
+
+.container {
+    height: 80px;
+    width : 80px;
+    .content {
+        height: 100%;
+
+        .cardContent.cardContentListView {
+            display:    flex;
+            width:      100%;
+        }
+
+        a {
+            .app-button();
+            .transition(box-shadow, background);
+
+            align-items:    center;
+            display:        flex;
+            background:     @white;
+            margin:         0;
+
+            overflow:   hidden;
+            padding:    0;
+
+            &:focus, &:hover, &.hovered {
+                background: @blue;
+                color:      initial;
+                box-shadow: 0px 15px 45px -10px rgba(0, 0, 0, 0.6);
+                border-radius:  50%;
+
+                .imgContainer {
+                    max-width: 11%;
+
+                    .img {
+                        margin-left:    -20px;
+                    }
+                }
+            }
+
+            &.centerContent {
+                align-content: center;
+            }
+        }
+
+        .imgContainer{
+            .transition(width, max-width);
+            height:     200px;
+            overflow:   hidden;
+            position:   relative;
+            width:      105%;
+            .img {
+                .transition(background-position-x);
+                background-size:        cover;
+                background-repeat:      no-repeat;
+                background-position-x:  50%;
+                background-position-y:  50%;
+                bottom:                 0;
+                height:                 300px;
+                position:               absolute;
+                width:                  100%;
+
+            }
+        }
+
+        .infoItemsList {
+            display: flex;
+            justify-content: space-between;
+
+            .title {
+                font-size: @font-small-s;
+            }
+        }
+
+        button.listView {
+            flex-direction: row;
+            max-height: @list-item-height;
+        }
+
+        .listView {
+
+            &.imgContainer {
+                max-width:  10%;
+                min-width:  200px;
+                height:     @list-item-height;
+                .img {
+                    .transition(margin-left);
+                    background-size:        contain;
+                    background-position-x:  50%;
+                    height:                 160px;
+                    margin-left:            -10px;
+                    width:                  125%;
+                }
+            }
+
+            // &.infoContainer {
+            //     background-color:   @white;
+            //     height:    @list-item-height;
+            //     padding:    10px;
+            //     width:      100%;
+            //     display: flex;
+            //     flex-direction: column;
+            //     justify-content: space-between;
+            //     .title {
+            //         text-align: left;
+            //         font-size:  @font-mid-s;
+            //     }
+            // }
+        }
+
+        a.cardView {
+            flex-direction: column;
+            max-height: @card-item-height;
+        }
+
+        .cardView {
+            &.imgContainer {
+                max-width: 10%;
+                min-width: 200px;
+                height:     @card-item-height;
+                .img {
+                    .transition(margin-left);
+                    background-size:        contain;
+                    background-position-x:  50%;
+                    height:                 160px;
+                    margin-left:            -10px;
+                    width:                  125%;
+                }
+            }
+            &.infoContainer {
+                background-color:   @white;
+                height:             @card-item-height;
+                width:              100%;
+                display:            flex;
+                flex-direction:     column;
+                justify-content:    space-between;
+                .title {
+                    text-align: left;
+                    font-size:  @font-mid-s;
+                }
+            }
+        }
+    }
+}

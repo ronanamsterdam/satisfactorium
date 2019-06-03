@@ -1,0 +1,99 @@
+//BASE COLORS
+@white:                     rgb(255, 255, 255);
+@blue:                      rgb(62, 201, 242);
+@green:                     rgb(62, 242, 92);
+@yellow:                    rgb(239, 242, 62);
+
+//BRAND COLORS
+@brand-color:               #ff9800;
+@brand-hover:               darken(@brand-color, 2%);
+@brand-press:               darken(@brand-hover, 10%);
+@brand-celendar-hover:      lighten(@brand-hover, 15%);
+@brand-menu-hover:          lighten(@brand-hover, 25%);
+
+//ELEMENT COLORS
+@border-color:              rgba(76, 76, 76, 0.3);
+@dates-border-color-light:  rgb(234, 235, 235);
+@menu-main:                 fade(@brand-color, 95%);
+// for external use in JS
+// TODO: if more use like this -> figure out less compile to js variable
+@menu-main-compiled:        rgba(28, 110, 165, .95);
+@menu-main-color:           lighten(@menu-main, 40%);
+@menu-main-border-c:        lighten(@menu-main, 40%);
+@body-color:                rgb(239, 238, 237);
+@header-color:              lighten(@brand-color, 70%);
+@header-main-color:         rgb(73, 83, 97);
+@header-menu-bg-color:      rgba(252, 253, 255, .95);
+@white-background-overlay:  rgba(255,255,255, 0.4);
+@black-background-overlay:  rgba(0,0,0, 0.4);
+@date-range-border-color:   rgb(199, 207, 214);
+@date-range-color:          rgb(68, 66, 77);
+@date-attention-bg-c:       rgb(242, 95, 62);
+@warning-yellow:            @yellow;
+@date-hover-attention-bg-c: lighten(@date-attention-bg-c, 10%);
+@date-reserve-bg-c:         rgb(183, 188, 245);
+@hours-range-color:         lighten(@date-range-color, 35%);
+@week-days-color:           @hours-range-color;
+
+//DIMENSIONS
+@app-container-max-width:       1000px;
+@app-container-min-width:       350px;
+@app-header-height:             56px;
+@app-sub-header-height:         36px;
+@app-header-logo-size:          @app-header-height;
+@app-header-input-height:       @app-header-height / 2;
+@app-dropdown-width:            350px;
+@app-dropdown-max-height:       300px;
+@app-dropdown-item-max-height:  52px;
+@header-menu-padding:           20px;
+@content-padding:               20px;
+@menu-avatart-size:             40px;
+@min-view-height:               800px;
+
+//FONTS
+@font-family:               'Noto Sans', 'Helvetica Neue', arial, sans-serif;
+@app-font-main-color-black: rgb(73, 83, 97);
+@font-light-gray:           rgb(120, 135, 157);
+@font-lighter-gray:         lighten(@font-light-gray, 20%);
+@app-font-main-color-white: @white;
+@app-link-color:            lighten(@brand-color, 20%);
+@header-input-font-size:    18px;
+@header-standard-font-size: 16px;
+@font-small-s:              16px;
+@font-mid-s:                22px;
+@font-big-s:                44px;
+
+//POSITIONS
+@header-menu-position-top:  (@app-header-height - 13);
+
+//SHADOWS
+@app-box-shadow:        0 1px 0px rgba(0, 0, 0, 0.7);
+@menu-box-shadow:       0px 24px 43px -20px rgba(0, 0, 0, 0.3);
+@input-box-shadow:      0px 11px 30px -20px rgba(0, 0, 0, 0.3);
+@overlay-shadow:        0px 15px 45px -10px rgba(0, 0, 0, 0.6);
+@login-card-shadow:     0 51px 86px 0 rgba(0, 0, 0, 0.23);
+
+//BORDERS
+@app-border-radius:             2px;
+@app-main-ui-radius:            5px;
+@date-overlap-radius:           8px;
+@date-start-end-overlap-radius: 20px;
+@separator-border:              1px solid #b6b6b6;
+@menu-border:                   1px solid lightgray;
+@button-border-shadow:          0px 0px 0px 1px @brand-menu-hover inset;
+@menu-container-border:         none;
+
+//MISC PROPERTIES
+@app-transition-type:       ease;
+@app-transition-time:       300ms;
+
+//Z-INDEX
+@header-z:                  50;
+@map-overlay-z:             10;
+@modal-z:                   @header-z + 1;
+@notify-z:                  @modal-z + 1;
+@mobile-overlay:            30;
+
+//MEDIA
+@mobile-break:              456px;
+@tablet-break:              768px;

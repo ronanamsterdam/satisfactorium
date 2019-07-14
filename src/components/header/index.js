@@ -19,6 +19,7 @@ const Header = ({ siteTitle }) => (
         <a
           href="https://github.com/ronanamsterdam"
           target="_blank"
+          rel="noopener noreferrer"
           style={{
             color: `white`,
             textDecoration: `none`,

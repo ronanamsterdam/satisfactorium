@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: `I'm Roman and here are some squares. Hover or tab on em.`,
+    title: `I'm Roman and here are some squares. Hover or click on em.`,
     description: `some stuff I put on web.`,
     author: `@romanfromrome`,
   },

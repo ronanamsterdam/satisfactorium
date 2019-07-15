@@ -1,15 +1,16 @@
 import React from "react"
-// import { Link } from "gatsby"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import Squares from "../components/squares"
+import SquaresGame from "../components/squares-game"
 
 const SecondPage = () => (
   <Layout>
-    <SEO title="Squares item" />
-    <Squares />
+    <SEO title="Squares Game" />
+    <SquaresGame />
+    <Link to="/"> Back Home </Link>
   </Layout>
 )
 

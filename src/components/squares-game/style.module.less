@@ -1,0 +1,59 @@
+@import '~style/helpers';
+
+.container {
+    height: 100%;
+    padding: 30px;
+    .content {
+        // border: dashed 1px rgba(0,0,0,0.5);
+        height: 100%;
+        .searchResultsContainer {
+            &.searchResultsList {
+                justify-content: center;
+            }
+        }
+        .inputContainer {
+          margin: 25px;
+          input {
+            .app-gen-input();
+          }
+        }
+
+        .itemsPlaceHolder {
+            align-items:        center;
+            bottom:             0;
+            display:            flex;
+            font-size:          @font-big-s;
+            justify-content:    center;
+            left:               0;
+            position:           absolute;
+            right:              0;
+            top:                0;
+            text-align:         center;
+            width:              100%;
+
+            &.mapVisible {
+                width: 50%;
+            }
+        }
+
+        .resultsContainer {
+            display: flex;
+            height: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .searchResultsContainer {
+                &.mapVisible {
+                    width: 0%;
+                }
+             }
+
+            .mapResultsContainer {
+                width: 100%;
+                .mapResultsContent {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

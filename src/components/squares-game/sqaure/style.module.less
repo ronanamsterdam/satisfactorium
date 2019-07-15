@@ -7,6 +7,7 @@
     height: 80px;
     width : 80px;
     .content {
+        display: flex;
         height: 100%;
 
         .cardContent.cardContentListView {
@@ -16,24 +17,52 @@
 
         a {
             .app-button();
-            .transition(box-shadow, background, border-radius);
+            .transition(box-shadow, background, border-radius, width, height);
 
             align-items:    center;
             display:        flex;
             background:     @white;
+            height:         100%;
             margin:         0;
 
             overflow:   hidden;
             padding:    0;
+            width: 100%;
 
             &.hovered {
                 background: @blue;
                 color:      initial;
                 box-shadow: 0px 15px 45px -10px rgba(0, 0, 0, 0.6);
                 border-radius:  50%;
+                z-index: 1;
 
                 &.bomb {
+                  align-self: center;
+                  animation: bomb-bounce 1s infinite;
+                  animation-timing-function: ease;
                   background: @red;
+                  margin: auto;
+
+                  &:after {
+                    content:"💣";
+                    animation: font-bounce 1s infinite;
+                    animation-timing-function: ease;
+                    font-size: 30px;
+                    margin: auto;
+                    z-index: 0;
+
+                    @keyframes font-bounce {
+                      0%   {font-size:30px; }
+                      50%  {font-size:40px; }
+                      100% {font-size:30px; }
+                    }
+                  }
+
+                  @keyframes bomb-bounce {
+                    0%   {background-color:@red; }
+                    50%  {background-color:@blue; height: 90%; width: 90%; }
+                    100% {background-color:@red; }
+                  }
                 }
 
                 .imgContainer {

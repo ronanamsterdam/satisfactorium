@@ -11,12 +11,28 @@ export default function({
   title,
   url = "/",
   viewMode = RESULTS_VIEW_MODES.LIST,
+  isActive,
+  isBomb,
+  idx,
+  onExplode = (idx) => {
+    console.log(`${idx} BOOOM!!`);
+  }
 }) {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(isActive && !isBomb);
+  const [willExplode, setWillExplode] = useState(isBomb);
+
+  if (hovered && willExplode) {
+    setTimeout(()=> {
+      setHovered(false);
+      setWillExplode(false);
+      onExplode(idx)
+    }, 800)
+  }
 
   const handleHover = (e) => {
     e.preventDefault();
     setHovered(!hovered);
+    setWillExplode(!!Math.round(Math.random()));
   };
 
   if (viewMode === RESULTS_VIEW_MODES.LIST) {
@@ -42,35 +58,12 @@ export default function({
                   className={[
                       viewMode === RESULTS_VIEW_MODES.LIST ?
                       style.listView : style.cardView,
-                      hovered && style.hovered
+                      hovered && style.hovered,
+                      hovered && willExplode && style.bomb,
                   ].join(' ')}
                   onMouseOver = {handleHover}
                   onClick = {handleHover}
               >
-                  <div
-                      className={[
-                          style.cardContent,
-                          viewMode === RESULTS_VIEW_MODES.LIST ?
-                            style.cardContentListView : ''
-                      ].join(' ')}
-                  >
-                      <div
-                          className={[
-                              style.infoContainer,
-                              viewMode === RESULTS_VIEW_MODES.LIST ?
-                                style.listView : style.cardView
-                          ].join(' ')}
-                      >
-                          {
-                              title ?
-                              <div
-                                  className={style.title}
-                              >
-                                  {title}
-                              </div> : null
-                          }
-                      </div>
-                  </div>
               </Link>
           </div>
       </div>

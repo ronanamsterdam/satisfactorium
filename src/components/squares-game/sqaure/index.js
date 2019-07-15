@@ -8,7 +8,7 @@ import { Link } from "gatsby"
 import {RESULTS_VIEW_MODES} from 'statics/strings/components/home/searchList';
 
 export default function({
-  title,
+  disabled = false,
   url = "/",
   viewMode = RESULTS_VIEW_MODES.LIST,
   isActive,
@@ -16,23 +16,43 @@ export default function({
   idx,
   onExplode = (idx) => {
     console.log(`${idx} BOOOM!!`);
+  },
+  onActivate = () => {
+    console.log(`${idx} onActivate!!`);
+  },
+  onDeactivate = () => {
+    console.log(`${idx} onDeactivate!!`);
   }
 }) {
-  const [hovered, setHovered] = useState(isActive && !isBomb);
+
+  const [hovered, setHovered] = useState(false);
   const [willExplode, setWillExplode] = useState(isBomb);
+
+  if (isActive && !isBomb) {
+    setTimeout(()=>setHovered(true), Math.random()*1500);
+  }
 
   if (hovered && willExplode) {
     setTimeout(()=> {
       setHovered(false);
       setWillExplode(false);
-      onExplode(idx)
+      onExplode(idx);
+      // TODO: do disarmed state
+      // setTimeout(()=>setHovered(true), 300);
     }, 800)
   }
 
   const handleHover = (e) => {
     e.preventDefault();
-    setHovered(!hovered);
-    setWillExplode(!!Math.round(Math.random()));
+    if(!disabled) {
+      setHovered(!hovered);
+      if (!hovered) {
+        onActivate(idx);
+      } else {
+        onDeactivate(idx);
+      }
+      setWillExplode(!!Math.round(Math.random()));
+    }
   };
 
   if (viewMode === RESULTS_VIEW_MODES.LIST) {

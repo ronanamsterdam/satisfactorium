@@ -7,9 +7,42 @@ export default function() {
   // const min = 1;
   const [count] = useState(100);
 
+  const onExplode = (idx) => {
+    // TODO
+    console.log("ON EXPLODE:"+idx);
+  }
+
+  const onActivate = (idx) => {
+    // TODO
+    console.log("onActivate:"+idx);
+  }
+
+  const onDeactivate = (idx) => {
+    // TODO
+    console.log("onDeactivate:"+idx);
+  }
+
   return (
     <div className={style.container}>
       <div className={style.content}>
+        <div
+          className={style.objectiveStat}
+        >
+          <div
+            className={style.objectiveColumn}
+          >
+            <span>
+            turn them all in to:
+            </span>
+            <Square
+              disabled={true}
+              isActive={true}
+            />
+            <span>
+            by hovering or clicking on them.
+            </span>
+          </div>
+        </div>
         <div
             className={style.resultsContainer}
         >
@@ -29,6 +62,9 @@ export default function() {
                               idx={idx}
                               isActive={isActive}
                               isBomb={isBomb}
+                              onExplode={onExplode}
+                              onActivate={onActivate}
+                              onDeactivate={onDeactivate}
                               {...item}
                               key={idx}
                             />

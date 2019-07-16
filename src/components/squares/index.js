@@ -10,6 +10,16 @@ export default function() {
   return (
     <div className={style.container}>
       <div className={style.content}>
+        <h3>
+          <p>
+          this page is made to test latest react's (16.8.6) rendering capabilities
+          </p>
+          <p>
+            try increasing the block's count bellow and try interacting with the squares.
+            You'll see FPS frame drop at around ~4500 items count.
+            You can set it to any number and watch the world burn 🔥
+          </p>
+        </h3>
         <div className={style.inputContainer}>
           <label htmlFor="count-input"> set blocks count here -> </label>
           <input
@@ -25,9 +35,6 @@ export default function() {
               }
             }}
           />
-          <div>
-
-          </div>
         </div>
         <div
             className={style.resultsContainer}

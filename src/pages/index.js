@@ -1,5 +1,5 @@
 import React from "react"
-// import { Link } from "gatsby"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 // import Image from "../components/image"
@@ -11,8 +11,7 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <Squares />
-    {/* <Link to="/">Go back to the homepage</Link> */}
-    {/* <Link to="/squares/">Go to page 2</Link> */}
+    <Link to="/squares-game">Go try Squares Game </Link>
   </Layout>
 )
 

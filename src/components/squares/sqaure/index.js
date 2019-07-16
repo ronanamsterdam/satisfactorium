@@ -14,7 +14,10 @@ export default function({
 }) {
   const [hovered, setHovered] = useState(false);
 
-  const handleHover = () => setHovered(!hovered);
+  const handleHover = (e) => {
+    e.preventDefault();
+    setHovered(!hovered);
+  };
 
   if (viewMode === RESULTS_VIEW_MODES.LIST) {
       // gridClassMod = 'col-sm-11 col-md-11 col-lg-11';

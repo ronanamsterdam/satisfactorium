@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style            from "./style.module.less";
 
 import { Link } from "gatsby"
@@ -15,21 +15,28 @@ export default function({
   isBomb,
   idx,
   onExplode = (idx) => {
-    console.log(`${idx} BOOOM!!`);
+    // console.log(`${idx} BOOOM!!`);
   },
   onActivate = () => {
-    console.log(`${idx} onActivate!!`);
+    // console.log(`${idx} onActivate!!`);
   },
   onDeactivate = () => {
-    console.log(`${idx} onDeactivate!!`);
+    // console.log(`${idx} onDeactivate!!`);
   }
 }) {
 
+  const [initialActive, setInitialActive] = useState(isActive && !isBomb)
   const [hovered, setHovered] = useState(false);
   const [willExplode, setWillExplode] = useState(isBomb);
 
-  if (isActive && !isBomb) {
-    setTimeout(()=>setHovered(true), Math.random()*1500);
+  let initialActiveTm = null;
+  let explodeTm = null;
+
+  if (initialActive) {
+    initialActiveTm = setTimeout(()=>{
+      setHovered(true);
+      setInitialActive(false);
+    }, Math.random()*1500);
   }
 
   if (hovered && willExplode) {
@@ -41,6 +48,11 @@ export default function({
       // setTimeout(()=>setHovered(true), 300);
     }, 800)
   }
+
+  useEffect(()=>{}, () => {
+    initialActiveTm && clearTimeout(initialActiveTm);
+    explodeTm && clearTimeout(explodeTm);
+  })
 
   const handleHover = (e) => {
     e.preventDefault();

@@ -1,25 +1,33 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
 import Square from "./sqaure";
 
+import actions from '../../actions';
+
 export default function() {
   // const min = 1;
+
+  const dispatch = useDispatch()
   const [count] = useState(100);
+
+  const counts = useSelector(state => state.counts)
 
   const onExplode = (idx) => {
     // TODO
-    console.log("ON EXPLODE:"+idx);
+    // console.log("ON EXPLODE:"+idx);
   }
 
   const onActivate = (idx) => {
     // TODO
-    console.log("onActivate:"+idx);
+    // console.log("onActivate:"+idx);
+    // dispatch(actions.appTestAction(idx))
   }
 
   const onDeactivate = (idx) => {
     // TODO
-    console.log("onDeactivate:"+idx);
+    // console.log("onDeactivate:"+idx);
   }
 
   return (
@@ -32,7 +40,7 @@ export default function() {
             className={style.objectiveColumn}
           >
             <span>
-            turn them all in to:
+            turn them all in to {counts}:
             </span>
             <Square
               disabled={true}
@@ -55,6 +63,7 @@ export default function() {
                 {
                   Array.from({length: count}, (v, i) => i).map((item,idx) => {
                     const isActive = !!Math.round(Math.random());
+                    isActive && onActivate(idx);
                     const isBomb = !!Math.round(Math.random());
                     return (
                             // TODO: random active state calc

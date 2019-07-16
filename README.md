@@ -13,18 +13,11 @@ And inside you have:
 
     with square element and it's useState animations -> you can check hom much react cand render simalteniously.
     I found that at around 3500 list elements the FPS starts to drop 
-   
-
-    ```sh
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
 
 3.  **Square-game.** -> https://satisfactoriumapp.web.app/squares-game
 
     A square element based game! Where you'll need to turn all the squares in to circles :)
     All pure react and css based
-
 
 ## 🎓 Gatsby
 

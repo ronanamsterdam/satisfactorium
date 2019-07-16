@@ -7,4 +7,3 @@ export default {
     ON_SQUARE_DEACTIVATE,
     ON_BLAST,
 }
-

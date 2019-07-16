@@ -34,8 +34,9 @@ export default function({
 
   if (initialActive) {
     initialActiveTm = setTimeout(()=>{
-      setHovered(true);
       setInitialActive(false);
+      setHovered(true);
+      !disabled && onActivate(idx);
     }, Math.random()*1500);
   }
 
@@ -49,14 +50,17 @@ export default function({
     }, 800)
   }
 
-  useEffect(()=>{}, () => {
+  const cleanTimeouts = () => {
     initialActiveTm && clearTimeout(initialActiveTm);
     explodeTm && clearTimeout(explodeTm);
-  })
+  }
+
+  useEffect(()=>{}, cleanTimeouts);
 
   const handleHover = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     if(!disabled) {
+      cleanTimeouts();
       setHovered(!hovered);
       if (!hovered) {
         onActivate(idx);

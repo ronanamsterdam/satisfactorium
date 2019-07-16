@@ -3,54 +3,41 @@ import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
 import Square from "./sqaure";
+import Stats from "./stats";
 
-import actions from '../../actions';
+import actions from "../../actions";
 
 export default function() {
   // const min = 1;
 
   const dispatch = useDispatch()
-  const [count] = useState(100);
 
-  const counts = useSelector(state => state.counts)
+  const totalSquares = useSelector(state => state.squareGame.totalSquares);
 
   const onExplode = (idx) => {
     // TODO
     // console.log("ON EXPLODE:"+idx);
+    dispatch(actions.squareBlast(idx));
   }
 
   const onActivate = (idx) => {
     // TODO
     // console.log("onActivate:"+idx);
-    // dispatch(actions.appTestAction(idx))
+    dispatch(actions.squareActivate(idx))
   }
 
   const onDeactivate = (idx) => {
     // TODO
     // console.log("onDeactivate:"+idx);
+    dispatch(actions.squareDeactivate(idx));
   }
+
+  console.log("RERENDERING THE SHIT!!!")
 
   return (
     <div className={style.container}>
       <div className={style.content}>
-        <div
-          className={style.objectiveStat}
-        >
-          <div
-            className={style.objectiveColumn}
-          >
-            <span>
-            turn them all in to {counts}:
-            </span>
-            <Square
-              disabled={true}
-              isActive={true}
-            />
-            <span>
-            by hovering or clicking on them.
-            </span>
-          </div>
-        </div>
+        <Stats />
         <div
             className={style.resultsContainer}
         >
@@ -61,9 +48,8 @@ export default function() {
                 ].join(' ')
             }>
                 {
-                  Array.from({length: count}, (v, i) => i).map((item,idx) => {
+                  Array.from({length: totalSquares}, (v, i) => i).map((item,idx) => {
                     const isActive = !!Math.round(Math.random());
-                    isActive && onActivate(idx);
                     const isBomb = !!Math.round(Math.random());
                     return (
                             // TODO: random active state calc

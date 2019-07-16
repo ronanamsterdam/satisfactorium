@@ -41,7 +41,7 @@ export default function() {
             style.congrats,
             isDone ? style.visible: "",
           ].join(" ")}>
-            <h1>🥳🥳 congratulations! 🥳🥳</h1>
+            <h1>🥳🥳 chicken dinner! 🥳🥳</h1>
           </div>
 
         <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
@@ -8,31 +8,12 @@ import Stats from "./stats";
 import actions from "../../actions";
 
 export default function() {
-  // const min = 1;
-
   const dispatch = useDispatch()
-
   const totalSquares = useSelector(state => state.squareGame.totalSquares);
 
-  const onExplode = (idx) => {
-    // TODO
-    // console.log("ON EXPLODE:"+idx);
-    dispatch(actions.squareBlast(idx));
-  }
-
-  const onActivate = (idx) => {
-    // TODO
-    // console.log("onActivate:"+idx);
-    dispatch(actions.squareActivate(idx))
-  }
-
-  const onDeactivate = (idx) => {
-    // TODO
-    // console.log("onDeactivate:"+idx);
-    dispatch(actions.squareDeactivate(idx));
-  }
-
-  console.log("RERENDERING THE SHIT!!!")
+  const onExplode = (idx) => dispatch(actions.squareBlast(idx));
+  const onActivate = (idx) => dispatch(actions.squareActivate(idx));
+  const onDeactivate = (idx) => dispatch(actions.squareDeactivate(idx));
 
   return (
     <div className={style.container}>

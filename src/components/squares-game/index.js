@@ -7,9 +7,16 @@ import Stats from "./stats";
 
 import actions from "../../actions";
 
+function getIsBomb(probabilityFactor) {
+  return !!Math.round(Math.max(0, Math.random()- probabilityFactor))
+}
+
 export default function() {
   const dispatch = useDispatch()
   const totalSquares = useSelector(state => state.squareGame.totalSquares);
+  const probabilityFactor = useSelector(state => state.squareGame.probabilityFactor)
+
+  console.log(probabilityFactor)
 
   const onExplode = (idx) => dispatch(actions.squareBlast(idx));
   const onActivate = (idx) => dispatch(actions.squareActivate(idx));
@@ -31,7 +38,7 @@ export default function() {
                 {
                   Array.from({length: totalSquares}, (v, i) => i).map((item,idx) => {
                     const isActive = !!Math.round(Math.random());
-                    const isBomb = !!Math.round(Math.random());
+                    const isBomb = getIsBomb(probabilityFactor);
                     return (
                             // TODO: random active state calc
                             <Square
@@ -41,6 +48,8 @@ export default function() {
                               onExplode={onExplode}
                               onActivate={onActivate}
                               onDeactivate={onDeactivate}
+                              probabilityFactor={probabilityFactor}
+                              getIsBomb={getIsBomb}
                               {...item}
                               key={idx}
                             />

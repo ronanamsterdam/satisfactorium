@@ -1,14 +1,22 @@
 import appActions from 'statics/actions';
 
-const initialState = {
+function probabilityFactor(state = initialState) {
+  return Math.exp(-(1 + Math.exp(state.lvl/10)/10))
+}
+
+const initialState = (function(state) {
+  return {
+    ...state,
+    probabilityFactor:      probabilityFactor(state),
+  }
+})({
     totalSquares:           84,
     bombsBlasted:           0,
     activeSquares:          [],
     lvl:                    1,
     time:                   null,
     avgTime:                null,
-    bombProbability:        0.1,
-};
+});
 
 export default function squareGame(state = initialState, action) {
     switch (action.type) {

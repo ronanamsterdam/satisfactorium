@@ -58,7 +58,10 @@ export default function() {
               isActive={true}
             />
             <span>
-            by hovering or clicking on them.
+            by hovering <u><b>OR</b></u> clicking on them.
+            </span>
+            <span>
+            <b>PRO TIP:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
             </span>
           </div>
           <div

@@ -14,6 +14,8 @@ export default function({
   isActive,
   isBomb,
   idx,
+  probabilityFactor,
+  getIsBomb = () => {},
   onExplode = (idx) => {
     // console.log(`${idx} BOOOM!!`);
   },
@@ -67,7 +69,7 @@ export default function({
       } else {
         onDeactivate(idx);
       }
-      setWillExplode(!!Math.round(Math.random()));
+      setWillExplode(getIsBomb(probabilityFactor));
     }
   };
 

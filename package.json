@@ -23,8 +23,13 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "babel-jest": "^24.8.0",
+    "babel-preset-gatsby": "^0.2.6",
     "gatsby-plugin-root-import": "^2.0.5",
-    "prettier": "^1.17.1"
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
+    "react-test-renderer": "^16.8.6"
   },
   "keywords": [
     "gatsby"

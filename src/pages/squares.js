@@ -8,11 +8,8 @@ import Squares from "../components/squares"
 
 const SecondPage = () => (
   <Layout>
-    <SEO title="Page two" />
-
+    <SEO title="Squares item" />
     <Squares />
-
-    {/* <Link to="/">Go back to the homepage</Link> */}
   </Layout>
 )
 

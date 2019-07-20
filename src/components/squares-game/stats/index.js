@@ -1,37 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
 import Square from "../sqaure";
+import Timer from "./timer";
 
 import actions from '../../../actions';
 
 export default function() {
-  // const min = 1;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const {totalSquares, activeSquares, bombsBlasted} = useSelector(state => state.squareGame);
+  const [isStart, setIsStart] = useState(false)
 
-  const onExplode = (idx) => {
-    // TODO
-    // console.log("ON EXPLODE:"+idx);
-    dispatch(actions.squareBlast(idx));
-  }
-
-  const onActivate = (idx) => {
-    // TODO
-    // console.log("onActivate:"+idx);
-    dispatch(actions.squareActivate(idx))
-  }
-
-  const onDeactivate = (idx) => {
-    // TODO
-    // console.log("onDeactivate:"+idx);
-    dispatch(actions.squareDeactivate(idx));
-  }
-
+  const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor} = useSelector(state => state.squareGame);
   const isDone = totalSquares === activeSquares.length;
+
+  useEffect(() => {
+    setIsStart(false);
+    const timeout = setTimeout(() => setIsStart(true) ,1000)
+    return () => clearTimeout(timeout);
+  }, [lvl, probabilityFactor])
+
+  const onTimerCb = (time) => {
+    if (isDone) {
+      console.log("TIMORT: "+ totalSquares+"x"+  activeSquares.length + " in " + lvl);
+    }
+    isDone && dispatch(actions.levelDone({time, lvl}));
+  }
+
+  const bestTime = bestTimes[lvl] || null;
 
   return (
     <div className={style.container}>
@@ -43,10 +41,22 @@ export default function() {
           ].join(" ")}>
             <h1>🥳🥳 chicken dinner! 🥳🥳</h1>
           </div>
-
         <div
           className={style.objectiveStat}
         >
+          <div
+            className={style.objectiveColumn}
+          >
+            <h1>Level: {lvl}</h1>
+            {!!bestTime && (<h2>best time: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/10)}</h2>)}
+            <Timer
+              isDone={isDone}
+              isStart={isStart}
+              lvl={lvl}
+              bestTime={bestTime}
+              cb={onTimerCb}
+            />
+          </div>
           <div
             className={style.objectiveColumn}
           >
@@ -68,16 +78,31 @@ export default function() {
             className={style.objectiveColumn}
           >
             <h3>
-            total to do: {totalSquares}
+              total to do: {totalSquares}
             </h3>
             <h3>
-            {isDone && "🥳"} circles done: {activeSquares.length}
+              {isDone && "🥳"} circles done: {activeSquares.length}
             </h3>
             <h3>
-            bombs blasted: {bombsBlasted}
+              bombs blasted: {bombsBlasted}
             </h3>
           </div>
         </div>
+            <div
+              className={style.buttonsHolder}
+            >
+              <button
+              disabled={lvl === 1}
+              onClick={()=> dispatch(actions.prevLevel())}
+              >⇤ Previous </button>
+              <button
+              onClick={()=> dispatch(actions.restartLevel())}
+              > Restart </button>
+              <button
+              disabled={!isDone}
+              onClick={()=> dispatch(actions.nextLevel())}
+              >Next ⇥</button>
+            </div>
       </div>
     </div>
   )

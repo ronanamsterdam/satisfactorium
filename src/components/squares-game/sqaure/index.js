@@ -57,7 +57,7 @@ export default function({
     explodeTm && clearTimeout(explodeTm);
   }
 
-  useEffect(()=>{}, cleanTimeouts);
+  useEffect(()=> () => cleanTimeouts);
 
   const handleHover = (e) => {
     e && e.preventDefault();

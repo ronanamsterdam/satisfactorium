@@ -6,6 +6,24 @@
     .content {
         height: 100%;
 
+        .buttonsHolder {
+          align-content:    center;
+          display:          flex;
+          justify-content:  space-evenly;
+          width:            100%;
+
+          button {
+            .app-button();
+            .transition(background, box-shadow);
+
+            background:       @yellow;
+            &:disabled {
+              background:       @gray;
+              box-shadow: 0 0 0 rgba(0,0,0,0);
+            }
+          }
+        }
+
         h3 {
           height: 30px;
         }

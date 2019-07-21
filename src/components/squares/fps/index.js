@@ -4,6 +4,9 @@ export default function() {
 
   let [frameTimeState, setFrameTimeState] = useState({
     fps: 0,
+    // better use performance.now()
+    // but some static generators like gatsby
+    // might have problems with that
     lastStamp: Date.now(),
     framesCount: 0
   });

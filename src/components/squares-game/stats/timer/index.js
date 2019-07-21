@@ -7,10 +7,10 @@ export default function({isDone = false, isStart = false, bestTime, initialDate 
 
   const newTimeCurrent = new Date(Math.max(0, newTime - startTime));
   const isBest = bestTime &&
-  (newTimeCurrent.getUTCMinutes() == bestTime.getUTCMinutes()) &&
-  (newTimeCurrent.getUTCSeconds() == bestTime.getUTCSeconds());
+  (newTimeCurrent.getUTCMinutes() === bestTime.getUTCMinutes()) &&
+  (newTimeCurrent.getUTCSeconds() === bestTime.getUTCSeconds());
 
-  const date = isDone && isBest && bestTime || newTimeCurrent;
+  const date = (isDone && isBest && bestTime) || newTimeCurrent;
 
   useEffect(() => {
     const timer = !isDone && isStart && setTimeout(()=>{
@@ -23,5 +23,5 @@ export default function({isDone = false, isStart = false, bestTime, initialDate 
     setStartTime(new Date().getTime());
   }, [lvl, isStart]);
 
-  return isStart && <h1>{date.getUTCMinutes()}:{date.getUTCSeconds()}:{parseInt(date.getUTCMilliseconds()/10)}</h1>
+  return isStart && <h1>{date.getUTCMinutes()}:{date.getUTCSeconds()}:{parseInt(date.getUTCMilliseconds()/100)}</h1>
 }

@@ -9,6 +9,10 @@ export default function() {
   });
 
   useEffect(() => {
+    // TODO: currently on unmount -> may throw warning
+    // for setting the unmounted state
+    // cuz requestAnimationFrame is deferred
+    // and there's no wayt to clear it
     requestAnimationFrame(() => {
 
       const currentStamp = Date.now();

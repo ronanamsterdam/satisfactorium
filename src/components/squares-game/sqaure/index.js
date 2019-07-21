@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import style            from "./style.module.less";
 
 import { Link } from "gatsby"
@@ -13,12 +14,17 @@ export default function({
   getIsBomb = () => {},
   onExplode = () => {},
   onActivate = () => {},
-  onDeactivate = () => {}
+  onDeactivate = () => {},
 }) {
 
-  const [initialActive, setInitialActive] = useState(isActive && !isBomb)
+  // TODO: this is pretty implicit. Figure a better way
+  const isLevelDone = useSelector(state => state.squareGame.totalSquares === state.squareGame.activeSquares.length);
+  const isDisabled = disabled || isLevelDone;
+
+  const [initialActive, setInitialActive] = useState(isActive && !isBomb);
   const [hovered, setHovered] = useState(false);
   const [willExplode, setWillExplode] = useState(isBomb);
+
 
   let initialActiveTm = null;
   let explodeTm = null;
@@ -27,12 +33,12 @@ export default function({
     initialActiveTm = setTimeout(()=>{
       setInitialActive(false);
       setHovered(true);
-      !disabled && onActivate(idx);
+      !isDisabled && onActivate(idx);
     }, Math.random()*1500);
   }
 
   if (hovered && willExplode) {
-    setTimeout(()=> {
+    explodeTm = setTimeout(()=> {
       setHovered(false);
       setWillExplode(false);
       onExplode(idx);
@@ -44,11 +50,11 @@ export default function({
     explodeTm && clearTimeout(explodeTm);
   }
 
-  useEffect(()=> () => cleanTimeouts);
+  useEffect(()=> cleanTimeouts);
 
   const handleHover = (e) => {
     e && e.preventDefault();
-    if(!disabled) {
+    if(!isDisabled) {
       cleanTimeouts();
       setHovered(!hovered);
       if (!hovered) {

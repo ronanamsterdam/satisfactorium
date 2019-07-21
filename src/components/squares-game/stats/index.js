@@ -22,12 +22,7 @@ export default function() {
     return () => clearTimeout(timeout);
   }, [lvl, probabilityFactor])
 
-  const onTimerCb = (time) => {
-    if (isDone) {
-      console.log("TIMORT: "+ totalSquares+"x"+  activeSquares.length + " in " + lvl);
-    }
-    isDone && dispatch(actions.levelDone({time, lvl}));
-  }
+  const onTimerCb = (time) => isDone && dispatch(actions.levelDone({time, lvl}));
 
   const bestTime = bestTimes[lvl] || null;
 
@@ -76,6 +71,9 @@ export default function() {
             </span>
             <span>
             <b>PRO TIP:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
+            </span>
+            <span>
+            <b>IMPORTANT:</b> Works on <b>desktop</b> only. Use your 🐁
             </span>
           </div>
           <div

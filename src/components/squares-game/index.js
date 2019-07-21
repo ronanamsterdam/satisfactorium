@@ -18,7 +18,7 @@ function getIsActive(probabilityFactor) {
 export default function() {
   const dispatch = useDispatch()
   const totalSquares = useSelector(state => state.squareGame.totalSquares);
-  const probabilityFactor = useSelector(state => state.squareGame.probabilityFactor)
+  const probabilityFactor = useSelector(state => state.squareGame.probabilityFactor);
 
   const onExplode = (idx) => dispatch(actions.squareBlast(idx));
   const onActivate = (idx) => dispatch(actions.squareActivate(idx));
@@ -29,7 +29,7 @@ export default function() {
         style.grid,
         style.searchResultsContainer,
     ].join(' ')
-}>
+  }>
     {
       Array.from({length: totalSquares}, (v, i) => i).map((item,idx) => {
         const isActive = getIsActive(probabilityFactor);
@@ -50,7 +50,7 @@ export default function() {
                 />
       )})
     }
-</div>
+  </div>
 
   return (
     <div className={style.container}>

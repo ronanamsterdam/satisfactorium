@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import style            from "./style.module.less";
+import React, { useState }  from "react";
+import style                from "./style.module.less";
 
 import Square from "./sqaure";
+import Fps from './fps';
 
 export default function() {
   const min = 1;
@@ -17,9 +18,10 @@ export default function() {
           <p>
             try increasing the block's count bellow and try interacting with the squares.
             You'll see FPS frame drop at around ~4500 items count.
-            You can set it to any number and watch the world burn 🔥
+            You can set it to any number and watch the world burn <span role="img" aria-label="fire">🔥</span>
           </p>
         </h3>
+        <Fps/>
         <div className={style.inputContainer}>
           <label htmlFor="count-input"> set blocks count here -> </label>
           <input

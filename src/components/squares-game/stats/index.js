@@ -39,7 +39,11 @@ export default function() {
             style.congrats,
             isDone ? style.visible: "",
           ].join(" ")}>
-            <h1>🥳🥳 chicken dinner! 🥳🥳</h1>
+            <h1>
+              <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
+               chicken dinner!
+              <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
+            </h1>
           </div>
         <div
           className={style.objectiveStat}
@@ -48,7 +52,7 @@ export default function() {
             className={style.objectiveColumn}
           >
             <h1>Level: {lvl}</h1>
-            {!!bestTime && (<h2>best time: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/10)}</h2>)}
+            {!!bestTime && (<h2>best time: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}</h2>)}
             <Timer
               isDone={isDone}
               isStart={isStart}

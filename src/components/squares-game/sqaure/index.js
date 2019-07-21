@@ -3,28 +3,17 @@ import style            from "./style.module.less";
 
 import { Link } from "gatsby"
 
-// import Image                from 'components/shared/images/image';
-// import EnhanceOverlay       from 'components/shared/images/enhanceOverlay'
-import {RESULTS_VIEW_MODES} from 'statics/strings/components/home/searchList';
-
 export default function({
   disabled = false,
   url = "/",
-  viewMode = RESULTS_VIEW_MODES.LIST,
   isActive,
   isBomb,
   idx,
   probabilityFactor,
   getIsBomb = () => {},
-  onExplode = (idx) => {
-    // console.log(`${idx} BOOOM!!`);
-  },
-  onActivate = () => {
-    // console.log(`${idx} onActivate!!`);
-  },
-  onDeactivate = () => {
-    // console.log(`${idx} onDeactivate!!`);
-  }
+  onExplode = () => {},
+  onActivate = () => {},
+  onDeactivate = () => {}
 }) {
 
   const [initialActive, setInitialActive] = useState(isActive && !isBomb)
@@ -47,8 +36,6 @@ export default function({
       setHovered(false);
       setWillExplode(false);
       onExplode(idx);
-      // TODO: do disarmed state
-      // setTimeout(()=>setHovered(true), 300);
     }, 800)
   }
 
@@ -73,29 +60,19 @@ export default function({
     }
   };
 
-  if (viewMode === RESULTS_VIEW_MODES.LIST) {
-      // gridClassMod = 'col-sm-11 col-md-11 col-lg-11';
-  } else {
-      // gridClassMod = isMapVisible ? 'col-sm-6 col-md-6 col-lg-6' : 'col-sm-6 col-md-4 col-lg-3';
-  }
   return (
       <div
-          className={[
-              style.container,
-              viewMode === RESULTS_VIEW_MODES.LIST ?
-                style.listView : style.cardView,
-          ].join(' ')}
+          className={style.container}
       >
           <div
               className={[
                   style.content,
                   ].join(' ')}
           >
+            {/* TODO: change to div or something */}
               <Link
                   to={url}
                   className={[
-                      viewMode === RESULTS_VIEW_MODES.LIST ?
-                      style.listView : style.cardView,
                       hovered && style.hovered,
                       hovered && willExplode && style.bomb,
                   ].join(' ')}

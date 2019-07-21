@@ -9,11 +9,12 @@ export default function() {
   });
 
   useEffect(() => {
-    // TODO: currently on unmount -> may throw warning
-    // for setting the unmounted state
+    // NOTE: timeout is here
     // cuz requestAnimationFrame is deferred
-    // and there's no wayt to clear it
-    requestAnimationFrame(() => {
+    // and to prevent set states on unmounted
+    let timeout = null;
+
+    requestAnimationFrame(() => timeout = setTimeout(()=>{
 
       const currentStamp = Date.now();
       const shouldSetState = currentStamp - frameTimeState.lastStamp > 1000;
@@ -32,7 +33,8 @@ export default function() {
           framesCount: newFramesCount,
         });
       }
-    })
+    },0));
+    return () => timeout && clearTimeout(timeout);
   }, [frameTimeState])
 
   return <h1>{frameTimeState.fps} fps</h1>

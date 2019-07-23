@@ -17,10 +17,10 @@ const SecondPage = () => {
 
   return (
     <Layout>
-    <SEO title="Squares Game" />
-    <SquaresGame />
-    <Link to="/"> Back Home </Link>
-  </Layout>
+      <SEO title="Squares Game" />
+      <Link to="/"> ⬅ Back Home </Link>
+      <SquaresGame />
+    </Layout>
   )
 }
 

@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `I'm Roman and here are some squares.`,
     description: `some stuff I put on web.`,
-    author: `@romanfromrome`,
+    author: `@wallofballs`,
   },
   plugins: [
     {

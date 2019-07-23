@@ -38,9 +38,9 @@ const Layout = ({ children }) => (
         >
           <main>{children}</main>
           <footer>
-            © {new Date().getFullYear()}, Built with
+            © {new Date().getFullYear()}, Check the whole project on my
             {` `}
-            <a href="https://github.com/ronanamsterdam/satisfactorium-web" target="_blank" rel="noopener noreferrer">Roman</a>
+            <a href="https://github.com/ronanamsterdam/satisfactorium-web" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
           </footer>
         </div>
       </>

@@ -40,7 +40,7 @@ const Layout = ({ children }) => (
           <footer>
             © {new Date().getFullYear()}, Check the whole project on my
             {` `}
-            <a href="https://github.com/ronanamsterdam/satisfactorium-web" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
+            <a href="https://github.com/ronanamsterdam/satisfactorium" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
           </footer>
         </div>
       </>

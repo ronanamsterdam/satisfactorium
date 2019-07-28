@@ -1,17 +1,20 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 
 import rootReducer              from '../reducers';
+import persistState             from 'redux-localstorage'
 import thunk                    from 'redux-thunk';
+
+const LOCAL_STORE_KEY = "this-key-aint-secret-v190728"
 
 const enhancer = compose(
   //todo: it lifts the state
   //and currently we monitor entire app state
-  // persistState(
-  //     ['test', 'user'],
-  //     {
-  //         key: LOCAL_STORE_KEY
-  //     }
-  // ),
+  persistState(
+      ['squareGame'],
+      {
+          key: LOCAL_STORE_KEY
+      }
+  ),
   applyMiddleware(
       thunk,
       // ...middleware,

@@ -10,11 +10,6 @@ import SquaresGame from "../components/squares-game"
 import actions from "../actions";
 
 const SecondPage = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(actions.squareGameReset())
-  })
-
   return (
     <Layout>
       <SEO title="Squares Game" />

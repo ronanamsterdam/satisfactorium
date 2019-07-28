@@ -14,7 +14,7 @@ const initialState = (function(state) {
 })({
     bombsBlasted:           0,
     activeSquares:          [],
-    lvl:                    5,
+    lvl:                    1,
     time:                   null,
     avgTime:                null,
     bestTimes:              {},

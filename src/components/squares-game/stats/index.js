@@ -15,6 +15,7 @@ export default function() {
 
   const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor} = useSelector(state => state.squareGame);
   const isDone = totalSquares === activeSquares.length;
+  const doesNotHaveNextLevel = !bestTimes[lvl+1];
 
   useEffect(() => {
     setIsStart(false);
@@ -102,7 +103,7 @@ export default function() {
               onClick={()=> dispatch(actions.restartLevel())}
               > Restart </button>
               <button
-              disabled={!isDone}
+              disabled={!isDone && doesNotHaveNextLevel}
               onClick={()=> dispatch(actions.nextLevel())}
               >Next ⇥</button>
             </div>

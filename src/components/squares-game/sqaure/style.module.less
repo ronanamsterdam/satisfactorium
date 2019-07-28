@@ -44,17 +44,22 @@
                   margin: auto;
 
                   &:after {
+                    .font-factor(@val) {
+                      font-size: calc(@val / (1 + 0.06*var(--square-factor)));
+                    };
+
+                    .font-factor(30px);
+
                     content:"💣";
                     animation: font-bounce 1s infinite;
                     animation-timing-function: ease;
-                    font-size: 30px;
                     margin: auto;
                     z-index: 0;
 
                     @keyframes font-bounce {
-                      0%   {font-size:30px; }
-                      50%  {font-size:40px; }
-                      100% {font-size:30px; }
+                      0%   {.font-factor(30px);}
+                      50%  {.font-factor(40px);}
+                      100% {.font-factor(30px);}
                     }
                   }
 

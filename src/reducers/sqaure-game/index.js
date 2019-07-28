@@ -9,15 +9,15 @@ const initialState = (function(state) {
     ...state,
     levelSquaresDelta:      15,
     probabilityFactor:      probabilityFactor(state),
+    totalSquares:           69 + 15*state.lvl,
   }
 })({
-    totalSquares:           84,
     bombsBlasted:           0,
     activeSquares:          [],
-    lvl:                    1,
+    lvl:                    5,
     time:                   null,
     avgTime:                null,
-    bestTimes:              {}
+    bestTimes:              {},
 });
 
 export default function squareGame(state = initialState, action) {
@@ -85,7 +85,7 @@ export default function squareGame(state = initialState, action) {
         case appActions.ON_PREV_LEVEL:
             return {
               ...initialState,
-              totalSquares:         Math.max(initialState.totalSquares, state.totalSquares-state.levelSquaresDelta),
+              totalSquares:         Math.max(84, state.totalSquares-state.levelSquaresDelta),
               activeSquares:        [],
               lvl:                  Math.max(1, --state.lvl),
               probabilityFactor:    probabilityFactor(state),

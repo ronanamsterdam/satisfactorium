@@ -18,6 +18,7 @@ export default function() {
 
   useEffect(() => {
     setIsStart(false);
+    document.body.style.setProperty('--square-factor', lvl);
     const timeout = setTimeout(() => setIsStart(true) ,1000)
     return () => clearTimeout(timeout);
   }, [lvl, probabilityFactor])

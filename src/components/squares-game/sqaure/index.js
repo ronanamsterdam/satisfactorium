@@ -25,7 +25,6 @@ export default function({
   const [hovered, setHovered] = useState(false);
   const [willExplode, setWillExplode] = useState(isBomb);
 
-
   let initialActiveTm = null;
   let explodeTm = null;
 

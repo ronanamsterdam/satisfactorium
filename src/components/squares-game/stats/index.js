@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
+import actions from '../../../actions';
+
 import Square from "../sqaure";
 import Timer from "./timer";
-
-import actions from '../../../actions';
 
 export default function() {
 
@@ -13,7 +13,12 @@ export default function() {
 
   const [isStart, setIsStart] = useState(false)
 
-  const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor} = useSelector(state => state.squareGame);
+  const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor} = useSelector(state => ({
+      ...state.squareGame,
+      lvl: +state.squareGame.lvl
+    })
+  );
+
   const isDone = totalSquares === activeSquares.length;
 
   useEffect(() => {

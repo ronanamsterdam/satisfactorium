@@ -9,7 +9,7 @@ const initialState = (function(state) {
     ...state,
     levelSquaresDelta:      15,
     probabilityFactor:      probabilityFactor(state),
-    totalSquares:           69 + 15*state.lvl,
+    totalSquares:           69 + 15*(+state.lvl),
   }
 })({
     bombsBlasted:           0,
@@ -55,7 +55,7 @@ export default function squareGame(state = initialState, action) {
 
           const {bestTimes} = state
 
-          let bestLevelTime = bestTimes[timeLevel] || time;
+          let bestLevelTime = (bestTimes[timeLevel] && new Date(bestTimes[timeLevel])) || (time && new Date(time));
 
           bestLevelTime.setHours(0);
           time.setHours(0);
@@ -77,7 +77,7 @@ export default function squareGame(state = initialState, action) {
             ...initialState,
             totalSquares:       state.totalSquares+state.levelSquaresDelta,
             activeSquares:      [],
-            lvl:                ++state.lvl,
+            lvl:                (+state.lvl)+1,
             probabilityFactor:  probabilityFactor(state),
             bestTimes:          {...state.bestTimes},
           }
@@ -87,7 +87,7 @@ export default function squareGame(state = initialState, action) {
               ...initialState,
               totalSquares:         Math.max(84, state.totalSquares-state.levelSquaresDelta),
               activeSquares:        [],
-              lvl:                  Math.max(1, --state.lvl),
+              lvl:                  Math.max(1, (+state.lvl)-1),
               probabilityFactor:    probabilityFactor(state),
               bestTimes:            {...state.bestTimes},
             }
@@ -96,7 +96,7 @@ export default function squareGame(state = initialState, action) {
               ...initialState,
               totalSquares:         state.totalSquares,
               activeSquares:        [],
-              lvl:                  state.lvl,
+              lvl:                  +state.lvl,
               probabilityFactor:    probabilityFactor(state)+Math.random()*0.0001,
               bestTimes:            {...state.bestTimes},
           }

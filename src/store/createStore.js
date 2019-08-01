@@ -1,20 +1,31 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 
 import rootReducer              from '../reducers';
-import persistState             from 'redux-localstorage'
 import thunk                    from 'redux-thunk';
 
-const LOCAL_STORE_KEY = "this-key-aint-secret-v190728"
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['squareGame']
+}
+
+const squareGameConfig = {
+  key: 'squareGame',
+  storage: storage,
+  blacklist: ['bombsBlasted', 'activeSquares', 'time']
+}
+
+const rootCombinedWithPersist = combineReducers({
+  ...rootReducer,
+  squareGame: persistReducer(squareGameConfig, rootReducer.squareGame),
+})
+
+const persistedReducer = persistReducer(persistConfig, rootCombinedWithPersist)
 
 const enhancer = compose(
-  //todo: it lifts the state
-  //and currently we monitor entire app state
-  persistState(
-      ['squareGame'],
-      {
-          key: LOCAL_STORE_KEY
-      }
-  ),
   applyMiddleware(
       thunk,
       // ...middleware,
@@ -23,10 +34,7 @@ const enhancer = compose(
 
 export default function configureStore(initialState) {
   const store = createStore(
-      combineReducers({
-          ...rootReducer,
-          // router: connectRouter(history)
-      }),
+      persistedReducer,
       initialState,
       enhancer
   );
@@ -37,5 +45,7 @@ export default function configureStore(initialState) {
       );
   }
 
-  return store;
+  let persistor = persistStore(store)
+
+  return { store, persistor };
 }

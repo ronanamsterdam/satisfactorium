@@ -6,16 +6,18 @@ import thunk                    from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import middleware               from '../middleware';
+
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['squareGame']
+  blacklist: ['squareGame', 'ux']
 }
 
 const squareGameConfig = {
   key: 'squareGame',
   storage: storage,
-  blacklist: ['bombsBlasted', 'activeSquares', 'time']
+  blacklist: ['bombsBlasted', 'activeSquares', 'time', 'shouldBlast', 'bombRadius']
 }
 
 const rootCombinedWithPersist = combineReducers({
@@ -27,8 +29,8 @@ const persistedReducer = persistReducer(persistConfig, rootCombinedWithPersist)
 
 const enhancer = compose(
   applyMiddleware(
+    ...middleware,
       thunk,
-      // ...middleware,
   )
 );
 

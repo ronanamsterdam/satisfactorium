@@ -1,13 +1,10 @@
-import React, {useEffect} from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { Link } from "gatsby";
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import SquaresGame from "../components/squares-game"
-
-import actions from "../actions";
 
 const SecondPage = () => {
   return (

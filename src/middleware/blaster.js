@@ -60,7 +60,7 @@ export default store => next => action => {
         const state = store.getState();
         const dispatch      = store.dispatch;
 
-        console.log(state.squareGame.bombRadius);
+        // console.log(state.squareGame.bombRadius);
 
         switch(action.type) {
             case appActions.ON_SQUARE_ACTIVATE:

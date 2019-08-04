@@ -17,7 +17,7 @@ const persistConfig = {
 const squareGameConfig = {
   key: 'squareGame',
   storage: storage,
-  blacklist: ['bombsBlasted', 'activeSquares', 'time', 'shouldBlast', 'bombRadius']
+  blacklist: ['bombsBlasted', 'activeSquares', 'time', 'shouldBlast']
 }
 
 const rootCombinedWithPersist = combineReducers({

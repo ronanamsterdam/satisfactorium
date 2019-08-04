@@ -15,7 +15,7 @@ export const uxInitialState = {
 const device = function(state = deviceInitialState, action) {
     switch(action.type) {
         case appActions.DEVICE_FORM_FACTOR_SET:
-            console.log(action.factor);
+            // console.log(action.factor);
             return {
                 ...state,
                 factor: action.factor || DEVICE_FORM_FACTORS.DESKTOP

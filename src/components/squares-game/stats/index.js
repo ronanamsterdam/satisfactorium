@@ -80,7 +80,7 @@ export default function() {
             <b>PRO TIP #1:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
             </span>
             <span>
-            <b>PRO TIP #2:</b> you can disarm the bomb by clicking/hovering on it again to prevent the damage
+            <b>PRO TIP #2:</b> you can disarm the bomb by <b>IMMEDIATELY</b> clicking/hovering on it again to prevent the damage
             </span>
             <span>
             <b>IMPORTANT:</b> Works on <b>desktop</b> only. Use your 🐁

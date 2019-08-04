@@ -39,7 +39,6 @@ export default function squareGame(state = initialState, action) {
               ...action.shouldBlast
             },
           };
-          break;
         }
 
         case appActions.ON_GAME_RESET:
@@ -53,7 +52,6 @@ export default function squareGame(state = initialState, action) {
 
             let newShouldBlast = state.shouldBlast
             if (newShouldBlast[action.idx]) {
-              // console.log("ON_SQUARE_ACTIVATE DELETING " +action.idx);
               delete newShouldBlast[action.idx];
             }
 
@@ -69,7 +67,6 @@ export default function squareGame(state = initialState, action) {
         case appActions.ON_SQUARE_DEACTIVATE:{
             const newShouldBlast = state.shouldBlast
             if (newShouldBlast[action.idx]) {
-              // console.log("ON_SQUARE_DEACTIVATE DELETING " +action.idx);
               delete newShouldBlast[action.idx];
             }
             return {
@@ -79,10 +76,8 @@ export default function squareGame(state = initialState, action) {
           };
         }
         case appActions.ON_BLAST:{
-            // console.log("ON_BLASTING "+ action.idx);
             let newShouldBlast = state.shouldBlast
             if (newShouldBlast[action.idx]) {
-              // console.log("ON_BLAST DELETING " + action.idx);
               delete newShouldBlast[action.idx];
             }
             return {
@@ -123,7 +118,7 @@ export default function squareGame(state = initialState, action) {
             lvl:                (+state.lvl)+1,
             probabilityFactor:  probabilityFactor(state),
             bestTimes:          {...state.bestTimes},
-            bombRadius:         calcBombRadius(+state.lvl),
+            bombRadius:         calcBombRadius(+state.lvl+1),
           }
 
         case appActions.ON_PREV_LEVEL:
@@ -135,7 +130,7 @@ export default function squareGame(state = initialState, action) {
               lvl:                  Math.max(1, (+state.lvl)-1),
               probabilityFactor:    probabilityFactor(state),
               bestTimes:            {...state.bestTimes},
-              bombRadius:           calcBombRadius(+state.lvl),
+              bombRadius:           calcBombRadius(+state.lvl-1),
             }
         case appActions.ON_RESTART_LEVEL:
             return {
@@ -144,6 +139,7 @@ export default function squareGame(state = initialState, action) {
               totalSquares:         state.totalSquares,
               activeSquares:        [],
               lvl:                  +state.lvl,
+              bombRadius:           calcBombRadius(+state.lvl),
               probabilityFactor:    probabilityFactor(state)+Math.random()*0.0001,
               bestTimes:            {...state.bestTimes},
           }

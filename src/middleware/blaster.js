@@ -1,21 +1,16 @@
 import appActions   from 'statics/actions';
 import actions      from '../actions';
 
-const debounce = require('../utils').debounceCl();
-
 const calcNextIdx = function({dispatch, gameGrid, vector, radius = 0, idx}) {
-  const {gameWidth, squareSize, columnsCount, rowsCount} = gameGrid;
+  const {columnsCount, rowsCount} = gameGrid;
 
   const idxRow = Math.ceil((idx+1)/columnsCount);
-  const idxColumn = (idx+1)%columnsCount != 0 ? (idx+1)%columnsCount : columnsCount;
+  const idxColumn = (idx+1)%columnsCount !== 0 ? (idx+1)%columnsCount : columnsCount;
 
   const idxL = idx > (idxRow-1)*columnsCount && vector !== "right" ? idx - 1 : null;
   const idxR = idx < idxRow*columnsCount - 1 && vector !== "left" ? idx + 1 : null;
-  const idxU = idxRow != 1 && vector !== "down" ? columnsCount*(idxRow - 1) - (columnsCount-idxColumn) - 1 : null;
-  const idxD = idxRow != rowsCount && vector !== "up" ? columnsCount*(idxRow + 1) - (columnsCount-idxColumn) - 1 : null;
-
-  // console.table({idx, idxRow, idxColumn, vector, radius});
-  // console.table({idx, idxL, idxR, idxU, idxD});
+  const idxU = idxRow !== 1 && vector !== "down" ? columnsCount*(idxRow - 1) - (columnsCount-idxColumn) - 1 : null;
+  const idxD = idxRow !== rowsCount && vector !== "up" ? columnsCount*(idxRow + 1) - (columnsCount-idxColumn) - 1 : null;
 
   radius--;
 
@@ -49,30 +44,22 @@ const calcTheGrid = function(store) {
   const columnsCount = Math.floor(gameWidth/squareSize);
   const rowsCount = Math.ceil(totalSquares/columnsCount);
 
-  // console.table({gameWidth, squareSize,grid: `${columnsCount}x${rowsCount}`})
-
   return {gameWidth, squareSize, columnsCount, rowsCount}
 }
 
 export default store => next => action => {
-    // console.log("MW ACTION!!", action.idx)
 
         const state = store.getState();
         const dispatch      = store.dispatch;
 
-        console.log(state.squareGame.bombRadius);
-
         switch(action.type) {
             case appActions.ON_SQUARE_ACTIVATE:
             case appActions.ON_SQUARE_DEACTIVATE: {
-              // console.log("DEACTIVE:", action.idx)
               break;
             }
             case appActions.ON_BLAST: {
-              // check if it's in shouldBlast
               if(state.squareGame.ux.device.dimensions &&
                 !state.squareGame.shouldBlast[action.idx]) {
-                // console.log("BLAST:", action.idx)
                 Promise.resolve().then(_ => {
                   const gameGrid = calcTheGrid(store)
                   calcNextIdx({dispatch, gameGrid, idx: action.idx, radius: state.squareGame.bombRadius});

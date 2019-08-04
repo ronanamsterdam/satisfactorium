@@ -68,8 +68,6 @@ class Device extends Component {
     render = () => null
 }
 
-const mapState = (state) => ({});
-
 const mapDispatch = dispatch => ({
     actions: bindActionCreators(AppActions, dispatch)
 });

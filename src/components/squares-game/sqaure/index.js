@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 
 export default function({
   disabled = false,
+  id = "",
   url = "/",
   isActive,
   isBomb,
@@ -19,6 +20,7 @@ export default function({
 
   // TODO: this is pretty implicit. Figure a better way
   const isLevelDone = useSelector(state => state.squareGame.totalSquares === state.squareGame.activeSquares.length);
+  const shouldBlastPresent = useSelector(state => state.squareGame.activeSquares.indexOf(idx) > -1 && state.squareGame.shouldBlast[idx]);
   const isDisabled = disabled || isLevelDone;
 
   const [initialActive, setInitialActive] = useState(isActive && !isBomb);
@@ -36,7 +38,7 @@ export default function({
     }, Math.random()*1500);
   }
 
-  if (hovered && willExplode) {
+  if (hovered && (willExplode || shouldBlastPresent)) {
     explodeTm = setTimeout(()=> {
       setHovered(false);
       setWillExplode(false);
@@ -67,6 +69,7 @@ export default function({
 
   return (
       <div
+          id={id}
           className={style.container}
       >
           <div

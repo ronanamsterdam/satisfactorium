@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
-import Square from "./sqaure";
-import Stats from "./stats";
+import Square   from "./sqaure";
+import Stats    from "./stats";
+import Device   from './utils/device';
 
 import actions from "../../actions";
 
@@ -62,6 +63,7 @@ export default function() {
           <Squares />
         </div>
       </div>
+      <Device/>
     </div>
   )
 }

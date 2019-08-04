@@ -13,7 +13,7 @@ export default function() {
 
   const [isStart, setIsStart] = useState(false)
 
-  const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor} = useSelector(state => ({
+  const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor, bombRadius} = useSelector(state => ({
       ...state.squareGame,
       lvl: +state.squareGame.lvl
     })
@@ -69,6 +69,7 @@ export default function() {
             turn them all in to:
             </span>
             <Square
+              id="stats-square"
               disabled={true}
               isActive={true}
             />
@@ -76,7 +77,10 @@ export default function() {
             by hovering <u><b>OR</b></u> clicking on them.
             </span>
             <span>
-            <b>PRO TIP:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
+            <b>PRO TIP #1:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
+            </span>
+            <span>
+            <b>PRO TIP #2:</b> you can disarm the bomb by clicking/hovering on it again to prevent the damage
             </span>
             <span>
             <b>IMPORTANT:</b> Works on <b>desktop</b> only. Use your 🐁
@@ -93,6 +97,9 @@ export default function() {
             </h3>
             <h3>
               bombs blasted: {bombsBlasted}
+            </h3>
+            <h3>
+              bomb radius: {bombRadius}
             </h3>
           </div>
         </div>

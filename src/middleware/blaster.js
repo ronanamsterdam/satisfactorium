@@ -7,6 +7,7 @@ const calcNextIdx = function({dispatch, gameGrid, vector, radius = 0, idx}) {
   const idxRow = Math.ceil((idx+1)/columnsCount);
   const idxColumn = (idx+1)%columnsCount !== 0 ? (idx+1)%columnsCount : columnsCount;
 
+  // TODO: refact left | up | etc to consts
   const idxL = idx > (idxRow-1)*columnsCount && vector !== "right" ? idx - 1 : null;
   const idxR = idx < idxRow*columnsCount - 1 && vector !== "left" ? idx + 1 : null;
   const idxU = idxRow !== 1 && vector !== "down" ? columnsCount*(idxRow - 1) - (columnsCount-idxColumn) - 1 : null;
@@ -37,10 +38,19 @@ const calcTheGrid = function(store) {
 
   const scenePadding = (18+30)*2; //css margins around the gamegrid
 
-  const {offsetWidth} = document.getElementById("stats-square");
-  const squareSize = offsetWidth + 5; //+5px for around margin
+  let pixelRatio = 1;
 
-  const gameWidth = width - scenePadding;
+  if (navigator.userAgent.toLowerCase().indexOf('apple') > -1) {
+    pixelRatio = (window.outerWidth - 8) / window.innerWidth;
+  } else {
+    // apparently only Chrome has issues on zoom levels bellow 70%
+    pixelRatio = window.devicePixelRatio/2;
+  }
+
+  const {offsetWidth} = document.getElementById("stats-square");
+  const squareSize = (offsetWidth + 5) * pixelRatio; //+5px for around margin
+
+  const gameWidth = (width - scenePadding) * pixelRatio;
   const columnsCount = Math.floor(gameWidth/squareSize);
   const rowsCount = Math.ceil(totalSquares/columnsCount);
 

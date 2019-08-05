@@ -1,3 +1,5 @@
+// TODO: refactor to hooks
+
 // non ui component to gather and react to client device's specifics
 import  { Component } from 'react';
 // import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
@@ -47,7 +49,7 @@ class Device extends Component {
 
         // let factor = DEVICE_FORM_FACTORS.DESKTOP
 
-        console.table({innerHeight, innerWidth});
+        // console.table({innerHeight, innerWidth});
 
         // if (innerWidth <= mobileBreak) {
         //     factor = DEVICE_FORM_FACTORS.MOBILE;

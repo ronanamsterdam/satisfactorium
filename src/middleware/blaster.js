@@ -7,6 +7,7 @@ const calcNextIdx = function({dispatch, gameGrid, vector, radius = 0, idx}) {
   const idxRow = Math.ceil((idx+1)/columnsCount);
   const idxColumn = (idx+1)%columnsCount !== 0 ? (idx+1)%columnsCount : columnsCount;
 
+  // TODO: refact left | up | etc to consts
   const idxL = idx > (idxRow-1)*columnsCount && vector !== "right" ? idx - 1 : null;
   const idxR = idx < idxRow*columnsCount - 1 && vector !== "left" ? idx + 1 : null;
   const idxU = idxRow !== 1 && vector !== "down" ? columnsCount*(idxRow - 1) - (columnsCount-idxColumn) - 1 : null;

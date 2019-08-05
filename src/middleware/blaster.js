@@ -38,10 +38,19 @@ const calcTheGrid = function(store) {
 
   const scenePadding = (18+30)*2; //css margins around the gamegrid
 
-  const {offsetWidth} = document.getElementById("stats-square");
-  const squareSize = offsetWidth + 5; //+5px for around margin
+  let pixelRatio = 1;
 
-  const gameWidth = width - scenePadding;
+  if (navigator.userAgent.toLowerCase().indexOf('apple') > -1) {
+    pixelRatio = (window.outerWidth - 8) / window.innerWidth;
+  } else {
+    // apparently only Chrome has issues on zoom levels bellow 70%
+    pixelRatio = window.devicePixelRatio/2;
+  }
+
+  const {offsetWidth} = document.getElementById("stats-square");
+  const squareSize = (offsetWidth + 5) * pixelRatio; //+5px for around margin
+
+  const gameWidth = (width - scenePadding) * pixelRatio;
   const columnsCount = Math.floor(gameWidth/squareSize);
   const rowsCount = Math.ceil(totalSquares/columnsCount);
 

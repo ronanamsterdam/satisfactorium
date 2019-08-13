@@ -1,4 +1,4 @@
-https://satisfactoriumapp.web.app
+https://satisfactorium.com/squares-game
 
 # 🚀 This is my portfolio app
 
@@ -9,12 +9,12 @@ This is my portfolio app where I'll gather all the experiments I consider fun to
 And inside you have:    
     
 1. My custom square block element with some cool transitions 
-2.  **React js test renderer.** -> https://satisfactoriumapp.web.app
+2.  **React js test renderer.** -> https://satisfactorium.com
 
     with square element and it's useState animations -> you can check hom much react cand render simalteniously.
     I found that at around 3500 list elements the FPS starts to drop 
 
-3.  **Square-game.** -> https://satisfactoriumapp.web.app/squares-game
+3.  **Square-game.** -> https://satisfactorium.com/squares-game
 
     A square element based game! Where you'll need to turn all the squares in to circles :)
     All pure react and css based

@@ -25,7 +25,8 @@ export default function() {
   const onActivate = (idx) => dispatch(actions.squareActivate(idx));
   const onDeactivate = (idx) => dispatch(actions.squareDeactivate(idx));
 
-  const Squares = () => <div className={
+  const Squares = () => <div id="square-game-scene"
+    className={
     [
         style.grid,
         style.searchResultsContainer,

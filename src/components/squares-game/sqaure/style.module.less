@@ -1,4 +1,5 @@
 @import '~style/helpers';
+@import '../localStyle/helpers';
 
 @list-item-height: 100%;
 @card-item-height: 280px;
@@ -16,7 +17,7 @@
             width:      100%;
         }
 
-        a {
+        button {
             .app-button();
             .transition(box-shadow, background, border-radius, width, height);
 
@@ -29,6 +30,11 @@
             overflow:   hidden;
             padding:    0;
             width: 100%;
+
+            &:hover, &.selected {
+              background-color: lighten(@main-color, 25%);
+              color:            @white;
+            }
 
             &.hovered {
                 background: @blue;

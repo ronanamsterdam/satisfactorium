@@ -40,8 +40,6 @@ export default function() {
 
       let factor = DEVICE_FORM_FACTORS.DESKTOP
 
-      console.table({innerHeight, innerWidth});
-
       if (innerWidth <= mobileBreak) {
           factor = DEVICE_FORM_FACTORS.MOBILE;
       } else if (innerWidth <= tabletBreak) {

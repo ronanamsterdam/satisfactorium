@@ -16,7 +16,8 @@ import style from "./style.module.less"
 
 import 'style/index.less';
 
-const Layout = ({ children }) => (
+const Layout = ({ children }) => {
+  return (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -46,7 +47,7 @@ const Layout = ({ children }) => (
       </div>
     )}
   />
-)
+)}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

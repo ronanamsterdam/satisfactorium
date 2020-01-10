@@ -1,0 +1,48 @@
+@import '~style/helpers';
+
+.container {
+  .content {
+    background: #f14ac2;
+    bottom: 0;
+    position: fixed;
+    top: 0;
+    width: 50px;
+  }
+  ul {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+    padding: 0;
+    writing-mode: vertical-lr;
+
+    li {
+      width: 50px;
+      &:not(.backLink) {
+        transform: rotateZ(180deg);
+      }
+      &.backLink {
+        margin-top: 15px;
+        transform: none;
+      }
+    }
+
+  }
+
+  a, div.linkNotActive {
+    .transition(color, background);
+    align-items: center;
+    display: flex;
+    color: #2b0101;
+    padding: 15px 0;
+    width: 100%;
+    &:hover:not(.linkNotActive), &:focus:not(.linkNotActive), &.linkActive {
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  div.linkNotActive {
+    color: #a93388;
+    cursor: default;
+  }
+}

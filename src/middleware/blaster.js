@@ -68,8 +68,7 @@ export default store => next => action => {
               break;
             }
             case appActions.ON_BLAST: {
-              if(state.squareGame.ux.device.dimensions &&
-                !state.squareGame.shouldBlast[action.idx]) {
+              if(!state.squareGame.shouldBlast[action.idx]) {
                 Promise.resolve().then(_ => {
                   const gameGrid = calcTheGrid(store)
                   calcNextIdx({dispatch, gameGrid, idx: action.idx, radius: state.squareGame.bombRadius});

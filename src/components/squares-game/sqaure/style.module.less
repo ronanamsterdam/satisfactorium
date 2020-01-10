@@ -14,43 +14,48 @@
 
         button {
             .square-button();
-
             &:hover, &.selected {
               background-color: lighten(@main-color, 25%);
+              color:            @white;
             }
 
-            &.hovered.bomb {
-              align-self: center;
-              animation: bomb-bounce 1s infinite;
-              animation-timing-function: ease;
-              background: @red;
-              margin: auto;
+            &.hovered {
+                // yes this needs to STAY here
+                background: @blue;
 
-              &:after {
-                .font-factor(@val) {
-                  font-size: calc(@val / (1 + 0.06*var(--square-factor)));
-                };
+                &.bomb {
+                  align-self: center;
+                  animation: bomb-bounce 1s infinite;
+                  animation-timing-function: ease;
+                  background: @red;
+                  margin: auto;
 
-                .font-factor(30px);
+                  &:after {
+                    .font-factor(@val) {
+                      font-size: calc(@val / (1 + 0.06*var(--square-factor)));
+                    };
 
-                content:"💣";
-                animation: font-bounce 1s infinite;
-                animation-timing-function: ease;
-                margin: auto;
-                z-index: 0;
+                    .font-factor(30px);
 
-                @keyframes font-bounce {
-                  0%   {.font-factor(30px);}
-                  50%  {.font-factor(40px);}
-                  100% {.font-factor(30px);}
+                    content:"💣";
+                    animation: font-bounce 1s infinite;
+                    animation-timing-function: ease;
+                    margin: auto;
+                    z-index: 0;
+
+                    @keyframes font-bounce {
+                      0%   {.font-factor(30px);}
+                      50%  {.font-factor(40px);}
+                      100% {.font-factor(30px);}
+                    }
+                  }
+
+                  @keyframes bomb-bounce {
+                    0%   {background-color:@red; }
+                    50%  {background-color:@blue; height: 90%; width: 90%; }
+                    100% {background-color:@red; }
+                  }
                 }
-              }
-
-              @keyframes bomb-bounce {
-                0%   {background-color:@red; }
-                50%  {background-color:@blue; height: 90%; width: 90%; }
-                100% {background-color:@red; }
-              }
             }
         }
     }

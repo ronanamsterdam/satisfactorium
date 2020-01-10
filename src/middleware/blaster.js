@@ -34,9 +34,7 @@ const calcNextIdx = function({dispatch, gameGrid, vector, radius = 0, idx}) {
 const calcTheGrid = function(store) {
   const {squareGame:{
     totalSquares,
-    ux:{device:{dimensions:{width}}}}} = store.getState();
-
-  const scenePadding = (18+30)*2; //css margins around the gamegrid
+  }} = store.getState();
 
   let pixelRatio = 1;
 
@@ -50,7 +48,9 @@ const calcTheGrid = function(store) {
   const {offsetWidth} = document.getElementById("stats-square");
   const squareSize = (offsetWidth + 5) * pixelRatio; //+5px for around margin
 
-  const gameWidth = (width - scenePadding) * pixelRatio;
+  const {offsetWidth: sceneWidth} = document.getElementById("square-game-scene");
+
+  const gameWidth = (sceneWidth) * pixelRatio;
   const columnsCount = Math.floor(gameWidth/squareSize);
   const rowsCount = Math.ceil(totalSquares/columnsCount);
 

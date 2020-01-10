@@ -9,8 +9,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import Header from "../header"
-// import "./layout.css"
+import Nav from "components/nav"
+
+import style from "./style.module.less"
 
 import 'style/index.less';
 
@@ -21,29 +22,26 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            nav {
+              text
+              href
+            }
           }
         }
       }
     `}
     render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            // maxWidth: 960,
-            padding: `0px 18px 23px`,
-            paddingTop: 0,
-          }}
-        >
+      <div className={style.container}>
+        <Nav links={data.site.siteMetadata.nav || []}/>
+        <div className={style.content}>
           <main>{children}</main>
           <footer>
-            © {new Date().getFullYear()}, Check the whole project on my
+            © {new Date().getFullYear()}, Check out whole project on my
             {` `}
             <a href="https://github.com/ronanamsterdam/satisfactorium" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
           </footer>
         </div>
-      </>
+      </div>
     )}
   />
 )

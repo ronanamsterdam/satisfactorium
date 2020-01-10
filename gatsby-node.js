@@ -5,3 +5,15 @@
  */
 
 // You can delete this file if you're not using it
+const path = require('path')
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        styles: path.resolve(path.resolve(__dirname, "src"), 'src/styles'),
+      },
+    },
+  })
+
+}

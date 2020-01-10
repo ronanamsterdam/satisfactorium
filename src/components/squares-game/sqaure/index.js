@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import style            from "./style.module.less";
 
-import { Link } from "gatsby"
-
 export default function({
   disabled = false,
   id = "",
@@ -54,7 +52,6 @@ export default function({
   useEffect(()=> cleanTimeouts);
 
   const handleHover = (e) => {
-    e && e.preventDefault();
     if(!isDisabled) {
       cleanTimeouts();
       setHovered(!hovered);
@@ -77,17 +74,13 @@ export default function({
                   style.content,
                   ].join(' ')}
           >
-            {/* TODO: change to div or something */}
-              <Link
-                  to={url}
-                  className={[
-                      hovered && style.hovered,
-                      hovered && willExplode && style.bomb,
-                  ].join(' ')}
-                  onMouseOver = {handleHover}
-                  onClick = {handleHover}
-              >
-              </Link>
+            <button
+                className={[
+                    hovered && style.hovered,
+                    hovered && willExplode && style.bomb,
+                ].join(' ')}
+                onMouseOver = {handleHover}
+                onClick = {handleHover}/>
           </div>
       </div>
   )

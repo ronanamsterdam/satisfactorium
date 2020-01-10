@@ -8,8 +8,10 @@ import Squares from "../components/squares"
 
 const SecondPage = () => (
   <Layout>
-    <SEO title="Squares item" />
-    <Squares />
+    <SEO title="Projects" />
+    <p>
+      projects here...
+    </p>
   </Layout>
 )
 

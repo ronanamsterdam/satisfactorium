@@ -1,12 +1,32 @@
 const path = require('path')
 
 module.exports = {
+
   siteMetadata: {
     title: `I'm Roman and here are some squares.`,
     description: `some stuff I put on web.`,
     author: `@wallofballs`,
+    nav:[
+        {
+          text:'experiments',
+          href:'/experiments'
+        },
+        // {
+        //   text:'blog',
+        //   href:'/blog'
+        // },
+        // {
+        //   text:'projects',
+        //   href:'/projects'
+        // },
+        {
+          text:'about',
+          href:'/about'
+        }
+      ]
   },
   plugins: [
+    'gatsby-plugin-root-import',
     {
       resolve: `gatsby-plugin-less`,
       options: {

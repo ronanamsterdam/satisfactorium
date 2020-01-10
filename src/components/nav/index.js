@@ -1,43 +1,15 @@
-import PropTypes from "prop-types"
-import React from "react"
-import { Link } from "gatsby"
+import React, { Suspense, lazy } from "react";
+import { useSelector } from "react-redux";
 
-import helper from "./helper"
-import style from "./style.module.less"
+import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-const getBackButton = ({returnPath = "/", isRoot = true}) => {
-  return !isRoot ?
-    <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>⬅</span></Link>
-    : <a aria-label="go back" title="go back" href disabled className={style.linkNotActive} tabIndex={-1}><span>⬅</span></a>
+export default function(props) {
+    const {factor} = useSelector(state => state.root.ux.device);
+
+    const View = lazy(() => factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET ?
+      import('./mobile') : import('./desktop'))
+
+    return <Suspense fallback={<div>Loading...</div>}>
+        <View {...props}/>
+      </Suspense>
 }
-
-const Nav = ({ links = [] }) => {
-  const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
-
-  return (
-    <nav className={style.container}>
-      <div className={style.content}>
-        { !!links.length && <ul>
-          {<li className={style.backLink}>{getBackButton({returnPath, isRoot})}</li>}
-          {
-            links.map(({text, href}, idx) =>
-              <li key={idx}>
-                <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}><span>{text}</span></Link>
-              </li>)
-          }
-          </ul>
-        }
-      </div>
-    </nav>
-  )
-}
-
-Nav.propTypes = {
-  links: PropTypes.array,
-}
-
-Nav.defaultProps = {
-  links: ``,
-}
-
-export default Nav

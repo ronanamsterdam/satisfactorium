@@ -4,11 +4,11 @@
 import  { useEffect } from 'react';
 
 import { useDispatch } from "react-redux";
-import actions from '../../../../actions';
-// import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import actions from 'src/actions';
+import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-const debounce = require('../../../../utils').debounceCl();
-// const coreStyleVars = require("!less-vars-loader?camelCase!style/variables.less");
+const debounce = require('src/utils').debounceCl();
+const coreStyleVars = require("!less-vars-loader?camelCase!src/style/variables.less");
 
 export default function() {
 
@@ -32,25 +32,21 @@ export default function() {
       dispatch(actions.setDeviceUserAgent(agent));
     }
 
-    const __setDimensions = ({dispatch, props}) => {
-      // const agent = navigator.userAgent;
-
+    const __setDimensions = ({dispatch}) => {
       const {innerHeight, innerWidth, outerWidth, outerHeight} = window;
 
-      // const tabletBreak = parseInt(coreStyleVars.tabletBreak);
-      // const mobileBreak = parseInt(coreStyleVars.mobileBreak);
+      const tabletBreak = parseInt(coreStyleVars.tabletBreak);
+      const mobileBreak = parseInt(coreStyleVars.mobileBreak);
 
-      // let factor = DEVICE_FORM_FACTORS.DESKTOP
+      let factor = DEVICE_FORM_FACTORS.DESKTOP
 
-      // console.table({innerHeight, innerWidth});
+      if (innerWidth <= mobileBreak) {
+          factor = DEVICE_FORM_FACTORS.MOBILE;
+      } else if (innerWidth <= tabletBreak) {
+          factor = DEVICE_FORM_FACTORS.TABLET;
+      }
 
-      // if (innerWidth <= mobileBreak) {
-      //     factor = DEVICE_FORM_FACTORS.MOBILE;
-      // } else if (innerWidth <= tabletBreak) {
-      //     factor = DEVICE_FORM_FACTORS.TABLET;
-      // }
-
-      // this.props.actions.setDeviceFormFactor(factor);
+      dispatch(actions.setDeviceFormFactor(factor));
 
       dispatch(actions.setDeviceDimensions({
           height:         innerHeight,

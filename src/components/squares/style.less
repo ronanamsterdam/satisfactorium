@@ -1,0 +1,79 @@
+@import '~style/helpers';
+
+.container {
+    height:         @app-header-height;
+    left:           0;
+    position:       fixed;
+    top:            0;
+    padding:        0;
+    width:          100%;
+    z-index:        @header-z;
+
+    &.introContainer {
+        position:       absolute;
+        top: 300px;
+        left: 40px;
+        right: 40px;
+        width: initial;
+
+        .content .background  {
+            border-radius: @app-main-ui-radius;
+            box-shadow: 0px 4px 43px 0px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .content {
+
+        display:        flex;
+        flex-direction: row;
+        height:         100%;
+        min-width:      @app-container-min-width;
+        margin:         auto;
+        position:       relative;
+        width:          100%;
+
+        .background {
+            position:       absolute;
+            top:        0;
+            bottom:     0;
+            left: 0;
+            right: 0;
+
+            background:     @header-color;
+            overflow:       hidden;
+
+            z-index: -1;
+
+        }
+    }
+
+    h1 {
+        color:          @app-font-main-color-black;
+        font-size:      24px;
+        font-weight:    400;
+        float:          left;
+        line-height:    56px;
+        margin:         0;
+        padding:        0 15px;
+    }
+}
+
+@media (max-width: @tablet-break) {
+    .container {
+        &.introContainer {
+            left:       25vw;
+            right:      25vw;
+            top:        230px;
+            width:      initial;
+
+            .content {
+                min-width:  initial;
+                width:      initial;
+            }
+
+            .headerFiltersContainer {
+                width: initial;
+            }
+        }
+    }
+}

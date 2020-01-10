@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import style            from "./style.module.less";
 
+import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+
 export default function({
   disabled = false,
   id = "",
@@ -19,6 +21,7 @@ export default function({
   // TODO: this is pretty implicit. Figure a better way
   const isLevelDone = useSelector(state => state.squareGame.totalSquares === state.squareGame.activeSquares.length);
   const shouldBlastPresent = useSelector(state => state.squareGame.activeSquares.indexOf(idx) > -1 && state.squareGame.shouldBlast[idx]);
+  const {factor} = useSelector(state => state.root.ux.device);
   const isDisabled = disabled || isLevelDone;
 
   const [initialActive, setInitialActive] = useState(isActive && !isBomb);
@@ -64,6 +67,12 @@ export default function({
     }
   };
 
+  const handleFocus = (e) => {
+    if (factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET) {
+      handleHover(e)
+    }
+  }
+
   return (
       <div
           id={id}
@@ -80,7 +89,8 @@ export default function({
                     hovered && willExplode && style.bomb,
                 ].join(' ')}
                 onMouseOver = {handleHover}
-                onClick = {handleHover}/>
+                onClick = {handleHover}
+                onFocus = {handleFocus}/>
           </div>
       </div>
   )

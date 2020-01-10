@@ -9,13 +9,15 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import Nav from "components/nav"
+import Nav      from "components/nav"
+import Device   from 'components/global/device';
 
 import style from "./style.module.less"
 
 import 'style/index.less';
 
-const Layout = ({ children }) => (
+const Layout = ({ children }) => {
+  return (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -41,10 +43,11 @@ const Layout = ({ children }) => (
             <a href="https://github.com/ronanamsterdam/satisfactorium" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
           </footer>
         </div>
+        <Device/>
       </div>
     )}
   />
-)
+)}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

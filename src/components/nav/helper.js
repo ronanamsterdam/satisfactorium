@@ -5,6 +5,7 @@ const getBackPath = (pathname = '/') => {
     let isRoot = true;
 
     if (m && m.length) {
+      // eslint-disable-next-line
       const [_, ...restMatch] = m.reverse();
       returnPath = m.length > 1 ? restMatch.reverse().join("/") : "/";
 

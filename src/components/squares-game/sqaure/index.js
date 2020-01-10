@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import style            from "./style.module.less";
 
-import { Link } from "gatsby"
-
 export default function({
   disabled = false,
   id = "",

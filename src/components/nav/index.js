@@ -8,7 +8,7 @@ import style from "./style.module.less"
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot ?
     <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>⬅</span></Link>
-    : <a aria-label="go back" title="go back" disabled className={style.linkNotActive} tabIndex={-1}><span>⬅</span></a>
+    : <a aria-label="go back" title="go back" href disabled className={style.linkNotActive} tabIndex={-1}><span>⬅</span></a>
 }
 
 const Nav = ({ links = [] }) => {

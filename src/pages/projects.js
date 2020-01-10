@@ -4,8 +4,6 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import Squares from "../components/squares"
-
 const SecondPage = () => (
   <Layout>
     <SEO title="Projects" />

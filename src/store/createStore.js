@@ -28,7 +28,7 @@ const rootCombinedWithPersist = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootCombinedWithPersist)
 
 // INFO: in prod use env vars to separate dev using window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ vs prod not using it
-const composeEnhancers = typeof window !== `undefined` && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (typeof window !== `undefined` && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const enhancer = composeEnhancers(
   applyMiddleware(

@@ -1,6 +1,6 @@
-https://satisfactorium.com/squares-game
+https://satisfactorium.com/experiments/squares-game
 
-# 🚀 This is my portfolio app
+# 🚀 This is my portfolio-like app
 
 ## 🧐 What's inside?
 

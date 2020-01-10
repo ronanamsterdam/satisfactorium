@@ -54,6 +54,12 @@ export default function({
 
   useEffect(()=> cleanTimeouts);
 
+  const onMouseOver = (e) => {
+    if (factor !== DEVICE_FORM_FACTORS.MOBILE && factor !== DEVICE_FORM_FACTORS.TABLET) {
+      handleHover(e)
+    }
+  }
+
   const handleHover = (e) => {
     if(!isDisabled) {
       cleanTimeouts();
@@ -88,7 +94,7 @@ export default function({
                     hovered && style.hovered,
                     hovered && willExplode && style.bomb,
                 ].join(' ')}
-                onMouseOver = {handleHover}
+                onMouseOver = {onMouseOver}
                 onClick = {handleHover}
                 onFocus = {handleFocus}/>
           </div>

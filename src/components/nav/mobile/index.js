@@ -6,7 +6,7 @@ import helper from "../helper"
 import style from "./style.module.less"
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
-  return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>⬅</span></Link>
+  return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>◀︎</span></Link>
 }
 
 const Nav = ({ links = [] }) => {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
+import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+
 import actions from '../../../actions';
 
 import Square from "../sqaure";
@@ -12,6 +14,9 @@ export default function() {
   const dispatch = useDispatch();
 
   const [isStart, setIsStart] = useState(false)
+  const {factor} = useSelector(state => state.root.ux.device);
+
+  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
 
   const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor, bombRadius} = useSelector(state => ({
       ...state.squareGame,
@@ -28,21 +33,34 @@ export default function() {
     return () => clearTimeout(timeout);
   }, [lvl, probabilityFactor])
 
+  useEffect(() => {
+    if (isMobile) {
+      dispatch(actions.setLevelDelta(2))
+      lvl === 1 && dispatch(actions.setTotalSquaresCount(30+2*(+lvl)))
+    }
+  }, [factor])
+
   const onTimerCb = (time) => isDone && dispatch(actions.levelDone({time, lvl}));
 
   const bestTime = (bestTimes[lvl] && new Date(bestTimes[lvl])) || null;
 
   return (
     <div className={style.container}>
+      {isMobile && <div className={style.hiddenSquare}>
+          <Square
+            id="stats-square"
+            disabled={true}
+            isActive={true}
+          />
+      </div>}
       <div className={style.content}>
-
           <div className={[
             style.congrats,
             isDone ? style.visible: "",
           ].join(" ")}>
             <h1>
               <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
-               chicken dinner!
+               <br/>chicken dinner!<br/>
               <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
             </h1>
           </div>
@@ -52,8 +70,8 @@ export default function() {
           <div
             className={style.objectiveColumn}
           >
-            <h1>Level: {lvl}</h1>
-            {!!bestTime && (<h2>best time: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}</h2>)}
+            <h1>{isMobile ? "Lvl": "Level"}: {lvl}</h1>
+            {!!bestTime && (<h2>best{isMobile ? "":" time"}: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}</h2>)}
             <Timer
               isDone={isDone}
               isStart={isStart}
@@ -62,7 +80,7 @@ export default function() {
               cb={onTimerCb}
             />
           </div>
-          <div
+          {!isMobile && <div
             className={style.objectiveColumn}
           >
             <span>
@@ -85,8 +103,8 @@ export default function() {
             <span>
             <b>IMPORTANT:</b> Works on <b>desktop</b> only. Use your 🐁
             </span>
-          </div>
-          <div
+          </div>}
+          {!isMobile && <div
             className={style.objectiveColumn}
           >
             <h3>
@@ -101,7 +119,7 @@ export default function() {
             <h3>
               bomb radius: {bombRadius}
             </h3>
-          </div>
+          </div>}
         </div>
             <div
               className={style.buttonsHolder}

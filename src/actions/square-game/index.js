@@ -11,6 +11,9 @@ const restartLevel = _ => ({type: actionTypes.ON_RESTART_LEVEL});
 
 const addToShouldBlast = (shouldBlast = {}) => ({type: actionTypes.ON_ADD_TO_SHOULD_BLAST, shouldBlast})
 
+const setLevelDelta = (delta = 15) => ({type: actionTypes.ON_LEVEL_DELTA_SET, delta})
+const setTotalSquaresCount = (totalCount = 69) => ({type: actionTypes.ON_LEVEL_TOTAL_COUNT, totalCount})
+
 export default {
   squareActivate,
   squareDeactivate,
@@ -21,4 +24,6 @@ export default {
   nextLevel,
   restartLevel,
   addToShouldBlast,
+  setLevelDelta,
+  setTotalSquaresCount,
 };

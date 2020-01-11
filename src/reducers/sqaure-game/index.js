@@ -38,6 +38,21 @@ export default function squareGame(state = initialState, action) {
           };
         }
 
+        case actionTypes.ON_LEVEL_DELTA_SET: {
+          return {
+            ...state,
+            levelSquaresDelta: action.delta
+          }
+        }
+
+        case actionTypes.ON_LEVEL_TOTAL_COUNT: {
+          return {
+            ...state,
+            activeSquares: [],
+            totalSquares: action.totalCount
+          }
+        }
+
         case actionTypes.ON_GAME_RESET:
           return {
             ...initialState,

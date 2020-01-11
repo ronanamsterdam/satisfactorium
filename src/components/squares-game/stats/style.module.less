@@ -43,11 +43,20 @@
           top: -80px;
 
           &.visible {
-            top: 140px;
             animation: font-bounce 1s infinite;
             animation-timing-function: ease;
+            display: flex;
             font-size: 16px;
+            justify-content: center;
             opacity: 1;
+            top: 140px;
+            z-index: 1000;
+
+            h1 {
+              background: rgba(241, 73, 194, 0.5294117647058824);
+              border-radius: 20px;
+              backdrop-filter: blur(5px);
+            }
 
             @keyframes font-bounce {
               0%   {font-size:16px; }

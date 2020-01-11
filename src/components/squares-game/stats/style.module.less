@@ -18,7 +18,7 @@
             background:       @yellow;
             &:disabled {
               background:       @gray;
-              box-shadow: 0 0 0 rgba(0,0,0,0);
+              box-shadow: 0 0 0 fade(@black,0%);
             }
 
             &:hover, &.selected {
@@ -36,7 +36,7 @@
           .transition(opacity, top);
           left: 0;
           opacity: 0;
-          position: absolute;
+          position: fixed;
           pointer-events: none;
           right: 0;
           text-align: center;
@@ -53,9 +53,10 @@
             z-index: 1000;
 
             h1 {
-              background: rgba(241, 73, 194, 0.5294117647058824);
+              background: @backdrop-blur-color;
               border-radius: 20px;
               backdrop-filter: blur(5px);
+              padding: 5px;
             }
 
             @keyframes font-bounce {
@@ -113,6 +114,9 @@
           flex-direction: row;
           justify-content: space-evenly;
         }
+      }
+      .congrats {
+        position: absolute;
       }
     }
   }

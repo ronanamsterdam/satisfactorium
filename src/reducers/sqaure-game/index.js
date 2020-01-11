@@ -1,6 +1,4 @@
-import appActions from 'statics/actions';
-
-import ux,  {uxInitialState}  from './ux';
+import actionTypes from 'statics/actions';
 
 function probabilityFactor(state = initialState) {
   return Math.exp(-(1 + Math.exp(state.lvl/10)/10))
@@ -21,7 +19,6 @@ const initialState = (function(state) {
     time:              null,
     avgTime:           null,
     bestTimes:         {},
-    ux:                uxInitialState,
     shouldBlast:       {}
 });
 
@@ -31,7 +28,7 @@ function calcBombRadius(lvl) {
 
 export default function squareGame(state = initialState, action) {
     switch (action.type) {
-        case appActions.ON_ADD_TO_SHOULD_BLAST: {
+        case actionTypes.ON_ADD_TO_SHOULD_BLAST: {
           return {
             ...state,
             shouldBlast: {
@@ -41,13 +38,27 @@ export default function squareGame(state = initialState, action) {
           };
         }
 
-        case appActions.ON_GAME_RESET:
+        case actionTypes.ON_LEVEL_DELTA_SET: {
+          return {
+            ...state,
+            levelSquaresDelta: action.delta
+          }
+        }
+
+        case actionTypes.ON_LEVEL_TOTAL_COUNT: {
+          return {
+            ...state,
+            activeSquares: [],
+            totalSquares: action.totalCount
+          }
+        }
+
+        case actionTypes.ON_GAME_RESET:
           return {
             ...initialState,
-            ux:            state.ux,
             activeSquares: [],
           };
-        case appActions.ON_SQUARE_ACTIVATE:
+        case actionTypes.ON_SQUARE_ACTIVATE:
             const {idx} = action;
 
             let newShouldBlast = state.shouldBlast
@@ -64,7 +75,7 @@ export default function squareGame(state = initialState, action) {
               shouldBlast: {...newShouldBlast},
             }
 
-        case appActions.ON_SQUARE_DEACTIVATE:{
+        case actionTypes.ON_SQUARE_DEACTIVATE:{
             const newShouldBlast = state.shouldBlast
             if (newShouldBlast[action.idx]) {
               delete newShouldBlast[action.idx];
@@ -75,7 +86,7 @@ export default function squareGame(state = initialState, action) {
               shouldBlast: {...newShouldBlast},
           };
         }
-        case appActions.ON_BLAST:{
+        case actionTypes.ON_BLAST:{
             let newShouldBlast = state.shouldBlast
             if (newShouldBlast[action.idx]) {
               delete newShouldBlast[action.idx];
@@ -87,7 +98,7 @@ export default function squareGame(state = initialState, action) {
               shouldBlast: {...newShouldBlast},
           };
         }
-        case appActions.ON_LEVEL_DONE: {
+        case actionTypes.ON_LEVEL_DONE: {
           const {time, lvl: timeLevel} = action;
 
           const {bestTimes} = state
@@ -109,10 +120,9 @@ export default function squareGame(state = initialState, action) {
           }
         }
 
-        case appActions.ON_NEXT_LEVEL:
+        case actionTypes.ON_NEXT_LEVEL:
           return {
             ...initialState,
-            ux:                 state.ux,
             totalSquares:       state.totalSquares+state.levelSquaresDelta,
             activeSquares:      [],
             lvl:                (+state.lvl)+1,
@@ -121,10 +131,9 @@ export default function squareGame(state = initialState, action) {
             bombRadius:         calcBombRadius(+state.lvl+1),
           }
 
-        case appActions.ON_PREV_LEVEL:
+        case actionTypes.ON_PREV_LEVEL:
             return {
               ...initialState,
-              ux:                   state.ux,
               totalSquares:         Math.max(84, state.totalSquares-state.levelSquaresDelta),
               activeSquares:        [],
               lvl:                  Math.max(1, (+state.lvl)-1),
@@ -132,10 +141,9 @@ export default function squareGame(state = initialState, action) {
               bestTimes:            {...state.bestTimes},
               bombRadius:           calcBombRadius(+state.lvl-1),
             }
-        case appActions.ON_RESTART_LEVEL:
+        case actionTypes.ON_RESTART_LEVEL:
             return {
               ...initialState,
-              ux:                   state.ux,
               totalSquares:         state.totalSquares,
               activeSquares:        [],
               lvl:                  +state.lvl,
@@ -144,13 +152,6 @@ export default function squareGame(state = initialState, action) {
               bestTimes:            {...state.bestTimes},
           }
 
-        case appActions.DEVICE_DIMENSIONS_SET:
-        case appActions.DEVICE_USER_AGENT_SET:
-        case appActions.DEVICE_FORM_FACTOR_SET:
-          return {
-                ...state,
-                ux: ux(state.ux, action)
-            }
         default:
             return state;
     }

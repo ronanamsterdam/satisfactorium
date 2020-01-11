@@ -12,181 +12,52 @@
         display: flex;
         height: 100%;
 
-        .cardContent.cardContentListView {
-            display:    flex;
-            width:      100%;
-        }
-
         button {
-            .app-button();
-            .transition(box-shadow, background, border-radius, width, height);
+          .square-button();
+          touch-action: manipulation;
+          &:hover, &.selected {
+            background-color: lighten(@main-color, 25%);
+            color:            @white;
+          }
 
-            align-items:    center;
-            display:        flex;
-            background:     @white;
-            height:         100%;
-            margin:         0;
+          &.hovered {
+              // yes this needs to STAY here
+              background: @blue;
 
-            overflow:   hidden;
-            padding:    0;
-            width: 100%;
+              &.bomb {
+                align-self: center;
+                animation: bomb-bounce 1s infinite;
+                animation-timing-function: ease;
+                background: @red;
+                margin: auto;
 
-            &:hover, &.selected {
-              background-color: lighten(@main-color, 25%);
-              color:            @white;
-            }
+                &:after {
+                  .font-factor(@val) {
+                    font-size: calc(@val / (1 + 0.06*var(--square-factor)));
+                  };
 
-            &.hovered {
-                background: @blue;
-                color:      initial;
-                box-shadow: 0px 15px 45px -10px rgba(0, 0, 0, 0.6);
-                border-radius:  50%;
-                z-index: 1;
+                  .font-factor(30px);
 
-                &.bomb {
-                  align-self: center;
-                  animation: bomb-bounce 1s infinite;
+                  content:"💣";
+                  animation: font-bounce 1s infinite;
                   animation-timing-function: ease;
-                  background: @red;
                   margin: auto;
+                  z-index: 0;
 
-                  &:after {
-                    .font-factor(@val) {
-                      font-size: calc(@val / (1 + 0.06*var(--square-factor)));
-                    };
-
-                    .font-factor(30px);
-
-                    content:"💣";
-                    animation: font-bounce 1s infinite;
-                    animation-timing-function: ease;
-                    margin: auto;
-                    z-index: 0;
-
-                    @keyframes font-bounce {
-                      0%   {.font-factor(30px);}
-                      50%  {.font-factor(40px);}
-                      100% {.font-factor(30px);}
-                    }
-                  }
-
-                  @keyframes bomb-bounce {
-                    0%   {background-color:@red; }
-                    50%  {background-color:@blue; height: 90%; width: 90%; }
-                    100% {background-color:@red; }
+                  @keyframes font-bounce {
+                    0%   {.font-factor(30px);}
+                    50%  {.font-factor(40px);}
+                    100% {.font-factor(30px);}
                   }
                 }
 
-                .imgContainer {
-                    max-width: 11%;
-
-                    .img {
-                        margin-left:    -20px;
-                    }
+                @keyframes bomb-bounce {
+                  0%   {background-color:@red; }
+                  50%  {background-color:@blue; height: 90%; width: 90%; }
+                  100% {background-color:@red; }
                 }
-            }
-
-            &.centerContent {
-                align-content: center;
-            }
-        }
-
-        .imgContainer{
-            .transition(width, max-width);
-            height:     200px;
-            overflow:   hidden;
-            position:   relative;
-            width:      105%;
-            .img {
-                .transition(background-position-x);
-                background-size:        cover;
-                background-repeat:      no-repeat;
-                background-position-x:  50%;
-                background-position-y:  50%;
-                bottom:                 0;
-                height:                 300px;
-                position:               absolute;
-                width:                  100%;
-
-            }
-        }
-
-        .infoItemsList {
-            display: flex;
-            justify-content: space-between;
-
-            .title {
-                font-size: @font-small-s;
-            }
-        }
-
-        button.listView {
-            flex-direction: row;
-            max-height: @list-item-height;
-        }
-
-        .listView {
-
-            &.imgContainer {
-                max-width:  10%;
-                min-width:  200px;
-                height:     @list-item-height;
-                .img {
-                    .transition(margin-left);
-                    background-size:        contain;
-                    background-position-x:  50%;
-                    height:                 160px;
-                    margin-left:            -10px;
-                    width:                  125%;
-                }
-            }
-
-            // &.infoContainer {
-            //     background-color:   @white;
-            //     height:    @list-item-height;
-            //     padding:    10px;
-            //     width:      100%;
-            //     display: flex;
-            //     flex-direction: column;
-            //     justify-content: space-between;
-            //     .title {
-            //         text-align: left;
-            //         font-size:  @font-mid-s;
-            //     }
-            // }
-        }
-
-        a.cardView {
-            flex-direction: column;
-            max-height: @card-item-height;
-        }
-
-        .cardView {
-            &.imgContainer {
-                max-width: 10%;
-                min-width: 200px;
-                height:     @card-item-height;
-                .img {
-                    .transition(margin-left);
-                    background-size:        contain;
-                    background-position-x:  50%;
-                    height:                 160px;
-                    margin-left:            -10px;
-                    width:                  125%;
-                }
-            }
-            &.infoContainer {
-                background-color:   @white;
-                height:             @card-item-height;
-                width:              100%;
-                display:            flex;
-                flex-direction:     column;
-                justify-content:    space-between;
-                .title {
-                    text-align: left;
-                    font-size:  @font-mid-s;
-                }
-            }
+              }
+          }
         }
     }
 }

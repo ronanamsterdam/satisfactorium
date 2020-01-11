@@ -1,19 +1,18 @@
-import appActions from 'statics/actions';
+import actionTypes from 'statics/actions';
 
-const squareActivate    = idx => ({ type: appActions.ON_SQUARE_ACTIVATE, idx });
-const squareDeactivate  = idx => ({type: appActions.ON_SQUARE_DEACTIVATE, idx});
-const squareBlast    = idx => ({type: appActions.ON_BLAST, idx});
-const squareGameReset    = idx => ({type: appActions.ON_GAME_RESET, idx});
-const levelDone = args => ({type: appActions.ON_LEVEL_DONE, ...args});
-const nextLevel = _ => ({type: appActions.ON_NEXT_LEVEL});
-const prevLevel = _ => ({type: appActions.ON_PREV_LEVEL});
-const restartLevel = _ => ({type: appActions.ON_RESTART_LEVEL});
+const squareActivate    = idx => ({ type: actionTypes.ON_SQUARE_ACTIVATE, idx });
+const squareDeactivate  = idx => ({type: actionTypes.ON_SQUARE_DEACTIVATE, idx});
+const squareBlast    = idx => ({type: actionTypes.ON_BLAST, idx});
+const squareGameReset    = idx => ({type: actionTypes.ON_GAME_RESET, idx});
+const levelDone = args => ({type: actionTypes.ON_LEVEL_DONE, ...args});
+const nextLevel = _ => ({type: actionTypes.ON_NEXT_LEVEL});
+const prevLevel = _ => ({type: actionTypes.ON_PREV_LEVEL});
+const restartLevel = _ => ({type: actionTypes.ON_RESTART_LEVEL});
 
-const setDeviceFormFactor   = factor => ({type: appActions.DEVICE_FORM_FACTOR_SET, factor});
-const setDeviceUserAgent    = agent => ({type: appActions.DEVICE_USER_AGENT_SET, agent});
-const setDeviceDimensions   = dimensions => ({type: appActions.DEVICE_DIMENSIONS_SET, dimensions});
+const addToShouldBlast = (shouldBlast = {}) => ({type: actionTypes.ON_ADD_TO_SHOULD_BLAST, shouldBlast})
 
-const addToShouldBlast = (shouldBlast = {}) => ({type: appActions.ON_ADD_TO_SHOULD_BLAST, shouldBlast})
+const setLevelDelta = (delta = 15) => ({type: actionTypes.ON_LEVEL_DELTA_SET, delta})
+const setTotalSquaresCount = (totalCount = 69) => ({type: actionTypes.ON_LEVEL_TOTAL_COUNT, totalCount})
 
 export default {
   squareActivate,
@@ -24,8 +23,7 @@ export default {
   prevLevel,
   nextLevel,
   restartLevel,
-  setDeviceFormFactor,
-  setDeviceUserAgent,
-  setDeviceDimensions,
   addToShouldBlast,
+  setLevelDelta,
+  setTotalSquaresCount,
 };

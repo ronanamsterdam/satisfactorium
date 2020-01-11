@@ -14,23 +14,23 @@ export const uxInitialState = {
 
 const device = function(state = deviceInitialState, action) {
     switch(action.type) {
-        case appActions.DEVICE_FORM_FACTOR_SET:
-            return {
-                ...state,
-                factor: action.factor || DEVICE_FORM_FACTORS.DESKTOP
-            }
-        case appActions.DEVICE_USER_AGENT:
-            return {
-                ...state,
-                agent: action.agent
-            }
-        case appActions.DEVICE_DIMENSIONS_SET:
-            return {
-                ...state,
-                dimensions: action.dimensions
-            }
-    default:
-        return state;
+      case appActions.DEVICE_FORM_FACTOR_SET:
+          return {
+              ...state,
+              factor: action.factor || DEVICE_FORM_FACTORS.DESKTOP
+          }
+      case appActions.DEVICE_USER_AGENT_SET:
+          return {
+              ...state,
+              agent: action.agent
+          }
+      case appActions.DEVICE_DIMENSIONS_SET:
+          return {
+              ...state,
+              dimensions: action.dimensions
+          }
+      default:
+          return state;
     }
 }
 

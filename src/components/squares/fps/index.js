@@ -11,34 +11,14 @@ export default function() {
     framesCount: 0
   });
 
-  useEffect(() => {
-    // NOTE: timeout is here
-    // cuz requestAnimationFrame is deferred
-    // and to prevent set states on unmounted
-    let timeout = null;
-
-    requestAnimationFrame(() => timeout = setTimeout(()=>{
-
-      const currentStamp = Date.now();
-      const shouldSetState = currentStamp - frameTimeState.lastStamp > 1000;
-
-      const newFramesCount = frameTimeState.framesCount + 1;
-
-      if (shouldSetState) {
-        setFrameTimeState({
-          fps: frameTimeState.framesCount,
-          lastStamp: currentStamp,
-          framesCount: 0,
-        });
-      } else {
-        setFrameTimeState({
-          ...frameTimeState,
-          framesCount: newFramesCount,
-        });
-      }
-    },0));
-    return () => timeout && clearTimeout(timeout);
-  }, [frameTimeState])
+  requestAnimationFrame(() => {
+    const shouldSetState = Date.now() - frameTimeState.lastStamp > 1000;
+    setFrameTimeState({
+      lastStamp: shouldSetState ? Date.now() : frameTimeState.lastStamp,
+      framesCount: shouldSetState ? 0 : (frameTimeState.framesCount + 1),
+      fps: shouldSetState ? frameTimeState.framesCount + 1 : frameTimeState.fps
+    });
+  });
 
   return <h1>{frameTimeState.fps} fps</h1>
 }

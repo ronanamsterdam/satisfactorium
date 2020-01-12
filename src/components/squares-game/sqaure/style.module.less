@@ -4,6 +4,14 @@
 @list-item-height: 100%;
 @card-item-height: 280px;
 
+@dark-btn-bg: rgb(93, 123, 146);
+@dark-btn-hovered: #316777;
+@dark-btn-shadow: #131313c7;
+
+.font-factor(@val) {
+  font-size: calc(@val / (1 + 0.06*var(--square-factor)));
+};
+
 .container {
     .transition(height, width);
     height: @square-size;
@@ -32,10 +40,6 @@
                 margin: auto;
 
                 &:after {
-                  .font-factor(@val) {
-                    font-size: calc(@val / (1 + 0.06*var(--square-factor)));
-                  };
-
                   .font-factor(30px);
 
                   content:"💣";
@@ -43,21 +47,45 @@
                   animation-timing-function: ease;
                   margin: auto;
                   z-index: 0;
-
-                  @keyframes font-bounce {
-                    0%   {.font-factor(30px);}
-                    50%  {.font-factor(40px);}
-                    100% {.font-factor(30px);}
-                  }
-                }
-
-                @keyframes bomb-bounce {
-                  0%   {background-color:@red; }
-                  50%  {background-color:@blue; height: 90%; width: 90%; }
-                  100% {background-color:@red; }
                 }
               }
           }
         }
     }
+}
+
+body:global(.night) {
+  .container {
+    .content {
+      button {
+        background:       @dark-btn-bg;
+        &.hovered {
+          background:       @dark-btn-hovered;
+          box-shadow: 10px 10px 1px @dark-btn-shadow;
+        }
+
+        &.bomb {
+          animation: bomb-bounce-dark 1s infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes font-bounce {
+  0%   {.font-factor(30px);}
+  50%  {.font-factor(40px);}
+  100% {.font-factor(30px);}
+}
+
+@keyframes bomb-bounce {
+  0%   {background-color:@red; }
+  50%  {background-color:@blue; height: 90%; width: 90%; }
+  100% {background-color:@red; }
+}
+
+@keyframes bomb-bounce-dark {
+  0%   {background-color:@red; }
+  50%  {background-color:#131313c7; height: 90%; width: 90%; }
+  100% {background-color:@red; }
 }

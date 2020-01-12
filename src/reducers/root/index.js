@@ -9,6 +9,7 @@ const initialState = {
 
 export default function testReducer(state = initialState, action) {
     switch (action.type) {
+        case actionTypes.SET_THEME:
         case actionTypes.DEVICE_DIMENSIONS_SET:
         case actionTypes.DEVICE_USER_AGENT_SET:
         case actionTypes.DEVICE_FORM_FACTOR_SET:

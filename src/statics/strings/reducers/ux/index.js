@@ -3,3 +3,8 @@ export const DEVICE_FORM_FACTORS = {
     TABLET:     'TABLET',
     DESKTOP:    'DESKTOP',
 }
+
+export const THEMES = {
+  LIGHT:     'LIGHT',
+  DARK:     'DARK',
+}

@@ -1,7 +1,7 @@
 @import '~style/helpers';
 
 .container {
-  background: #f14ac2;
+  background: var(--brand-main);
   bottom: 0;
   position: fixed;
   left: 0;
@@ -44,8 +44,8 @@
     }
 
     &.linkNotActive {
+      color:  var(--link-disabled-color);
       cursor: default;
-      color:  darken(@brand-color, 30%);
     }
   }
 }

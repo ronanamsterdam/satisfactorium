@@ -1,6 +1,10 @@
 import PropTypes from "prop-types"
-import React from "react"
+import React, {useEffect} from "react"
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "gatsby"
+
+import {THEMES}    from 'statics/strings/reducers/ux';
+import actions from "src/actions";
 
 import helper from "../helper"
 import style from "./style.module.less"
@@ -13,6 +17,25 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
 
 const Nav = ({ links = [] }) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
+  const theme = useSelector(state => state.root.ux.theme)
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    if (theme === THEMES.DARK) {
+      document.body.classList.add("night");
+    } else {
+      document.body.classList.remove("night");
+    }
+  }, [theme])
+
+  const onToggleTheme = (e) => {
+    const {checked} = e.target;
+    if (checked) {
+      dispatch(actions.setTheme(THEMES.DARK))
+    } else {
+      dispatch(actions.setTheme(THEMES.LIGHT))
+    }
+  }
 
   return (
     <nav className={style.container}>
@@ -27,6 +50,12 @@ const Nav = ({ links = [] }) => {
           }
           </ul>
         }
+        <div className={style.settings}>
+          <div className={style.themeSwitch}>
+            <input id="dark-light-switch" checked={theme === THEMES.DARK} onChange={onToggleTheme} type="checkbox"/>
+            <label htmlFor="dark-light-switch" ><span></span></label>
+          </div>
+        </div>
       </div>
     </nav>
   )

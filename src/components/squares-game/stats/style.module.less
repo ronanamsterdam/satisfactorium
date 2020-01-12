@@ -21,7 +21,7 @@
               box-shadow: 0 0 0 fade(@black,0%);
             }
 
-            &:hover, &.selected {
+            &:hover, &:focus, &.selected {
               background-color: lighten(@main-color, 25%);
               color:            @white;
             }
@@ -68,9 +68,11 @@
 
         }
         .objectiveStat {
+          .transition(box-shadow);
           align-content: space-between;
           align-items: center;
-          background: #e0e0e0;
+          background: hsla(var(--body-main-base), 6%, 83%);
+          box-shadow: 0 0 0 black;
           border-radius: 20px;
           display: flex;
           margin: 20px;
@@ -93,6 +95,40 @@
       height: 0;
       overflow: hidden;
     }
+}
+
+body:global(.night) {
+  .container {
+    .content {
+      .objectiveStat {
+        background: hsla(var(--body-main-base), 27%, 28%);
+        box-shadow: 20px 20px 1px #131313c7;
+      }
+
+      .buttonsHolder {
+        button {
+          background:       @black;
+          box-shadow: 20px 20px 1px #131313c7;
+
+          &:hover, &:focus, &.selected {
+            background-color: lighten(@black, 5%);
+            box-shadow: 25px 25px 1px #131313c7;
+          }
+
+          &:disabled {
+            color:       #424242;
+            box-shadow: 15px 15px 1px #131313c7;
+            border-color: #424242;
+          }
+        }
+      }
+
+      .congrats h1 {
+        border: 10px solid #0000004d;
+        box-shadow: 30px 60px 0px 0px #00000066;
+      }
+    }
+  }
 }
 
 @media (max-width: @tablet-break) {

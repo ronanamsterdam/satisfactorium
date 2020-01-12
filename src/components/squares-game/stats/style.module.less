@@ -1,6 +1,9 @@
 @import '~style/helpers';
 @import '../localStyle/helpers';
 
+@congrats-border-c: #0000004d;
+@btn-shadows: #131313c7;
+
 .container {
     padding-bottom: 30px;
     .content {
@@ -24,6 +27,10 @@
             &:hover, &:focus, &.selected {
               background-color: lighten(@main-color, 25%);
               color:            @white;
+            }
+
+            &:active {
+              background: lighten(@main-color, 30%);
             }
           }
         }
@@ -56,6 +63,7 @@
 
           h1 {
             background: @backdrop-blur-color;
+            border: 10px solid @congrats-border-c;
             border-radius: 20px;
             backdrop-filter: blur(5px);
             padding: 5px;
@@ -96,29 +104,33 @@ body:global(.night) {
     .content {
       .objectiveStat {
         background: hsla(var(--body-main-base), 27%, 28%);
-        box-shadow: 20px 20px 1px #131313c7;
+        box-shadow: 20px 20px 1px @btn-shadows;
       }
 
       .buttonsHolder {
         button {
           background:       @black;
-          box-shadow: 20px 20px 1px #131313c7;
+          box-shadow: 20px 20px 1px @btn-shadows;
 
           &:hover, &:focus, &.selected {
             background-color: lighten(@black, 5%);
-            box-shadow: 25px 25px 1px #131313c7;
+            box-shadow: 25px 25px 1px @btn-shadows;
           }
 
           &:disabled {
             color:       #424242;
-            box-shadow: 15px 15px 1px #131313c7;
+            box-shadow: 15px 15px 1px @btn-shadows;
             border-color: #424242;
+          }
+
+          &:active {
+            background: lighten(@black, 10%);
           }
         }
       }
 
       .congrats h1 {
-        border: 10px solid #0000004d;
+        border: 10px solid @congrats-border-c;
         box-shadow: 30px 60px 0px 0px #00000066;
       }
     }

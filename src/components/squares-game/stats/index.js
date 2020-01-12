@@ -56,7 +56,7 @@ export default function() {
       <div className={style.content}>
           <div className={[
             style.congrats,
-            isDone ? style.visible: "",
+            !isDone ? style.visible: "",
           ].join(" ")}>
             <h1>
               <span role="img"  aria-label="chicken dinner!">🥳🥳</span>

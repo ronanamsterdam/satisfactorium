@@ -16,7 +16,7 @@ export default function(props) {
       <div
         style={ isMobile ?
           {
-            background: '#f14ac2',
+            background: 'var(--brand-main)',
             bottom: 0,
             height: '50px',
             left: 0,
@@ -24,7 +24,7 @@ export default function(props) {
             right: 0,
             zIndex: 1000,
           }:{
-            background: '#f14ac2',
+            background: 'var(--brand-main)',
             bottom: 0,
             position: 'fixed',
             top: 0,

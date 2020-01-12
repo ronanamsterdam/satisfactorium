@@ -1,0 +1,44 @@
+:root {
+  --square-factor: 1;
+}
+
+body.night {
+  --brand-main-base: 207;
+  --brand-main-raw: var(--brand-main-base), 17%, 28%;
+
+  --body-main-base: 198;
+  --body-main-raw: var(--brand-main-base), 20%, 13%;
+
+  --link-color-raw-base: 169;
+  --link-color-raw: var(--link-color-raw-base), 100%, 50%;
+
+  --link-color: hsl(var(--link-color-raw));
+  --link-disabled-color: hsl(var(--link-color-raw-base), 5%, 50%, .5);
+
+  --nav-link-color-base: -165;
+
+  --font-main: @white;
+}
+
+body {
+  --brand-main-base: 317;
+  --brand-main-raw: var(--brand-main-base), 86%, 62%;
+
+  --brand-main: hsl(var(--brand-main-raw));
+  --brand-hover: hsl(var(--brand-main-raw), 1.2);
+  --brand-press: hsl(var(--brand-main-raw), 1.5);
+  --brand-btn-hover: hsl(var(--brand-main-raw), .8);
+
+  --body-main-base: 30;
+  --body-main-raw: var(--body-main-base), 6%, 93%;
+  --body-main:  hsl(var(--body-main-raw));
+
+  --link-color: hsl(var(--brand-main-raw), 1.5);
+  --link-disabled-color: hsl(var(--brand-main-raw), 1.7);
+
+  --nav-link-color-base: 0;
+  --nav-link-color: hsl(var(--nav-link-color-base), 95%, 9%);
+  --nav-link-color-disabled: hsl(var(--nav-link-color-base), 95%, 9%, 0.5);
+
+  --font-main: @font-black;
+}

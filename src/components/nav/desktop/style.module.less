@@ -1,8 +1,14 @@
 @import '~style/helpers';
 
+@theme-switch-bg: slateGray;
+@theme-switch-moon-c: #acd8e5;
+@theme-switch-sun-c: orange;
+@theme-switch-pin: lightBlue;
+
 .container {
   .content {
-    background: #f14ac2;
+    .transition(background);
+    background: var(--brand-main);
     bottom: 0;
     position: fixed;
     top: 0;
@@ -25,14 +31,13 @@
         transform: none;
       }
     }
-
   }
 
   a, div.linkNotActive {
     .transition(color, background);
     align-items: center;
     display: flex;
-    color: #2b0101;
+    color: var(--nav-link-color);
     padding: 15px 0;
     width: 100%;
     &:hover:not(.linkNotActive), &:focus:not(.linkNotActive), &.linkActive {
@@ -42,7 +47,73 @@
   }
 
   div.linkNotActive {
-    color: darken(@brand-color, 30%);
+    color: var(--nav-link-color-disabled);
     cursor: default;
+  }
+
+  .settings {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .themeSwitch {
+      height: 60px;
+      width: 30px;
+      input {
+        display: none;
+
+        &:checked ~ label {
+          span::after {
+            transform: translate3d(0, 30px, 0);
+          }
+        }
+      }
+      label {
+        position: absolute;
+        margin: 60px;
+        transition: background-color 200ms ease-in-out;
+        width: 120px;
+        height: 50px;
+        border-radius: 50px;
+        text-align: center;
+        background-color: @theme-switch-bg;
+
+        margin: 0;
+        padding: 0;
+        height: 60px;
+        width: 30px;
+
+        &::after {
+          content: '\263E';
+          color: @theme-switch-moon-c;
+          position: absolute;
+          bottom: 5px;
+          left: 10px;
+        }
+
+        &::before {
+          content: '\263C';
+          right: 100%;
+          color: @theme-switch-sun-c;
+          margin: auto;
+          position: absolute;
+          left: 8px;
+          top: 3px;
+        }
+
+        span::after {
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          width: 20px;
+          height: 20px;
+          content: '';
+          border-radius: 50%;
+          background-color: @theme-switch-pin;
+          transition: transform 200ms, background-color 200ms;
+        }
+      }
+    }
   }
 }

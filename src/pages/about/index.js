@@ -24,8 +24,8 @@ export default function () {
 
   return <Layout>
     <SEO localeKey={localeKey}/>
-    <h3>{localize('about.title')}</h3>
-    <h5>{localize('about.subTitle')}</h5>
+    <h3>{localize('about.heading')}</h3>
+    <h5>{localize('about.subHeading')}</h5>
     <p>{localize('about.main1')}<br/>{localize('about.main2')}</p>
     <h4>{localize('about.thanks')}</h4>
 </Layout>

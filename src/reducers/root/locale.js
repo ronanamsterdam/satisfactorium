@@ -8,11 +8,13 @@ export const localeInitialState = {
             name:       supportedLocaleTypes.LOCALE_TYPE_ENG,
             code:       'en-us',
             lang:       'en',
+            tb:         false,
         },
         {
             name:       supportedLocaleTypes.LOCALE_TYPE_JP,
             code:       'ja',
             lang:       'ja',
+            tb:         true,
         },
     ],
     updating: false,
@@ -20,6 +22,7 @@ export const localeInitialState = {
         name:       supportedLocaleTypes.LOCALE_TYPE_ENG,
         code:       'en-us',
         lang:       'en',
+        tb:         false,
     },
 };
 

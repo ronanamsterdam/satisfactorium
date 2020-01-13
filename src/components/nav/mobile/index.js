@@ -2,6 +2,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 
+import {localize} from 'src/utils/locale';
+
 import helper from "../helper"
 import style from "./style.module.less"
 
@@ -14,7 +16,7 @@ const Nav = ({ links = [] }) => {
 
   const navItems = links.map(({text, href}, idx) =>
   <li key={idx}>
-    <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}>{text}</Link>
+    <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}>{localize(`nav.${text}`)}</Link>
   </li>)
 
   return (

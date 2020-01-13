@@ -14,13 +14,14 @@
     flex-direction: row-reverse;
     margin: 0;
     padding: 0;
-    writing-mode: vertical-lr;
+    writing-mode: tb;
 
     li {
       width: 50px;
-      &:not(.backLink) {
+      &:not(.backLink):not(.canTb) {
         transform: rotateZ(180deg);
       }
+
       &.backLink {
         margin-top: 15px;
         transform: none;

@@ -14,8 +14,7 @@ export default function () {
 return <ul className={style.container}>
     {
       collection.map((l, idx) =>
-        <li><button
-          key={idx}
+        <li key={idx}><button
           className={selected.code === l.code ? style.selected : ''}
           onClick={()=>dispatch(actions.setLocale(idx))}>
           {l.name.toUpperCase()}

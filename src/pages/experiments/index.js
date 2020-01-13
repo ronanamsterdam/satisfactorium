@@ -12,13 +12,13 @@ import style from './style.module.less'
 export default () => {
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  const [updatingLocale, setUpdatingLocale] = useState(false);
-
+  // eslint-disable-next-line
+  const [_, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
       rootKey:    'experiments',
-      code:   selectedLocale.code,
+      code:       selectedLocale.code,
       path:       'pages/experiments/l18n',
       cb:         () => setUpdatingLocale(false),
     })

@@ -15,7 +15,8 @@ export default function() {
   const [count, setCount] = useState(40);
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  const [updatingLocale, setUpdatingLocale] = useState(false);
+  // eslint-disable-next-line
+  const [_, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({

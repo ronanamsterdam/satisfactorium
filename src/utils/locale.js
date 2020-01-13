@@ -20,7 +20,7 @@ export const updateLocale = function ({
         path,
         cb
     }) {
-      if (!polyglot || polyglot && polyglot.locale() !== code) {
+      if (!polyglot || (polyglot && polyglot.locale() !== code)) {
         polyglot = new Polyglot({locale: code});
       }
 

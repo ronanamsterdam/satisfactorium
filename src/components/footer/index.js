@@ -14,8 +14,8 @@ export default function () {
   const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  const [updatingLocale, setUpdatingLocale] = useState(false);
-
+  // eslint-disable-next-line
+  const [_, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({

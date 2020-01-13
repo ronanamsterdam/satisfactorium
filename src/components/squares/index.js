@@ -12,7 +12,7 @@ const localeKey = 'squares';
 
 export default function() {
   const min = 1;
-  const [count, setCount] = useState(400);
+  const [count, setCount] = useState(40);
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
   // eslint-disable-next-line

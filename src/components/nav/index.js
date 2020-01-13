@@ -14,7 +14,8 @@ export default function(props) {
       setUpdatingLocale(true);
 
       updateLocale({
-        selected:   selectedLocale.code,
+        rootKey:    'nav',
+        code:   selectedLocale.code,
         path:       'components/nav/l18n',
         cb:         () => setUpdatingLocale(false),
       })

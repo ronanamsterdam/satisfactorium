@@ -1,0 +1,22 @@
+{
+    "squareGameStats": {
+        "__root":       "__this is a system key__",
+        "congrats"       : "chicken dinner!",
+        "level" : "Level",
+        "lvl":  "Lvl",
+        "best": "best",
+        "time": "time",
+        "text1": "turn them all in to:",
+        "text2":  "by hovering OR clicking on them.",
+        "proTip":  "PRO TIP",
+        "text3":  "you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉",
+        "text4": "you can disarm the bomb by IMMEDIATELY clicking/hovering/taping on it again to prevent the damage.",
+        "totalTodo": "total to do",
+        "circlesDone": "circles done",
+        "bombBlasted": "bombs blasted",
+        "bombRadius": "bomb radius",
+        "previous": "Previous",
+        "restart": "Restart",
+        "next": "Next"
+    }
+}

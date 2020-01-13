@@ -17,7 +17,8 @@ export default () => {
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
-      selected:   selectedLocale.code,
+      rootKey:    'experiments',
+      code:   selectedLocale.code,
       path:       'pages/experiments/l18n',
       cb:         () => setUpdatingLocale(false),
     })

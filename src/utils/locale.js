@@ -1,6 +1,6 @@
 import Polyglot from 'node-polyglot';
 
-const polyglot = new Polyglot();
+let polyglot = new Polyglot({locale: "en-us"});
 
 export const localize = function (stringPath, variables = {}) {
     if (polyglot && polyglot.phrases[stringPath]) {
@@ -15,19 +15,24 @@ export const extendLocale = function(locale) {
 }
 
 export const updateLocale = function ({
-        selected = "en-us",
+        rootKey = "",
+        code = "en-us",
         path,
         cb
     }) {
-      console.log(`GETTING: ${selected} FOR: ${path}`)
-    // if (selected !== current) {
-        return import(`${__dirname}/../${path}/${selected}.json`).then(locale => {
-            polyglot.extend(locale);
-            cb && cb({locale, localeCode: selected});
+      if (!polyglot || polyglot && polyglot.locale() !== code) {
+        polyglot = new Polyglot({locale: code});
+      }
 
-            return !!locale;
-        });
-    // } else {
-    //     return Promise.resolve(false)
-    // }
+      if (!polyglot.has(`${rootKey}.__root`)) {
+          console.log(`GETTING: ${code} FOR: ${path}`)
+          return import(`${__dirname}/../${path}/${code}.json`).then(locale => {
+            console.log(`GOT THE THING FOR ${path}`)
+              polyglot.extend(locale);
+              cb && cb({locale, localeCode: code});
+              return !!locale;
+          });
+      } else {
+          return Promise.resolve(false)
+      }
 }

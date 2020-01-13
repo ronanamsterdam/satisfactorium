@@ -1,5 +1,6 @@
 {
   "nav": {
+    "__root":       "__this is a system key__",
     "about"       : "私について",
     "experiments"    : "実験"
   }

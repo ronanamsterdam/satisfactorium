@@ -1,5 +1,6 @@
 {
     "about": {
+        "__root":       "__this is a system key__",
         "title"       : "My name is Roman and I'm a web-engineer.",
         "subTitle"    : "",
         "main1"       : "Rather than being a portfolio-like site this web app is more dedicated to experiments and best practices I'm using in my work.",

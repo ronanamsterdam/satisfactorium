@@ -1,0 +1,11 @@
+{
+  "squares": {
+      "__root":       "__this is a system key__",
+      "text1"       : "this page is made to test latest react's (16.8.6) rendering capabilities",
+      "text2" : "try increasing the block's count bellow and try interacting with the squares.",
+      "text3":"You'll see FPS frame drop at around ~4500 items count.",
+      "text4":"You can set it to any number and watch the world burn 🔥",
+      "fps": "fps",
+      "text5":"set blocks count here"
+  }
+}

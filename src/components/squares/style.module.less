@@ -37,6 +37,18 @@
             height: 100%;
         }
 
+        .fps {
+          display: inline;
+          backdrop-filter: blur(5px);
+          border: 1px solid @white;
+          border-radius: @btn-border-radius;
+          margin: 0;
+          padding: 0 5px;
+          position: sticky;
+          top: 20px;
+          z-index: 1000;
+        }
+
         @media (max-width: 767px) {
             .searchResultsContainer {
                 &.mapVisible {
@@ -52,4 +64,14 @@
             }
         }
     }
+}
+
+@media (max-width: @tablet-break) {
+  .container {
+    .inputContainer {
+      input {
+        margin: 10px 0 0;
+      }
+    }
+  }
 }

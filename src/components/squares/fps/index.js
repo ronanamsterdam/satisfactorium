@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+import {localize} from 'src/utils/locale';
+const localeKey = 'squares';
 
 export default function() {
 
@@ -11,8 +14,9 @@ export default function() {
     framesCount: 0
   });
 
-  requestAnimationFrame(() => {
+  const requestRef = requestAnimationFrame(() => {
     const shouldSetState = Date.now() - frameTimeState.lastStamp > 1000;
+
     setFrameTimeState({
       lastStamp: shouldSetState ? Date.now() : frameTimeState.lastStamp,
       framesCount: shouldSetState ? 0 : (frameTimeState.framesCount + 1),
@@ -20,5 +24,7 @@ export default function() {
     });
   });
 
-  return <h1>{frameTimeState.fps} fps</h1>
+  useEffect(() => () => cancelAnimationFrame(requestRef), [frameTimeState]);
+
+  return <>{frameTimeState.fps} {localize(`${localeKey}.fps`)}</>
 }

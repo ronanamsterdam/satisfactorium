@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import style            from "./style.module.less";
 
+import {localize, updateLocale} from 'src/utils/locale';
+
+import actions from 'src/actions'
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
-
-import actions from '../../../actions';
 
 import Square from "../sqaure";
 import Timer from "./timer";
 
+import style            from "./style.module.less";
+
+const localeKey = 'squareGameStats';
+
 export default function() {
 
-  const dispatch = useDispatch();
+  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
+  const [updatingLocale, setUpdatingLocale] = useState(false);
+  useEffect(() => {
+    setUpdatingLocale(true);
+    updateLocale({
+      rootKey:    localeKey,
+      code:       selectedLocale.code,
+      path:       'components/squares-game/stats/l18n',
+      cb:         () => setUpdatingLocale(false),
+    })
+  }, [selectedLocale]);
 
+  const dispatch = useDispatch();
   const [isStart, setIsStart] = useState(false)
   const {factor} = useSelector(state => state.root.ux.device);
 
@@ -59,19 +74,20 @@ export default function() {
             isDone ? style.visible: "",
           ].join(" ")}>
             <h1>
-              <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
-               <br/>chicken dinner!<br/>
-              <span role="img"  aria-label="chicken dinner!">🥳🥳</span>
+              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
+               <br/>{localize(`${localeKey}.congrats`)}<br/>
+              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
             </h1>
           </div>
-        <div
-          className={style.objectiveStat}
-        >
-          <div
-            className={style.objectiveColumn}
-          >
-            <h1>{isMobile ? "Lvl": "Level"}: {lvl}</h1>
-            {!!bestTime && (<h2>best{isMobile ? "":" time"}: {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}</h2>)}
+        <div className={style.objectiveStat}>
+          <div className={style.objectiveColumn}>
+            <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
+            {!!bestTime && (<h2>
+              {localize(`${localeKey}.best`)}
+                {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
+                {/* TODO: just import moment 🤦🏻‍♂️ */}
+                {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
+            </h2>)}
             <Timer
               isDone={isDone}
               isStart={isStart}
@@ -83,41 +99,23 @@ export default function() {
           {!isMobile && <div
             className={style.objectiveColumn}
           >
-            <span>
-            turn them all in to:
-            </span>
+            <span>{localize(`${localeKey}.text1`)}</span>
             <Square
               id="stats-square"
               disabled={true}
               isActive={true}
             />
-            <span>
-            by hovering <u><b>OR</b></u> clicking on them.
-            </span>
-            <span>
-            <b>PRO TIP #1:</b> you can use your browser's zoom, width and go between the circles to avoid triggering bombs. Try hacking it the best you can 😉
-            </span>
-            <span>
-            <b>PRO TIP #2:</b> you can disarm the bomb by <b>IMMEDIATELY</b> clicking/hovering/taping on it again to prevent the damage
-            </span>
-            <span>
-            </span>
+            <span>{localize(`${localeKey}.text2`)}</span>
+            <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+            <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
           </div>}
           {!isMobile && <div
             className={style.objectiveColumn}
           >
-            <h3>
-              total to do: {totalSquares}
-            </h3>
-            <h3>
-              {isDone && "🥳"} circles done: {activeSquares.length}
-            </h3>
-            <h3>
-              bombs blasted: {bombsBlasted}
-            </h3>
-            <h3>
-              bomb radius: {bombRadius}
-            </h3>
+            <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
+            <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
+            <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
+            <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
           </div>}
         </div>
             <div
@@ -126,14 +124,14 @@ export default function() {
               <button
               disabled={lvl === 1}
               onClick={()=> dispatch(actions.prevLevel())}
-              >⇤ Previous </button>
+              >⇤ {localize(`${localeKey}.previous`)} </button>
               <button
               onClick={()=> dispatch(actions.restartLevel())}
-              > Restart </button>
+              > {localize(`${localeKey}.restart`)} </button>
               <button
               disabled={!isDone && !bestTime}
               onClick={()=> dispatch(actions.nextLevel())}
-              >Next ⇥</button>
+              >{localize(`${localeKey}.next`)} ⇥</button>
             </div>
       </div>
     </div>

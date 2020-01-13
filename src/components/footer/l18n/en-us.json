@@ -1,5 +1,6 @@
 {
     "footer": {
+        "__root":       "__this is a system key__",
         "text1"     : "Check out whole project on my",
         "text2"     : "or read",
         "link1"     : "Github",

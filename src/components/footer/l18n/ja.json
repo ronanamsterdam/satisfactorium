@@ -1,5 +1,6 @@
 {
   "footer": {
+      "__root":       "__this is a system key__",
       "text1"     : "プロジェクト全体をご覧ください",
       "text2"     : "または読む",
       "link1"     : "Github",

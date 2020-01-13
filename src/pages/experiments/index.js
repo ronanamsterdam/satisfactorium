@@ -9,6 +9,8 @@ import SEO from "components/seo"
 
 import style from './style.module.less'
 
+const localeKey = 'experiments';
+
 export default () => {
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
@@ -17,7 +19,7 @@ export default () => {
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
-      rootKey:    'experiments',
+      rootKey:    localeKey,
       code:       selectedLocale.code,
       path:       'pages/experiments/l18n',
       cb:         () => setUpdatingLocale(false),
@@ -25,7 +27,7 @@ export default () => {
   }, [selectedLocale]);
 
   return <Layout>
-    <SEO title="Home" />
+    <SEO localeKey={localeKey} />
     <div className={style.container}>
       <h3>{localize('experiments.text1')}</h3>
       <ul>

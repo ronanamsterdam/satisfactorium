@@ -1,6 +1,7 @@
 {
     "experiments": {
         "__root":       "__this is a system key__",
+        "title"      : "Experiments",
         "text1"      : "A set of experimental apps and components I've been iterating over from time to time:",
         "item1"      : "Squares Game ▢ ⇢ ◯ (a game written in React)",
         "item2"      : "React performance test"

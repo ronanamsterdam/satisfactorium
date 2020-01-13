@@ -6,9 +6,11 @@ import SEO from "components/seo"
 
 import Squares from "components/squares"
 
+const localeKey = "squares";
+
 const SecondPage = () => (
   <Layout>
-    <SEO title="Squares item" />
+    <SEO localeKey={localeKey} />
     <Squares />
   </Layout>
 )

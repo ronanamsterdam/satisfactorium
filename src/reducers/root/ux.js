@@ -2,6 +2,8 @@ import actionTypes   from 'statics/actions';
 
 import {DEVICE_FORM_FACTORS, THEMES}    from 'statics/strings/reducers/ux';
 
+import locale, {localeInitialState} from './locale';
+
 export const deviceInitialState = {
     dimensions: null,
     agent:      null,
@@ -10,6 +12,7 @@ export const deviceInitialState = {
 
 export const uxInitialState = {
     theme: THEMES.LIGHT,
+    locale:     localeInitialState,
     device:     deviceInitialState,
 }
 
@@ -48,6 +51,12 @@ export default function ux(state = uxInitialState, action) {
           return {
             ...state,
             theme: action.theme
+          }
+        }
+        case actionTypes.LOCALE_SET_LOCALE: {
+          return {
+            ...state,
+            locale: locale(state.locale, action)
           }
         }
         default:

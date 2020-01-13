@@ -1,0 +1,10 @@
+{
+    "about": {
+        "__root":       "__this is a system key__",
+        "heading"       : "My name is Roman and I'm a web-engineer.",
+        "subHeading"    : "",
+        "main1"       : "Rather than being a portfolio-like site this web app is more dedicated to experiments and best practices I'm using in my work.",
+        "main2"       : "If you'd like to know more about me personally a linkedIn page or my github would give you much better perspectives.",
+        "thanks"      : "And I do appreciate you checking my web here. Thanks🤓"
+    }
+}

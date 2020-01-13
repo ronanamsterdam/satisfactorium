@@ -2,6 +2,7 @@
 @import '../localStyle/helpers';
 
 @congrats-border-c: #0000004d;
+@congrats-border-c-l: #adadad;
 @btn-shadows: #131313c7;
 
 .container {
@@ -62,10 +63,12 @@
           }
 
           h1 {
+            .transition(box-shadow);
             background: @backdrop-blur-color;
-            border: 10px solid @congrats-border-c;
+            border: 1px solid  @white;
             border-radius: 20px;
             backdrop-filter: blur(5px);
+            color: @white;
             padding: 5px;
           }
         }
@@ -130,7 +133,7 @@ body:global(.night) {
       }
 
       .congrats h1 {
-        border: 10px solid @congrats-border-c;
+        border: 1px solid  #adadad;
         box-shadow: 30px 60px 0px 0px #00000066;
       }
     }

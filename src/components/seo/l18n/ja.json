@@ -1,0 +1,14 @@
+{
+  "about": {
+    "title"      : "私について"
+  },
+  "experiments": {
+    "title"      : "私の実験"
+  },
+  "squaresGame": {
+    "title"      : "スクエアゲーム"
+  },
+  "squares": {
+    "title"      : "Reactパフォーマンステスト"
+  }
+}

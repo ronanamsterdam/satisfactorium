@@ -1,5 +1,3 @@
-// TODO: refactor to hooks
-
 // non ui component to gather and react to client device's specifics
 import  { useEffect } from 'react';
 

@@ -4,10 +4,12 @@ import SEO from "components/seo"
 
 import SquaresGame from "components/squares-game"
 
+const localeKey = "squaresGame";
+
 const SecondPage = () => {
   return (
     <Layout>
-      <SEO title="Squares Game" />
+      <SEO localeKey={localeKey}/>
       <SquaresGame />
     </Layout>
   )

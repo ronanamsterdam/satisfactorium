@@ -1,46 +1,61 @@
-import React, { useState }  from "react";
-import style                from "./style.module.less";
+import React, { useState, useEffect }  from 'react';
+import { useSelector } from "react-redux";
 
-import Square from "./sqaure";
+import {localize, updateLocale} from 'src/utils/locale';
+
+import Square from './square';
 import Fps from './fps';
+
+import style                from './style.module.less';
+
+const localeKey = 'squares';
 
 export default function() {
   const min = 1;
   const [count, setCount] = useState(40);
 
+  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
+  // eslint-disable-next-line
+  const [_, setUpdatingLocale] = useState(false);
+  useEffect(() => {
+    setUpdatingLocale(true);
+    updateLocale({
+      rootKey:    localeKey,
+      code:       selectedLocale.code,
+      path:       'components/squares/l18n',
+      cb:         () => setUpdatingLocale(false),
+    })
+  }, [selectedLocale]);
+
   return (
     <div className={style.container}>
       <div className={style.content}>
-        <h3>
+          <h3>
+            <p>{localize(`${localeKey}.text1`)}</p>
+          </h3>
           <p>
-          this page is made to test latest react's (16.8.6) rendering capabilities
+            {localize(`${localeKey}.text2`)}
+            {localize(`${localeKey}.text3`)}
+            {localize(`${localeKey}.text4`)}
           </p>
-          <p>
-            try increasing the block's count bellow and try interacting with the squares.
-            You'll see FPS frame drop at around ~4500 items count.
-            You can set it to any number and watch the world burn <span role="img" aria-label="fire">🔥</span>
-          </p>
-        </h3>
-        <Fps/>
-        <div className={style.inputContainer}>
-          <label htmlFor="count-input"> set blocks count here -> </label>
-          <input
-            id="count-input"
-            value={count}
-            type="number"
-            onChange={(e)=> {
-              const newVal = e && e.target && +e.target.value;
-              if (!isNaN(newVal) && newVal > min) {
-                setCount(e.target.value);
-              } else {
-                setCount(min);
-              }
-            }}
-          />
-        </div>
-        <div
-            className={style.resultsContainer}
-        >
+          <h1 className={style.fps}><p><Fps/></p></h1>
+          <div className={style.inputContainer}>
+            <label htmlFor="count-input"> {localize(`${localeKey}.text5`)} -> </label>
+            <input
+              id="count-input"
+              value={count}
+              type="number"
+              onChange={(e)=> {
+                const newVal = e && e.target && +e.target.value;
+                if (!isNaN(newVal) && newVal > min) {
+                  setCount(e.target.value);
+                } else {
+                  setCount(min);
+                }
+              }}
+            />
+          </div>
+        <div className={style.resultsContainer}>
             <div className={
                 [
                     style.grid,
@@ -51,8 +66,7 @@ export default function() {
                     Array.from({length: count}, (v, i) => i).map((item,idx) => (
                             <Square
                               {...item}
-                              key={idx}
-                            />
+                              key={idx}/>
                     ))
                 }
             </div>

@@ -1,6 +1,7 @@
 import actionTypes from 'statics/actions';
 
-import squareGame from "./square-game";
+import squareGame from './square-game';
+import locale from './locale';
 
 import {THEMES}    from 'statics/strings/reducers/ux';
 
@@ -24,4 +25,5 @@ export default {
     setDeviceDimensions,
     setTheme,
     ...squareGame,
+    ...locale,
 };

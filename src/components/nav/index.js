@@ -1,12 +1,25 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import {updateLocale} from 'src/utils/locale';
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
 export default function(props) {
     const {factor} = useSelector(state => state.root.ux.device);
-
     const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET
+
+    const selectedLocale = useSelector(store => store.root.ux.locale.selected);
+    // eslint-disable-next-line
+    const [_, setUpdatingLocale] = useState(false);
+    useEffect(() => {
+      setUpdatingLocale(true)
+      updateLocale({
+        rootKey:    'nav',
+        code:   selectedLocale.code,
+        path:       'components/nav/l18n',
+        cb:         () => setUpdatingLocale(false),
+      })
+    }, [selectedLocale]);
 
     const View = lazy(() => isMobile ?
       import('./mobile') : import('./desktop'))
@@ -31,6 +44,6 @@ export default function(props) {
             width: '50px'
         }}
       ></div>></div>}>
-        <View {...props}/>
+        <View {...props} locale={selectedLocale}/>
       </Suspense>
 }

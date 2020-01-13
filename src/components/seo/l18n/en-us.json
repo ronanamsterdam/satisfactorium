@@ -1,0 +1,14 @@
+{
+    "about": {
+      "title"      : "About me"
+    },
+    "experiments": {
+      "title"      : "Experiments"
+    },
+    "squaresGame": {
+      "title"      : "Squares Game"
+    },
+    "squares": {
+      "title"      : "React perf test"
+    }
+}

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+import {localize} from 'src/utils/locale';
+const localeKey = 'squares';
+
 export default function() {
 
   let [frameTimeState, setFrameTimeState] = useState({
@@ -11,34 +14,17 @@ export default function() {
     framesCount: 0
   });
 
-  useEffect(() => {
-    // NOTE: timeout is here
-    // cuz requestAnimationFrame is deferred
-    // and to prevent set states on unmounted
-    let timeout = null;
+  const requestRef = requestAnimationFrame(() => {
+    const shouldSetState = Date.now() - frameTimeState.lastStamp > 1000;
 
-    requestAnimationFrame(() => timeout = setTimeout(()=>{
+    setFrameTimeState({
+      lastStamp: shouldSetState ? Date.now() : frameTimeState.lastStamp,
+      framesCount: shouldSetState ? 0 : (frameTimeState.framesCount + 1),
+      fps: shouldSetState ? frameTimeState.framesCount + 1 : frameTimeState.fps
+    });
+  });
 
-      const currentStamp = Date.now();
-      const shouldSetState = currentStamp - frameTimeState.lastStamp > 1000;
+  useEffect(() => () => cancelAnimationFrame(requestRef), [frameTimeState]);
 
-      const newFramesCount = frameTimeState.framesCount + 1;
-
-      if (shouldSetState) {
-        setFrameTimeState({
-          fps: frameTimeState.framesCount,
-          lastStamp: currentStamp,
-          framesCount: 0,
-        });
-      } else {
-        setFrameTimeState({
-          ...frameTimeState,
-          framesCount: newFramesCount,
-        });
-      }
-    },0));
-    return () => timeout && clearTimeout(timeout);
-  }, [frameTimeState])
-
-  return <h1>{frameTimeState.fps} fps</h1>
+  return <>{frameTimeState.fps} {localize(`${localeKey}.fps`)}</>
 }

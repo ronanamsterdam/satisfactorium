@@ -5,12 +5,29 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, {useEffect, useState} from "react"
+import {useSelector}  from "react-redux";
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+import {localize, updateLocale} from 'src/utils/locale';
+
+function SEO({ localeKey = '', description, lang, meta, title }) {
+
+  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
+  // eslint-disable-next-line
+  const [_, setUpdatingLocale] = useState(false);
+  useEffect(() => {
+    setUpdatingLocale(true);
+    updateLocale({
+      rootKey:    localeKey,
+      code:       selectedLocale.code,
+      path:       'components/seo/l18n',
+      cb:         () => setUpdatingLocale(false),
+    })
+  }, [selectedLocale]);
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,12 +44,15 @@ function SEO({ description, lang, meta, title }) {
 
   const metaDescription = description || site.siteMetadata.description
 
+  const titleLocale = localize(`${localeKey}.title`) || title;
+  const langLocale = selectedLocale.code || lang;
+
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: langLocale,
       }}
-      title={title}
+      title={titleLocale}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
@@ -76,13 +96,14 @@ SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
+  title: "Home"
 }
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default SEO

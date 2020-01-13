@@ -14,17 +14,23 @@
     margin: 0;
     padding: 0;
 
+    &.nonRootNavContainer {
+      display: grid;
+      grid-template-columns: 48px auto;
+    }
+
     li {
       text-align: center;
     }
 
   }
   li.backLink {
-    position: fixed;
-    top: 0;
+    height: 100%;
     a {
+      background: var(--brand-main);
       font-size: 25px;
-      height: 48px;
+      height: 100%;
+      padding: 0;
       width: 48px;
     }
   }
@@ -33,12 +39,12 @@
     .transition(color, background);
     align-items: center;
     display: flex;
-    color: #2b0101;
+    color: var(--nav-link-color);
     justify-content: center;
     padding: 15px 0;
     text-align: center;
     width: 100%;
-    &:hover:not(.linkNotActive), &:focus:not(.linkNotActive), &.linkActive {
+    &.linkActive {
       background: @black;
       color: @white;
     }

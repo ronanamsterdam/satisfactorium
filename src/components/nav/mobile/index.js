@@ -2,6 +2,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 
+import {localize} from 'src/utils/locale';
+
 import helper from "../helper"
 import style from "./style.module.less"
 
@@ -12,15 +14,22 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
 const Nav = ({ links = [] }) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
 
+  const navItems = links.map(({text, href}, idx) =>
+  <li key={idx}>
+    <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}>{localize(`nav.${text}`)}</Link>
+  </li>)
+
   return (
     <nav className={style.container}>
-        { !!links.length && <ul>
+        { !!links.length && <ul className={!isRoot ? style.nonRootNavContainer : ''}>
           {<li className={style.backLink}>{getBackButton({returnPath, isRoot})}</li>}
-          {
-            links.map(({text, href}, idx) =>
-              <li key={idx}>
-                <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}>{text}</Link>
-              </li>)
+          { isRoot ?
+              navItems :
+              <li>
+                <ul className={style.nonRootNav}>
+                  {navItems}
+                </ul>
+              </li>
           }
           </ul>
         }

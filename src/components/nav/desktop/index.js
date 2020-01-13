@@ -1,13 +1,13 @@
 import PropTypes from "prop-types"
-import React, {useEffect} from "react"
-import { useDispatch, useSelector } from "react-redux";
+import React from "react"
 import { Link } from "gatsby"
 
-import {THEMES}    from 'statics/strings/reducers/ux';
-import actions from "src/actions";
+import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch'
 
 import helper from "../helper"
 import style from "./style.module.less"
+
+import {localize} from 'src/utils/locale';
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot ?
@@ -15,27 +15,10 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
     : <div aria-label="go back" title="go back" disabled className={style.linkNotActive}><span>⬇</span></div>
 }
 
-const Nav = ({ links = [] }) => {
+const Nav = ({ links = [], locale = {} }) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
-  const theme = useSelector(state => state.root.ux.theme)
-  const dispatch = useDispatch();
 
-  useEffect(()=> {
-    if (theme === THEMES.DARK) {
-      document.body.classList.add("night");
-    } else {
-      document.body.classList.remove("night");
-    }
-  }, [theme])
-
-  const onToggleTheme = (e) => {
-    const {checked} = e.target;
-    if (checked) {
-      dispatch(actions.setTheme(THEMES.DARK))
-    } else {
-      dispatch(actions.setTheme(THEMES.LIGHT))
-    }
-  }
+  const localeCanTopBottom = !!locale.tb;
 
   return (
     <nav className={style.container}>
@@ -44,17 +27,14 @@ const Nav = ({ links = [] }) => {
           {<li className={style.backLink}>{getBackButton({returnPath, isRoot})}</li>}
           {
             links.map(({text, href}, idx) =>
-              <li key={idx}>
-                <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}><span>{text}</span></Link>
+              <li key={idx} className={localeCanTopBottom ? style.canTb : ''}>
+                <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}><span>{localize(`nav.${text}`)}</span></Link>
               </li>)
           }
           </ul>
         }
         <div className={style.settings}>
-          <div className={style.themeSwitch}>
-            <input id="dark-light-switch" checked={theme === THEMES.DARK} onChange={onToggleTheme} type="checkbox"/>
-            <label htmlFor="dark-light-switch" ><span></span></label>
-          </div>
+          <ThemeSwitch />
         </div>
       </div>
     </nav>

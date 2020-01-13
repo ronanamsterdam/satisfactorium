@@ -1,0 +1,37 @@
+@import '~style/helpers';
+
+ul.container {
+  margin: 0;
+  button {
+    .app-button();
+
+    border: none;
+    box-shadow: none;
+    font-size: 10px;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+
+    &.selected, &:hover {
+      background-color: var(--brand-main);
+      color: var(--nav-link-color);
+    }
+  }
+}
+
+@media (min-width: @tablet-break) {
+  ul.container {
+    display: flex;
+    li {
+      margin: 0 2px;
+    }
+  }
+}
+
+@media (max-width: @tablet-break) {
+  ul.container {
+    li button {
+      margin: 2px 0;
+    }
+  }
+}

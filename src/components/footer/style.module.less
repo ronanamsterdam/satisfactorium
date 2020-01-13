@@ -1,0 +1,22 @@
+@import '~style/index';
+
+footer.container {
+  background: @black;
+  color: @white;
+  display: flex;
+  justify-content: space-between;
+  padding:20px ;
+
+  a {
+    color: @footer-link-color;
+  }
+}
+
+@media (max-width: @tablet-break) {
+  footer.container {
+    margin-bottom: 90px;
+    .content {
+      max-width: 180px;
+    }
+  }
+}

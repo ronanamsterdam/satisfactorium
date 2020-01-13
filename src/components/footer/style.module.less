@@ -5,18 +5,35 @@ footer.container {
   color: @white;
   display: flex;
   justify-content: space-between;
-  padding:20px ;
+  padding: 10px 20px;
 
   a {
     color: @footer-link-color;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  .content {
+    margin: 5px 0;
   }
 }
 
 @media (max-width: @tablet-break) {
   footer.container {
     margin-bottom: 90px;
+    padding: 10px;
     .content {
       max-width: 180px;
+    }
+    .settings {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      li {
+        margin: 0 5px;
+      }
     }
   }
 }

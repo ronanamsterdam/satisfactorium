@@ -1,9 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch'
+import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch';
+import LocaleSelect from 'components/shared/inputs/selects/locale';
 
 import style from "./style.module.less"
 
@@ -21,8 +22,9 @@ export default function () {
         <a href="https://github.com/ronanamsterdam/satisfactorium" target="_blank" rel="noopener noreferrer">Github</a> or read <a href="https://www.linkedin.com/in/romanzhyliov">About Me</a>
       </span>
     </div>
-    { isMobile && <div className={style.settings}>
-        <ThemeSwitch />
-      </div>}
+    <ul className={style.settings}>
+      <li><LocaleSelect/></li>
+      <li>{isMobile && <ThemeSwitch />}</li>
+    </ul>
   </footer>
 }

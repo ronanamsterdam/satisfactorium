@@ -3,19 +3,24 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 import rootReducer              from '../reducers';
 import thunk                    from 'redux-thunk';
 
-import { persistStore, persistReducer } from 'redux-persist'
+import { createMigrate, persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import middleware               from '../middleware';
 
+import migrations from './migrations';
+
 const persistConfig = {
   key: 'root',
+  version: '1',
   storage,
-  blacklist: ['squareGame', 'ux']
+  blacklist: ['squareGame'],
+  migrate: createMigrate(migrations, { debug: false }),
 }
 
 const squareGameConfig = {
   key: 'squareGame',
+  version: '1',
   storage: storage,
   blacklist: ['bombsBlasted', 'activeSquares', 'time', 'shouldBlast']
 }

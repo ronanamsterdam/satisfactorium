@@ -9,8 +9,8 @@ export const THEMES = {
   DARK:     'DARK',
 }
 
-export const LOCALE_TYPE_ENG     = 'LOCALE_TYPE_ENG';
-export const LOCALE_TYPE_JP      = 'LOCALE_TYPE_JP';
+export const LOCALE_TYPE_ENG     = 'eng';
+export const LOCALE_TYPE_JP      = '日本語';
 
 export default [
     LOCALE_TYPE_ENG,

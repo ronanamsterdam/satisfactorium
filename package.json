@@ -1,8 +1,8 @@
 {
   "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
+  "private": false,
+  "description": "A so-called web app",
+  "version": "1.2.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "gatsby": "^2.8.2",
@@ -46,7 +46,8 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run dev",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write damn tests! -> https://gatsby.dev/unit-testing\"",
+    "bdp": "gatsby build && firebase deploy"
   },
   "repository": {
     "type": "git",

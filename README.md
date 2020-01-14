@@ -4,7 +4,7 @@ https://satisfactorium.com
 
 ## 🧐 What's inside?
 
-This is my where I'll gather all the experiments I consider fun to play with and study and best-practices to use.
+This is where I'll gather all the experiments I consider fun to play with/study and best-practices to use.
     
 And inside you have:    
 

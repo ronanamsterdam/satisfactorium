@@ -6,6 +6,8 @@ import {localize, updateLocale} from 'src/utils/locale';
 import actions from 'src/actions'
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
+import Vl from 'components/shared/loaders/view';
+
 import Square from "../sqaure";
 import Timer from "./timer";
 
@@ -16,8 +18,7 @@ const localeKey = 'squareGameStats';
 export default function() {
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
+  const [updatingLocale, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
@@ -84,41 +85,51 @@ export default function() {
 
           <div className={style.objectiveStat}>
             <div className={style.objectiveColumn}>
-              <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
-              {!!bestTime && (<h2>
-                {localize(`${localeKey}.best`)}
-                  {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
-                  {/* TODO: just import moment 🤦🏻‍♂️ */}
-                  {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
-              </h2>)}
-              <Timer
-                isDone={isDone}
-                isStart={isStart}
-                lvl={lvl}
-                bestTime={bestTime}
-                cb={onTimerCb}
-              />
+              <Vl loading={updatingLocale}>
+                <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
+                {!!bestTime && (<h2>
+                  {localize(`${localeKey}.best`)}
+                    {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
+                    {/* TODO: just import moment 🤦🏻‍♂️ */}
+                    {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
+                </h2>)}
+                <Timer
+                  isDone={isDone}
+                  isStart={isStart}
+                  lvl={lvl}
+                  bestTime={bestTime}
+                  cb={onTimerCb}
+                />
+              </Vl>
             </div>
             {!isMobile && <div
               className={style.objectiveColumn}
             >
-              <span>{localize(`${localeKey}.text1`)}</span>
+              <Vl loading={updatingLocale}>
+                <span>{localize(`${localeKey}.text1`)}</span>
+              </Vl>
               <Square
                 id="stats-square"
                 disabled={true}
                 isActive={true}
               />
-              <span>{localize(`${localeKey}.text2`)}</span>
-              <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
-              <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
+              <Vl loading={updatingLocale}>
+                <span>{localize(`${localeKey}.text2`)}</span>
+              </Vl>
+              <Vl loading={updatingLocale}>
+                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+                <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
+              </Vl>
             </div>}
             {!isMobile && <div
               className={style.objectiveColumn}
             >
-              <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
-              <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
-              <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
-              <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
+              <Vl loading={updatingLocale}>
+                <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
+                <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
+                <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
+                <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
+              </Vl>
             </div>}
           </div>
               <div
@@ -127,14 +138,14 @@ export default function() {
                 <button
                 disabled={lvl === 1}
                 onClick={()=> dispatch(actions.prevLevel())}
-                >⇤ {localize(`${localeKey}.previous`)} </button>
+                ><Vl loading={updatingLocale}>⇤ {localize(`${localeKey}.previous`)}</Vl></button>
                 <button
                 onClick={()=> dispatch(actions.restartLevel())}
-                > {localize(`${localeKey}.restart`)} </button>
+                ><Vl loading={updatingLocale}>{localize(`${localeKey}.restart`)} </Vl></button>
                 <button
                 disabled={!isDone && !bestTime}
                 onClick={()=> dispatch(actions.nextLevel())}
-                >{localize(`${localeKey}.next`)} ⇥</button>
+                ><Vl loading={updatingLocale}>{localize(`${localeKey}.next`)} ⇥</Vl></button>
               </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function HTML(props) {
                     opacity:    1;
                     top:        0;
                     transition: all ease .5s;
-                    z-index:    100;
+                    z-index:    10000;
                 }
                 .initial-content {
                     align-items:       center;

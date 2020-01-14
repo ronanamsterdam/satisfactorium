@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import {localize} from 'src/utils/locale';
-const localeKey = 'squares';
-
 export default function() {
 
   let [frameTimeState, setFrameTimeState] = useState({
@@ -26,5 +23,5 @@ export default function() {
 
   useEffect(() => () => cancelAnimationFrame(requestRef), [frameTimeState]);
 
-  return <>{frameTimeState.fps} {localize(`${localeKey}.fps`)}</>
+  return <>{frameTimeState.fps}</>
 }

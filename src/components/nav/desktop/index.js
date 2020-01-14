@@ -7,7 +7,9 @@ import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch'
 import helper from "../helper"
 import style from "./style.module.less"
 
-import {localize} from 'src/utils/locale';
+import {localize} from 'src/utils/locale'
+
+import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot ?
@@ -15,7 +17,7 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
     : <div aria-label="go back" title="go back" disabled className={style.linkNotActive}><span>⬇</span></div>
 }
 
-const Nav = ({ links = [], locale = {} }) => {
+const Nav = ({ links = [], locale = {}, updatingLocale = false}) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
 
   const localeCanTopBottom = !!locale.tb;
@@ -28,7 +30,16 @@ const Nav = ({ links = [], locale = {} }) => {
           {
             links.map(({text, href}, idx) =>
               <li key={idx} className={localeCanTopBottom ? style.canTb : ''}>
-                <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}><span>{localize(`nav.${text}`)}</span></Link>
+
+                {updatingLocale ?
+                  <Vl type={VIEW_TYPES.SMALL}/>
+                  :
+                  <Link
+                    partiallyActive={true}
+                    activeClassName={style.linkActive}
+                    tabIndex={idx+1} to={href}>
+                      <span>{localize(`nav.${text}`)}</span>
+                  </Link>}
               </li>)
           }
           </ul>

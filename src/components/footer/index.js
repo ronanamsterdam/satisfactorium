@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import {localize, updateLocale} from 'src/utils/locale';
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
+import Vl from 'components/shared/loaders/view';
+
 import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch';
 import LocaleSelect from 'components/shared/inputs/selects/locale';
 
@@ -14,8 +16,7 @@ export default function () {
   const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
+  const [updatingLocale, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
@@ -29,10 +30,18 @@ export default function () {
   return <footer className={style.container}>
     <div className={style.content}>
       <span>
-        © {new Date().getFullYear()}, {localize('footer.text1')} {` `}
+        <Vl loading={updatingLocale}>© {new Date().getFullYear()}, {localize('footer.text1')} {` `}</Vl>
       </span>
       <span>
-        <a href="https://github.com/ronanamsterdam/satisfactorium" target="_blank" rel="noopener noreferrer">{localize('footer.link1')}</a> {localize('footer.text2')} <a href="https://www.linkedin.com/in/romanzhyliov">{localize('footer.link2')}</a>
+        <Vl loading={updatingLocale}>
+          <a
+            href="https://github.com/ronanamsterdam/satisfactorium"
+            target="_blank" rel="noopener noreferrer">{localize('footer.link1')}</a>
+            {localize('footer.text2')}
+            <a href="https://www.linkedin.com/in/romanzhyliov">
+                {localize('footer.link2')}
+            </a>
+        </Vl>
       </span>
     </div>
     <ul className={style.settings}>

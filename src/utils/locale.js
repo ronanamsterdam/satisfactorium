@@ -31,6 +31,6 @@ export const updateLocale = function ({
               return !!locale;
           });
       } else {
-          return Promise.resolve(false)
+          return Promise.resolve().then(() => cb && cb({}))
       }
 }

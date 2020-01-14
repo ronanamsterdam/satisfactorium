@@ -4,6 +4,8 @@ import { Link } from "gatsby"
 
 import {localize} from 'src/utils/locale';
 
+import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+
 import helper from "../helper"
 import style from "./style.module.less"
 
@@ -11,12 +13,20 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>◀︎</span></Link>
 }
 
-const Nav = ({ links = [] }) => {
+const Nav = ({ links = [], updatingLocale = false }) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
 
   const navItems = links.map(({text, href}, idx) =>
   <li key={idx}>
-    <Link partiallyActive={true} activeClassName={style.linkActive} tabIndex={idx+1} to={href}>{localize(`nav.${text}`)}</Link>
+    {updatingLocale ?
+      <Vl type={VIEW_TYPES.SMALL}/>
+      :
+      <Link
+        partiallyActive={true}
+        activeClassName={style.linkActive}
+        tabIndex={idx+1}
+        to={href}>{localize(`nav.${text}`)}
+      </Link>}
   </li>)
 
   return (

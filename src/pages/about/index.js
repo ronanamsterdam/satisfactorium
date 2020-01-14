@@ -5,28 +5,36 @@ import SEO from "components/seo"
 
 import {localize, updateLocale} from 'src/utils/locale';
 
+import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+
 const localeKey = 'about'
 
 export default function () {
 
   const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
+  const [updatingLocale, setUpdatingLocale] = useState(false);
   useEffect(() => {
     setUpdatingLocale(true);
     updateLocale({
       rootKey:    localeKey,
       code:       selectedLocale.code,
       path:       'pages/about/l18n',
-      cb:         () => {setUpdatingLocale(false)},
+      cb:         () => setUpdatingLocale(false)
     })
   }, [selectedLocale]);
 
   return <Layout>
     <SEO localeKey={localeKey}/>
-    <h3>{localize('about.heading')}</h3>
-    <h5>{localize('about.subHeading')}</h5>
-    <p>{localize('about.main1')}<br/>{localize('about.main2')}</p>
-    <h4>{localize('about.thanks')}</h4>
+    {
+      updatingLocale ?
+        <Vl type={VIEW_TYPES.BIG} />
+        :
+        <>
+            <h3>{localize('about.heading')}</h3>
+            <h5>{localize('about.subHeading')}</h5>
+            <p>{localize('about.main1')}<br/>{localize('about.main2')}</p>
+            <h4>{localize('about.thanks')}</h4>
+        </>
+    }
 </Layout>
 }

@@ -20,6 +20,8 @@
             .transition(background, box-shadow);
 
             background:       @yellow;
+            min-width:        80px;
+
             &:disabled {
               background:       @gray;
               box-shadow: 0 0 0 fade(@black,0%);
@@ -116,7 +118,6 @@ body:global(.night) {
         button {
           background:       @black;
           box-shadow: 20px 20px 1px @btn-shadows;
-          min-width: 80px;
 
           &:hover, &:focus, &.selected {
             background-color: lighten(@black, 5%);

@@ -18,6 +18,8 @@ And inside you have:
 
     A square element based game! Where you'll need to turn all the squares in to circles :)
     All pure react and css based
+    
+## Supports dark mode and Japanese🇯🇵/English🇺🇸 locales (checkout css variables and https://airbnb.io/polyglot.js)
 
 ## 🎓 Gatsby
 

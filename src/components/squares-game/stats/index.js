@@ -61,80 +61,83 @@ export default function() {
   const bestTime = (bestTimes[lvl] && new Date(bestTimes[lvl])) || null;
 
   return (
-    <div className={style.container}>
-      {isMobile && <div className={style.hiddenSquare}>
-          <Square
-            id="stats-square"
-            disabled={true}
-            isActive={true}
-          />
-      </div>}
-      <div className={style.content}>
-          <div className={[
-            style.congrats,
-            isDone ? style.visible: "",
-          ].join(" ")}>
-            <h1>
-              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
-               <br/>{localize(`${localeKey}.congrats`)}<br/>
-              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
-            </h1>
-          </div>
-        <div className={style.objectiveStat}>
-          <div className={style.objectiveColumn}>
-            <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
-            {!!bestTime && (<h2>
-              {localize(`${localeKey}.best`)}
-                {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
-                {/* TODO: just import moment 🤦🏻‍♂️ */}
-                {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
-            </h2>)}
-            <Timer
-              isDone={isDone}
-              isStart={isStart}
-              lvl={lvl}
-              bestTime={bestTime}
-              cb={onTimerCb}
-            />
-          </div>
-          {!isMobile && <div
-            className={style.objectiveColumn}
-          >
-            <span>{localize(`${localeKey}.text1`)}</span>
+    <>
+      <div className={[
+        style.congrats,
+        isDone ? style.visible: "",
+      ].join(" ")}>
+        <h1>
+          <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
+            <br/>{localize(`${localeKey}.congrats`)}<br/>
+          <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
+        </h1>
+      </div>
+      <div className={style.container}>
+        {isMobile && <div className={style.hiddenSquare}>
             <Square
               id="stats-square"
               disabled={true}
               isActive={true}
             />
-            <span>{localize(`${localeKey}.text2`)}</span>
-            <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
-            <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
-          </div>}
-          {!isMobile && <div
-            className={style.objectiveColumn}
-          >
-            <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
-            <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
-            <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
-            <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
-          </div>}
-        </div>
-            <div
-              className={style.buttonsHolder}
-            >
-              <button
-              disabled={lvl === 1}
-              onClick={()=> dispatch(actions.prevLevel())}
-              >⇤ {localize(`${localeKey}.previous`)} </button>
-              <button
-              onClick={()=> dispatch(actions.restartLevel())}
-              > {localize(`${localeKey}.restart`)} </button>
-              <button
-              disabled={!isDone && !bestTime}
-              onClick={()=> dispatch(actions.nextLevel())}
-              >{localize(`${localeKey}.next`)} ⇥</button>
+        </div>}
+        <div className={style.content}>
+
+          <div className={style.objectiveStat}>
+            <div className={style.objectiveColumn}>
+              <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
+              {!!bestTime && (<h2>
+                {localize(`${localeKey}.best`)}
+                  {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
+                  {/* TODO: just import moment 🤦🏻‍♂️ */}
+                  {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
+              </h2>)}
+              <Timer
+                isDone={isDone}
+                isStart={isStart}
+                lvl={lvl}
+                bestTime={bestTime}
+                cb={onTimerCb}
+              />
             </div>
+            {!isMobile && <div
+              className={style.objectiveColumn}
+            >
+              <span>{localize(`${localeKey}.text1`)}</span>
+              <Square
+                id="stats-square"
+                disabled={true}
+                isActive={true}
+              />
+              <span>{localize(`${localeKey}.text2`)}</span>
+              <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+              <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
+            </div>}
+            {!isMobile && <div
+              className={style.objectiveColumn}
+            >
+              <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
+              <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
+              <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
+              <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
+            </div>}
+          </div>
+              <div
+                className={style.buttonsHolder}
+              >
+                <button
+                disabled={lvl === 1}
+                onClick={()=> dispatch(actions.prevLevel())}
+                >⇤ {localize(`${localeKey}.previous`)} </button>
+                <button
+                onClick={()=> dispatch(actions.restartLevel())}
+                > {localize(`${localeKey}.restart`)} </button>
+                <button
+                disabled={!isDone && !bestTime}
+                onClick={()=> dispatch(actions.nextLevel())}
+                >{localize(`${localeKey}.next`)} ⇥</button>
+              </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

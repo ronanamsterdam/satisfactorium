@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "private": false,
+  "description": "A so-called web app",
+  "version": "1.2.0",
+  "author": "Roman Zhyliov <imakegreat.com@gmail.com>",
   "dependencies": {
     "gatsby": "^2.8.2",
     "gatsby-image": "^2.1.2",
@@ -18,8 +18,8 @@
     "less": "^3.9.0",
     "node-polyglot": "^2.4.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-redux": "^7.1.0",
     "redux-localstorage": "^0.4.1",
@@ -27,14 +27,18 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-jest": "^24.8.0",
-    "babel-preset-gatsby": "^0.2.6",
+    "babel-jest": "^24.9.0",
+    "babel-preset-gatsby": "^0.2.27",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "gatsby-plugin-root-import": "^2.0.5",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "less-vars-loader": "^1.1.0",
     "prettier": "^1.17.1",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "redux-mock-store": "^1.5.4",
+    "wait-for-expect": "^3.0.1"
   },
   "keywords": [
     "gatsby"
@@ -46,13 +50,15 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run dev",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "jest",
+    "test_cov": "jest --collect-coverage",
+    "bdp": "gatsby build && firebase deploy"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/ronanamsterdam/satisfactorium"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/ronanamsterdam/satisfactorium/issues"
   }
 }

@@ -1,7 +1,9 @@
-import React, { useState, useEffect }  from 'react';
-import { useSelector } from "react-redux";
+import React, { useState }  from 'react';
 
-import {localize, updateLocale} from 'src/utils/locale';
+import { useLocale } from 'src/utils/hooks';
+import {localize} from 'src/utils/locale';
+
+import Vl from 'components/shared/loaders/view';
 
 import Square from './square';
 import Fps from './fps';
@@ -14,33 +16,24 @@ export default function() {
   const min = 1;
   const [count, setCount] = useState(40);
 
-  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
-  useEffect(() => {
-    setUpdatingLocale(true);
-    updateLocale({
-      rootKey:    localeKey,
-      code:       selectedLocale.code,
-      path:       'components/squares/l18n',
-      cb:         () => setUpdatingLocale(false),
-    })
-  }, [selectedLocale]);
+  const {isLocaleUpdating} = useLocale(__dirname)
 
   return (
     <div className={style.container}>
       <div className={style.content}>
           <h3>
-            <p>{localize(`${localeKey}.text1`)}</p>
+          <Vl loading={isLocaleUpdating}><p>{localize(`${localeKey}.text1`)}</p></Vl>
           </h3>
-          <p>
-            {localize(`${localeKey}.text2`)}
-            {localize(`${localeKey}.text3`)}
-            {localize(`${localeKey}.text4`)}
-          </p>
-          <h1 className={style.fps}><p><Fps/></p></h1>
+          <Vl loading={isLocaleUpdating}>
+            <p>
+              {localize(`${localeKey}.text2`)}
+              {localize(`${localeKey}.text3`)}
+              {localize(`${localeKey}.text4`)}
+            </p>
+          </Vl>
+          <h1 className={style.fps}><Vl loading={isLocaleUpdating}><p><Fps/>{localize(`${localeKey}.fps`)}</p></Vl></h1>
           <div className={style.inputContainer}>
-            <label htmlFor="count-input"> {localize(`${localeKey}.text5`)} -> </label>
+            <label htmlFor="count-input"><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.text5`)} -> </Vl></label>
             <input
               id="count-input"
               value={count}

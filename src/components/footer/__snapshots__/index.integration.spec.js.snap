@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Footer locale is being fetched and rendered correctly 1`] = `"<footer class=\\"container\\"><div class=\\"content\\"><span>© 2020, Check out whole project on my  </span><span><a href=\\"https://github.com/ronanamsterdam/satisfactorium\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Github</a> or read <a href=\\"https://www.linkedin.com/in/romanzhyliov\\">About me</a></span></div><ul class=\\"settings\\"><li><ul class=\\"container\\"><li><button class=\\"selected\\">ENG</button></li><li><button class=\\"\\">日本語</button></li></ul></li><li></li></ul></footer>"`;

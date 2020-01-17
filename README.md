@@ -13,7 +13,7 @@ And inside you have:
 3.  **React js test renderer.** -> https://satisfactorium.com/experiments/squares
 
     with square element and it's useState animations -> you can check hom much react cand render simalteniously.
-    I found that at around 3500 list elements the FPS starts to drop 
+    I found that at around 3500 list elements the FPS starts to drop
 
 4.  **Square-game.** -> https://satisfactorium.com/experiments/squares-game
 
@@ -32,6 +32,12 @@ And firebase to deploy static web quickly for free and without hustle -> https:/
 
  `npm i`
  `npm start`
+
+## To test
+
+ `npm test`
+  - for tests with coverage:
+ `npm run test_cov`
 
 ## 💫 Deploy
 

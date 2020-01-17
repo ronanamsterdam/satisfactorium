@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {localize, updateLocale} from 'src/utils/locale';
+import { useLocale } from 'src/utils/hooks';
+import { localize } from 'src/utils/locale';
 
 import actions from 'src/actions'
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-import Square from "../sqaure";
+import Vl from 'components/shared/loaders/view';
+
+import Square from "../square";
 import Timer from "./timer";
 
 import style            from "./style.module.less";
@@ -14,19 +17,7 @@ import style            from "./style.module.less";
 const localeKey = 'squareGameStats';
 
 export default function() {
-
-  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
-  useEffect(() => {
-    setUpdatingLocale(true);
-    updateLocale({
-      rootKey:    localeKey,
-      code:       selectedLocale.code,
-      path:       'components/squares-game/stats/l18n',
-      cb:         () => setUpdatingLocale(false),
-    })
-  }, [selectedLocale]);
+  const {isLocaleUpdating} = useLocale(__dirname, localeKey)
 
   const dispatch = useDispatch();
   const [isStart, setIsStart] = useState(false)
@@ -61,80 +52,93 @@ export default function() {
   const bestTime = (bestTimes[lvl] && new Date(bestTimes[lvl])) || null;
 
   return (
-    <div className={style.container}>
-      {isMobile && <div className={style.hiddenSquare}>
-          <Square
-            id="stats-square"
-            disabled={true}
-            isActive={true}
-          />
-      </div>}
-      <div className={style.content}>
-          <div className={[
-            style.congrats,
-            isDone ? style.visible: "",
-          ].join(" ")}>
-            <h1>
-              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
-               <br/>{localize(`${localeKey}.congrats`)}<br/>
-              <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
-            </h1>
-          </div>
-        <div className={style.objectiveStat}>
-          <div className={style.objectiveColumn}>
-            <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
-            {!!bestTime && (<h2>
-              {localize(`${localeKey}.best`)}
-                {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
-                {/* TODO: just import moment 🤦🏻‍♂️ */}
-                {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
-            </h2>)}
-            <Timer
-              isDone={isDone}
-              isStart={isStart}
-              lvl={lvl}
-              bestTime={bestTime}
-              cb={onTimerCb}
-            />
-          </div>
-          {!isMobile && <div
-            className={style.objectiveColumn}
-          >
-            <span>{localize(`${localeKey}.text1`)}</span>
+    <>
+      <div className={[
+        style.congrats,
+        isDone ? style.visible: "",
+      ].join(" ")}>
+        <h1>
+          <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
+            <br/>{localize(`${localeKey}.congrats`)}<br/>
+          <span role="img"  aria-label={localize(`${localeKey}.congrats`)}>🥳🥳</span>
+        </h1>
+      </div>
+      <div className={style.container}>
+        {isMobile && <div className={style.hiddenSquare}>
             <Square
               id="stats-square"
               disabled={true}
               isActive={true}
             />
-            <span>{localize(`${localeKey}.text2`)}</span>
-            <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
-            <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
-          </div>}
-          {!isMobile && <div
-            className={style.objectiveColumn}
-          >
-            <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
-            <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
-            <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
-            <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
-          </div>}
-        </div>
-            <div
-              className={style.buttonsHolder}
-            >
-              <button
-              disabled={lvl === 1}
-              onClick={()=> dispatch(actions.prevLevel())}
-              >⇤ {localize(`${localeKey}.previous`)} </button>
-              <button
-              onClick={()=> dispatch(actions.restartLevel())}
-              > {localize(`${localeKey}.restart`)} </button>
-              <button
-              disabled={!isDone && !bestTime}
-              onClick={()=> dispatch(actions.nextLevel())}
-              >{localize(`${localeKey}.next`)} ⇥</button>
+        </div>}
+        <div className={style.content}>
+
+          <div className={style.objectiveStat}>
+            <div className={style.objectiveColumn}>
+              <Vl loading={isLocaleUpdating}>
+                <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
+                {!!bestTime && (<h2>
+                  {localize(`${localeKey}.best`)}
+                    {isMobile ? "":` ${localize(`${localeKey}.time`)}`} :
+                    {/* TODO: just import moment 🤦🏻‍♂️ */}
+                    {bestTime.getUTCMinutes()}:{bestTime.getUTCSeconds()}:{parseInt(bestTime.getUTCMilliseconds()/100)}
+                </h2>)}
+                <Timer
+                  isDone={isDone}
+                  isStart={isStart}
+                  lvl={lvl}
+                  bestTime={bestTime}
+                  cb={onTimerCb}
+                />
+              </Vl>
             </div>
+            {!isMobile && <div
+              className={style.objectiveColumn}
+            >
+              <Vl loading={isLocaleUpdating}>
+                <span>{localize(`${localeKey}.text1`)}</span>
+              </Vl>
+              <Square
+                id="stats-square"
+                disabled={true}
+                isActive={true}
+              />
+              <Vl loading={isLocaleUpdating}>
+                <span>{localize(`${localeKey}.text2`)}</span>
+              </Vl>
+              <Vl loading={isLocaleUpdating}>
+                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+                <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
+              </Vl>
+            </div>}
+            {!isMobile && <div
+              className={style.objectiveColumn}
+            >
+              <Vl loading={isLocaleUpdating}>
+                <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
+                <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
+                <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
+                <h3>{localize(`${localeKey}.bombRadius`)}: {bombRadius}</h3>
+              </Vl>
+            </div>}
+          </div>
+              <div
+                className={style.buttonsHolder}
+              >
+                <button
+                disabled={lvl === 1}
+                onClick={()=> dispatch(actions.prevLevel())}
+                ><Vl loading={isLocaleUpdating}>⇤ {localize(`${localeKey}.previous`)}</Vl></button>
+                <button
+                onClick={()=> dispatch(actions.restartLevel())}
+                ><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.restart`)} </Vl></button>
+                <button
+                disabled={!isDone && !bestTime}
+                onClick={()=> dispatch(actions.nextLevel())}
+                ><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.next`)} ⇥</Vl></button>
+              </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

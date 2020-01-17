@@ -25,14 +25,12 @@ export const updateLocale = function ({
       }
 
       if (!polyglot.has(`${rootKey}.__root`)) {
-          console.log(`GETTING: ${code} FOR: ${path}`)
-          return import(`${__dirname}/../${path}/${code}.json`).then(locale => {
-            console.log(`GOT THE THING FOR ${path}`)
+          return import(`../${path}/${code}.json`).then(locale => {
               polyglot.extend(locale);
               cb && cb({locale, localeCode: code});
               return !!locale;
           });
       } else {
-          return Promise.resolve(false)
+          return Promise.resolve().then(() => cb && cb({}))
       }
 }

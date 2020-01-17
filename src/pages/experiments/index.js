@@ -1,8 +1,8 @@
-import React, {useEffect, useState}  from "react";
-import {useSelector}  from "react-redux";
+import React from "react";
 import { Link } from "gatsby";
 
-import {localize, updateLocale} from 'src/utils/locale';
+import { useLocale } from 'src/utils/hooks';
+import { localize } from 'src/utils/locale';
 
 import Layout from "components/layout"
 import SEO from "components/seo"
@@ -11,26 +11,14 @@ import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
 
 import style from './style.module.less'
 
-const localeKey = 'experiments';
-
 export default () => {
 
-  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  const [updatingLocale, setUpdatingLocale] = useState(false);
-  useEffect(() => {
-    setUpdatingLocale(true);
-    updateLocale({
-      rootKey:    localeKey,
-      code:       selectedLocale.code,
-      path:       'pages/experiments/l18n',
-      cb:         () => setUpdatingLocale(false),
-    })
-  }, [selectedLocale]);
+  const {isLocaleUpdating} = useLocale(__dirname)
 
   return <Layout>
-    <SEO localeKey={localeKey} />
+    <SEO localeKey="experiments" />
     {
-      updatingLocale ?
+      isLocaleUpdating ?
         <Vl type={VIEW_TYPES.BIG}/>
         :
         <div className={style.container}>

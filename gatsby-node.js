@@ -14,6 +14,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         styles: path.resolve(path.resolve(__dirname, "src"), 'src/styles'),
       },
     },
+    node: {
+      __dirname: true,
+    }
   })
 
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style            from "./style.module.less";
 
-import Square   from "./sqaure";
+import Square   from "./square";
 import Stats    from "./stats";
 
 import actions from "../../actions";

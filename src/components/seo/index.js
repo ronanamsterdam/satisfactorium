@@ -5,28 +5,17 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, {useEffect, useState} from "react"
-import {useSelector}  from "react-redux";
+import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import {localize, updateLocale} from 'src/utils/locale';
+import { useLocale } from 'src/utils/hooks';
+import {localize} from 'src/utils/locale';
 
 function SEO({ localeKey = '', description, lang, meta, title }) {
 
-  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  // eslint-disable-next-line
-  const [_, setUpdatingLocale] = useState(false);
-  useEffect(() => {
-    setUpdatingLocale(true);
-    updateLocale({
-      rootKey:    localeKey,
-      code:       selectedLocale.code,
-      path:       'components/seo/l18n',
-      cb:         () => setUpdatingLocale(false),
-    })
-  }, [selectedLocale]);
+  const { locale } = useLocale(__dirname, localeKey)
 
   const { site } = useStaticQuery(
     graphql`
@@ -45,7 +34,7 @@ function SEO({ localeKey = '', description, lang, meta, title }) {
   const metaDescription = description || site.siteMetadata.description
 
   const titleLocale = localize(`${localeKey}.title`) || title;
-  const langLocale = selectedLocale.code || lang;
+  const langLocale = locale.code || lang;
 
   return (
     <Helmet

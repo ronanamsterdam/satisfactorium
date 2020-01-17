@@ -6,3 +6,8 @@ enzyme.configure({ adapter: new Adapter() });// Make enzyme functions available 
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
+
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
+const middlewares = [thunk];
+global.mockStore = configureMockStore(middlewares);

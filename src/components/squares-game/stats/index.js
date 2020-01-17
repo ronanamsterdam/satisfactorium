@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {localize, updateLocale} from 'src/utils/locale';
+import { useLocale } from 'src/utils/hooks';
+import { localize } from 'src/utils/locale';
 
 import actions from 'src/actions'
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
 import Vl from 'components/shared/loaders/view';
 
-import Square from "../sqaure";
+import Square from "../square";
 import Timer from "./timer";
 
 import style            from "./style.module.less";
@@ -16,18 +17,7 @@ import style            from "./style.module.less";
 const localeKey = 'squareGameStats';
 
 export default function() {
-
-  const selectedLocale = useSelector(store => store.root.ux.locale.selected);
-  const [updatingLocale, setUpdatingLocale] = useState(false);
-  useEffect(() => {
-    setUpdatingLocale(true);
-    updateLocale({
-      rootKey:    localeKey,
-      code:       selectedLocale.code,
-      path:       'components/squares-game/stats/l18n',
-      cb:         () => setUpdatingLocale(false),
-    })
-  }, [selectedLocale]);
+  const {isLocaleUpdating} = useLocale(__dirname, localeKey)
 
   const dispatch = useDispatch();
   const [isStart, setIsStart] = useState(false)
@@ -85,7 +75,7 @@ export default function() {
 
           <div className={style.objectiveStat}>
             <div className={style.objectiveColumn}>
-              <Vl loading={updatingLocale}>
+              <Vl loading={isLocaleUpdating}>
                 <h1>{isMobile ? localize(`${localeKey}.lvl`): localize(`${localeKey}.level`)}: {lvl}</h1>
                 {!!bestTime && (<h2>
                   {localize(`${localeKey}.best`)}
@@ -105,7 +95,7 @@ export default function() {
             {!isMobile && <div
               className={style.objectiveColumn}
             >
-              <Vl loading={updatingLocale}>
+              <Vl loading={isLocaleUpdating}>
                 <span>{localize(`${localeKey}.text1`)}</span>
               </Vl>
               <Square
@@ -113,10 +103,10 @@ export default function() {
                 disabled={true}
                 isActive={true}
               />
-              <Vl loading={updatingLocale}>
+              <Vl loading={isLocaleUpdating}>
                 <span>{localize(`${localeKey}.text2`)}</span>
               </Vl>
-              <Vl loading={updatingLocale}>
+              <Vl loading={isLocaleUpdating}>
                 <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
                 <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
               </Vl>
@@ -124,7 +114,7 @@ export default function() {
             {!isMobile && <div
               className={style.objectiveColumn}
             >
-              <Vl loading={updatingLocale}>
+              <Vl loading={isLocaleUpdating}>
                 <h3>{localize(`${localeKey}.totalTodo`)}: {totalSquares}</h3>
                 <h3>{isDone && "🥳"} {localize(`${localeKey}.circlesDone`)}: {activeSquares.length}</h3>
                 <h3>{localize(`${localeKey}.bombBlasted`)}: {bombsBlasted}</h3>
@@ -138,14 +128,14 @@ export default function() {
                 <button
                 disabled={lvl === 1}
                 onClick={()=> dispatch(actions.prevLevel())}
-                ><Vl loading={updatingLocale}>⇤ {localize(`${localeKey}.previous`)}</Vl></button>
+                ><Vl loading={isLocaleUpdating}>⇤ {localize(`${localeKey}.previous`)}</Vl></button>
                 <button
                 onClick={()=> dispatch(actions.restartLevel())}
-                ><Vl loading={updatingLocale}>{localize(`${localeKey}.restart`)} </Vl></button>
+                ><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.restart`)} </Vl></button>
                 <button
                 disabled={!isDone && !bestTime}
                 onClick={()=> dispatch(actions.nextLevel())}
-                ><Vl loading={updatingLocale}>{localize(`${localeKey}.next`)} ⇥</Vl></button>
+                ><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.next`)} ⇥</Vl></button>
               </div>
         </div>
       </div>

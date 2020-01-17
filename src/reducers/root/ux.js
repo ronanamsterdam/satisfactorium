@@ -11,7 +11,7 @@ export const deviceInitialState = {
 }
 
 export const uxInitialState = {
-    theme: THEMES.LIGHT,
+    theme:      THEMES.LIGHT,
     locale:     localeInitialState,
     device:     deviceInitialState,
 }

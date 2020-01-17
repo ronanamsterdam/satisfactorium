@@ -1,3 +1,6 @@
+import * as hooks from './hooks';
+import * as locale from './locale';
+
 // debounce closure
 // you need to call it first on import
 export const debounceCl = _ => (function() {
@@ -17,3 +20,9 @@ export const debounceCl = _ => (function() {
     }
   };
 })();
+
+export default {
+  debounceCl,
+  locale,
+  hooks,
+}

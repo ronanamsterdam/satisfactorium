@@ -17,7 +17,7 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
     : <div aria-label="go back" title="go back" disabled className={style.linkNotActive}><span>⬇</span></div>
 }
 
-const Nav = ({ links = [], locale = {}, updatingLocale = false}) => {
+const Nav = ({ links = [], locale = {}, isLocaleUpdating = false}) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
 
   const localeCanTopBottom = !!locale.tb;
@@ -31,7 +31,7 @@ const Nav = ({ links = [], locale = {}, updatingLocale = false}) => {
             links.map(({text, href}, idx) =>
               <li key={idx} className={localeCanTopBottom ? style.canTb : ''}>
 
-                {updatingLocale ?
+                {isLocaleUpdating ?
                   <Vl type={VIEW_TYPES.SMALL}/>
                   :
                   <Link

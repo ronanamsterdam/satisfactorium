@@ -13,12 +13,12 @@ const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>◀︎</span></Link>
 }
 
-const Nav = ({ links = [], updatingLocale = false }) => {
+const Nav = ({ links = [], isLocaleUpdating = false }) => {
   const {returnPath, isRoot} = helper.getBackPath(window !== "undefined" && window.location.pathname)
 
   const navItems = links.map(({text, href}, idx) =>
   <li key={idx}>
-    {updatingLocale ?
+    {isLocaleUpdating ?
       <Vl type={VIEW_TYPES.SMALL}/>
       :
       <Link

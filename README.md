@@ -1,24 +1,25 @@
-https://satisfactoriumapp.web.app
+https://satisfactorium.com
 
-# 🚀 This is my portfolio app
+# 🚀 This is my portfolio-like app
 
 ## 🧐 What's inside?
 
-This is my portfolio app where I'll gather all the experiments I consider fun to play with and study
+This is where I'll gather all the experiments I consider fun to play with/study and best-practices to use.
+    
+And inside you have:    
 
-And inside you have:
-
-1. My custom square block element with some cool transitions
-2.  **React js test renderer.** -> https://satisfactoriumapp.web.app
+1. Supports dark mode and 日本語🇯🇵/English🇺🇸 locales (checkout css variables and https://airbnb.io/polyglot.js)
+2. My custom square block element with some cool transitions 
+3.  **React js test renderer.** -> https://satisfactorium.com/experiments/squares
 
     with square element and it's useState animations -> you can check hom much react cand render simalteniously.
     I found that at around 3500 list elements the FPS starts to drop
 
-3.  **Square-game.** -> https://satisfactoriumapp.web.app/squares-game
+4.  **Square-game.** -> https://satisfactorium.com/experiments/squares-game
 
     A square element based game! Where you'll need to turn all the squares in to circles :)
     All pure react and css based
-
+    
 ## 🎓 Gatsby
 
 I've used gatsby to jumpstart the react project. You can check it here -> https://www.gatsbyjs.org/tutorial/

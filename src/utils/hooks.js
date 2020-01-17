@@ -1,15 +1,15 @@
 
-import {useEffect, useState, lazy} from 'react';
-import { useSelector } from 'react-redux';
+import {useEffect, useState, lazy}  from 'react';
+import { useSelector }              from 'react-redux';
 
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
-import {updateLocale} from 'src/utils/locale';
+import {updateLocale}           from 'src/utils/locale';
 
 export const useLocale = (
   fullPath = 'src/',
   rootKey = '',
 ) => {
-  const relativePath = fullPath.replace(/^src\//,'')
+  const relativePath = fullPath.replace(/(.+\/){0,}src\//,'')
   if (!rootKey) {
     const rootKeyMatch = relativePath.match(/(?!\/)([A-Za-z-]+)/g);
 
@@ -40,7 +40,7 @@ export const useView = function (fullPath = 'src/') {
   const {factor} = useSelector(state => state.root.ux.device);
   const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET
   return {
-    View: lazy(() => isMobile ? import(`../${relativePath}/mobile`) : import(`../${relativePath}/desktop`)),
+    View: lazy(() => isMobile ? import(`src/${relativePath}/mobile`) : import(`src/${relativePath}/desktop`)),
     isMobile
   }
 }

@@ -9,5 +9,9 @@ global.mount = mount;
 
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-const middlewares = [thunk];
-global.mockStore = configureMockStore(middlewares);
+const middleware = [thunk];
+global.mockStore = configureMockStore(middleware);
+
+import { createStore, combineReducers } from "redux"
+import rootReducer              from 'src/reducers';
+global.realStore = () => createStore(combineReducers({ ...rootReducer }));

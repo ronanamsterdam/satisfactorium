@@ -5,14 +5,14 @@ https://satisfactoriumapp.web.app
 ## 🧐 What's inside?
 
 This is my portfolio app where I'll gather all the experiments I consider fun to play with and study
-    
-And inside you have:    
-    
-1. My custom square block element with some cool transitions 
+
+And inside you have:
+
+1. My custom square block element with some cool transitions
 2.  **React js test renderer.** -> https://satisfactoriumapp.web.app
 
     with square element and it's useState animations -> you can check hom much react cand render simalteniously.
-    I found that at around 3500 list elements the FPS starts to drop 
+    I found that at around 3500 list elements the FPS starts to drop
 
 3.  **Square-game.** -> https://satisfactoriumapp.web.app/squares-game
 
@@ -31,6 +31,12 @@ And firebase to deploy static web quickly for free and without hustle -> https:/
 
  `npm i`
  `npm start`
+
+## To test
+
+ `npm test`
+  - for tests with coverage:
+ `npm run test_cov`
 
 ## 💫 Deploy
 

@@ -25,7 +25,7 @@ export default function(props) {
             top: 0,
             width: '50px'
         }}
-      ></div>></div>}>
+      ></div></div>}>
         <View {...props} isLocaleUpdating={isLocaleUpdating} locale={locale}/>
       </Suspense>
 }

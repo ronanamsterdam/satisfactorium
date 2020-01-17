@@ -9,7 +9,7 @@ import style from "./style.module.less"
 
 import {localize} from 'src/utils/locale'
 
-import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+import Vl from 'components/shared/loaders/view';
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
   return !isRoot ?
@@ -30,16 +30,14 @@ const Nav = ({ links = [], locale = {}, isLocaleUpdating = false}) => {
           {
             links.map(({text, href}, idx) =>
               <li key={idx} className={localeCanTopBottom ? style.canTb : ''}>
-
-                {isLocaleUpdating ?
-                  <Vl type={VIEW_TYPES.SMALL}/>
-                  :
-                  <Link
-                    partiallyActive={true}
-                    activeClassName={style.linkActive}
-                    tabIndex={idx+1} to={href}>
-                      <span>{localize(`nav.${text}`)}</span>
-                  </Link>}
+                  <Vl loading={isLocaleUpdating}>
+                    <Link
+                      partiallyActive={true}
+                      activeClassName={style.linkActive}
+                      tabIndex={idx+1} to={href}>
+                        <span>{localize(`nav.${text}`)}</span>
+                    </Link>
+                  </Vl>
               </li>)
           }
           </ul>

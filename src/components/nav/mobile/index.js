@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 import {localize} from 'src/utils/locale';
 
-import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+import Vl from 'components/shared/loaders/view';
 
 import helper from "../helper"
 import style from "./style.module.less"
@@ -18,15 +18,14 @@ const Nav = ({ links = [], isLocaleUpdating = false }) => {
 
   const navItems = links.map(({text, href}, idx) =>
   <li key={idx}>
-    {isLocaleUpdating ?
-      <Vl type={VIEW_TYPES.SMALL}/>
-      :
+    <Vl loading={isLocaleUpdating} >
       <Link
         partiallyActive={true}
         activeClassName={style.linkActive}
         tabIndex={idx+1}
         to={href}>{localize(`nav.${text}`)}
-      </Link>}
+      </Link>
+    </Vl>
   </li>)
 
   return (

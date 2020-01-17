@@ -13,16 +13,11 @@ export default function () {
 
   return <Layout>
     <SEO localeKey="about"/>
-    {
-      isLocaleUpdating ?
-        <Vl type={VIEW_TYPES.BIG} />
-        :
-        <>
-            <h3>{localize('about.heading')}</h3>
-            <h5>{localize('about.subHeading')}</h5>
-            <p>{localize('about.main1')}<br/>{localize('about.main2')}</p>
-            <h4>{localize('about.thanks')}</h4>
-        </>
-    }
+    <Vl loading={isLocaleUpdating} type={VIEW_TYPES.BIG} >
+      <h3>{localize('about.heading')}</h3>
+      <h5>{localize('about.subHeading')}</h5>
+      <p>{localize('about.main1')}<br/>{localize('about.main2')}</p>
+      <h4>{localize('about.thanks')}</h4>
+    </Vl>
 </Layout>
 }

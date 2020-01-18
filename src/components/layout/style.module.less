@@ -13,7 +13,12 @@
   }
 
   main {
+    .transition(min-height);
     padding:20px;
+
+    &.mainLoading {
+      min-height: 150px;
+    }
   }
 }
 
@@ -22,6 +27,7 @@
       grid-template-columns: auto;
 
       main {
+        min-height: 250px;
         padding-top: 0;
       }
   }

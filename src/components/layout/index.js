@@ -19,7 +19,7 @@ import style from "./style.module.less"
 
 import 'style/index.less';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, loading = false }) => {
   return (
   <StaticQuery
     query={graphql`
@@ -37,9 +37,10 @@ const Layout = ({ children }) => {
     `}
     render={data => (
       <div className={style.container}>
+        {/* TODO: MOVE NAV OUT OF LAYOUT TO PREVENT RE-renderings on route change */}
         <Nav links={data.site.siteMetadata.nav || []}/>
         <div className={style.content}>
-          <main>{children}</main>
+          <main className={loading ? style.mainLoading : ''}>{children}</main>
           <Footer />
         </div>
         <Device/>

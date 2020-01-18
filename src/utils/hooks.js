@@ -35,12 +35,22 @@ export const useLocale = (
   return {locale: selectedLocale, isLocaleUpdating: updatingLocale};
 }
 
+const getView = (isMobile, relativePath = '') => lazy(() => isMobile ? import(`src/${relativePath}/mobile`) : import(`src/${relativePath}/desktop`))
+
 export const useView = function (fullPath = 'src/') {
   const relativePath = fullPath.replace(/^src\//,'')
-  const {factor} = useSelector(state => state.root.ux.device);
-  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET
+  const factor = useSelector(state => state.root.ux.device.factor);
+
+  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
+  const [View, setView] = useState(getView(isMobile, relativePath));
+
+  useEffect(()=>{
+    console.log(`VIEW LOADED: ${factor}`);
+    setView(getView(isMobile, relativePath));
+  }, [factor]);
+
   return {
-    View: lazy(() => isMobile ? import(`src/${relativePath}/mobile`) : import(`src/${relativePath}/desktop`)),
+    View,
     isMobile
   }
 }

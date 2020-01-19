@@ -22,7 +22,7 @@ And inside you have:
 
 ## Why the name satisfactorium?
 
-Cuz it gives me amounts of satisfation working on it seeing the end result. As a devlopers we are constantly limited in ways we think things should be done due to number of reasons. So this is my place to do exactly the way I believe things should be done and imense amounts of happy code and mood comes as a result 😌    
+Cuz it gives me amounts of satisfation working on it seeing the end result. As devlopers we are constantly limited in ways we think things should be done due to number of reasons. So this is my place to do exactly the way I believe things should be done and imense amounts of happy code and mood comes as a result 😌    
     
 ## 🎓 Gatsby
 

@@ -30,7 +30,7 @@ I've used gatsby to jumpstart the react project. You can check it here -> https:
 
 ## Firebase
 
-And firebase to deploy static web quickly for free and without hustle -> https://firebase.google.com/?gclid=CjwKCAjw67XpBRBqEiwA5RCocY2XObNpAW_mt4xKXGNej59VUFz86zL6xAQj62AxmhCaiaWyatJNYRoCdhwQAvD_BwE
+And firebase to deploy static web quickly for free and without hustle -> https://firebase.google.com
 
 ## To start
 

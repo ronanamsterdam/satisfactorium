@@ -6,4 +6,4 @@ const AnimatedView = posed.div({
   exit: { opacity: 0, y: -30, transition: { duration: 500 } },
 });
 
-export default ({children, props}) => <AnimatedView pose="enter" initialPose="exit" {...props}>{children}</AnimatedView>
+export default ({children, ...props}) => <AnimatedView pose="enter" initialPose="exit" {...props}>{children}</AnimatedView>

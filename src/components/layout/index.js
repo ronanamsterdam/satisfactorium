@@ -9,17 +9,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import Device   from 'components/global/device';
-import Theme   from 'components/global/theme';
 
-import Nav      from "components/nav"
-import Footer   from 'components/footer';
 
 import style from "./style.module.less"
 
 import 'style/index.less';
 
 const Layout = ({ children }) => {
+  // TODO:
+  const loading = false
+  // const {isLocaleUpdating: loading} = useLocale(__dirname)
   return (
   <StaticQuery
     query={graphql`
@@ -37,13 +36,9 @@ const Layout = ({ children }) => {
     `}
     render={data => (
       <div className={style.container}>
-        <Nav links={data.site.siteMetadata.nav || []}/>
         <div className={style.content}>
-          <main>{children}</main>
-          <Footer />
+          <main className={loading ? style.mainLoading : ''}>{children}</main>
         </div>
-        <Device/>
-        <Theme/>
       </div>
     )}
   />

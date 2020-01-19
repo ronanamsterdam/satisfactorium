@@ -1,6 +1,8 @@
 const path = require('path')
 
-module.exports = {
+const GEN_BUNDLE_ANALYTICS = process.env.GEN_BUNDLE_ANALYTICS;
+
+let config = {
 
   siteMetadata: {
     title: `your satisfactorium`,
@@ -95,5 +97,25 @@ module.exports = {
         cookieDomain: "satisfactorium.com",
       },
     },
+
   ],
 }
+
+if (GEN_BUNDLE_ANALYTICS) {
+  config = {
+    ...config,
+    plugins: [
+      ...config.plugins,
+      {
+        resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+        options: {
+          openAnalyzer: true,
+          analyzerPort: 3000,
+          production: true,
+        },
+      }
+    ]
+  }
+}
+
+module.exports = config

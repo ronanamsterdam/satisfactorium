@@ -1,10 +1,7 @@
 @import '~style/index';
 
 .container {
-  display: grid;
-  grid-template-columns: 50px auto;
   height: 100%;
-
   .content {
     display: flex;
     flex-direction: column;
@@ -13,15 +10,19 @@
   }
 
   main {
+    .transition(min-height);
     padding:20px;
+
+    &.mainLoading {
+      min-height: 150px;
+    }
   }
 }
 
 @media (max-width: @tablet-break) {
   .container {
-      grid-template-columns: auto;
-
       main {
+        min-height: 250px;
         padding-top: 0;
       }
   }

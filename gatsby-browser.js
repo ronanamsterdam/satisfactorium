@@ -5,8 +5,8 @@
  */
 
 // You can delete this file if you're not using it
-import wrapWithProvider from "./wrap-with-provider"
-export const wrapRootElement = wrapWithProvider
+export const wrapRootElement = require('./wrap-with-provider').default
+export const wrapPageElement = require('components/root').default
 
 export const onClientEntry = () => {
   if(window !== 'undefined') window.onload = () => {

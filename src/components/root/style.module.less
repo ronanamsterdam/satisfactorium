@@ -1,0 +1,12 @@
+@import '~style/index';
+
+.root {
+  display: grid;
+  grid-template-columns: 50px auto;
+}
+
+@media (max-width: @tablet-break) {
+  .root {
+      grid-template-columns: auto;
+  }
+}

@@ -31,7 +31,7 @@ export default function() {
               {localize(`${localeKey}.text4`)}
             </p>
           </Vl>
-          <h1 className={style.fps}><Vl loading={isLocaleUpdating}><p><Fps/>{localize(`${localeKey}.fps`)}</p></Vl></h1>
+          <h1 className={style.fps}><Vl loading={isLocaleUpdating}><p><Fps/> {localize(`${localeKey}.fps`)}</p></Vl></h1>
           <div className={style.inputContainer}>
             <label htmlFor="count-input"><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.text5`)} -> </Vl></label>
             <input

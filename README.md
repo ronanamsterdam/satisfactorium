@@ -4,8 +4,8 @@ https://satisfactorium.com
 
 ## 🧐 What's inside?
 
-This is where I'll gather all the experiments I consider fun to play with/study and best-practices to use.
-    
+Here I'll gather all the experiments I consider fun to play with/study and best-practices to use.
+
 And inside you have:    
 
 1. Supports dark mode and 日本語🇯🇵/English🇺🇸 locales (checkout css variables and https://airbnb.io/polyglot.js)
@@ -19,6 +19,10 @@ And inside you have:
 
     A square element based game! Where you'll need to turn all the squares in to circles :)
     All pure react and css based
+
+## Why the name satisfactorium?
+
+Cuz it gives me amounts of satisfation working on it seeing the end result. As a devlopers we are constantly limited in ways we think things should be done due to number of reasons. So this is my place to do exactly the way I believe things should be done and imense amounts of happy code and mood comes as a result 😌    
     
 ## 🎓 Gatsby
 

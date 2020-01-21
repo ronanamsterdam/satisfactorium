@@ -54,7 +54,7 @@ export default function ux(state = uxInitialState, action: UxTypes) {
             theme: action.theme
           }
         }
-        case actionNames.default.LOCALE_SET_LOCALE: {
+        case actionNames.LOCALE_SET_LOCALE: {
           return {
             ...state,
             locale: locale(state.locale, action)

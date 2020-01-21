@@ -97,7 +97,7 @@ let config = {
         cookieDomain: "satisfactorium.com",
       },
     },
-
+    'gatsby-plugin-typescript',
   ],
 }
 

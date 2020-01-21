@@ -1,4 +1,5 @@
-import * as squareGame  from "./square-game"
+import * as squareGameActions  from './square-game'
+export const squareGame = squareGameActions;
 
 export const APP_TEST_ACTION        = 'APP_TEST_ACTION';
 export const APP_TBD_NOTIFY_ACTION  = 'APP_TBD_NOTIFY_ACTION';

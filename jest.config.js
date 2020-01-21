@@ -1,7 +1,7 @@
 
 module.exports = {
   transform: {
-    '^.+\\.jsx?$': `<rootDir>/jest-preprocess.js`,
+    "^.+\\.[jt]sx?$": "<rootDir>/jest-preprocess.js",
   },
   modulePaths: ["src"],
   moduleNameMapper: {

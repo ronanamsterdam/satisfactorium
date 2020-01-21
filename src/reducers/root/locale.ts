@@ -1,6 +1,7 @@
-import actionTypes         from 'statics/actions';
+import * as actionNames  from 'statics/actions';
+import {UxTypes}  from 'actions/types';
 
-import * as supportedLocaleTypes from 'statics/strings/reducers/ux';
+import * as supportedLocaleTypes  from 'statics/strings/reducers/ux';
 
 export const localeInitialState = {
     collection:[
@@ -30,18 +31,13 @@ export const localeInitialState = {
 };
 
 
-export default function locale(state = localeInitialState, action) {
+export default function locale(state = localeInitialState, action: UxTypes) {
     switch (action.type) {
-        case actionTypes.LOCALE_SET_LOCALE:
+        case actionNames.LOCALE_SET_LOCALE:
           const selected = state.collection[action.idx];
           return {
               ...state,
               selected,
-          }
-        case actionTypes.LOCALE_SET_IS_UPDATING:
-          return {
-              ...state,
-              updating: action.updating
           }
 
         default:

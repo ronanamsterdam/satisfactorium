@@ -1,4 +1,5 @@
-import actionTypes   from 'statics/actions';
+import * as actionNames from 'statics/actions';
+import {UxTypes}  from 'actions/types';
 
 import {DEVICE_FORM_FACTORS, THEMES}    from 'statics/strings/reducers/ux';
 
@@ -16,19 +17,19 @@ export const uxInitialState = {
     device:     deviceInitialState,
 }
 
-const device = function(state = deviceInitialState, action) {
+const device = function(state = deviceInitialState, action: UxTypes) {
     switch(action.type) {
-      case actionTypes.DEVICE_FORM_FACTOR_SET:
-          return {
-              ...state,
-              factor: action.factor || DEVICE_FORM_FACTORS.DESKTOP
-          }
-      case actionTypes.DEVICE_USER_AGENT_SET:
+      case actionNames.DEVICE_USER_AGENT_SET:
           return {
               ...state,
               agent: action.agent
           }
-      case actionTypes.DEVICE_DIMENSIONS_SET:
+      case actionNames.DEVICE_FORM_FACTOR_SET:
+          return {
+              ...state,
+              factor: action.factor || DEVICE_FORM_FACTORS.DESKTOP
+          }
+      case actionNames.DEVICE_DIMENSIONS_SET:
           return {
               ...state,
               dimensions: action.dimensions
@@ -38,22 +39,22 @@ const device = function(state = deviceInitialState, action) {
     }
 }
 
-export default function ux(state = uxInitialState, action) {
+export default function ux(state = uxInitialState, action: UxTypes) {
     switch(action.type) {
-        case actionTypes.DEVICE_DIMENSIONS_SET:
-        case actionTypes.DEVICE_USER_AGENT_SET:
-        case actionTypes.DEVICE_FORM_FACTOR_SET:
+        case actionNames.DEVICE_DIMENSIONS_SET:
+        case actionNames.DEVICE_USER_AGENT_SET:
+        case actionNames.DEVICE_FORM_FACTOR_SET:
           return {
               ...state,
               device: device(state.device, action)
           }
-        case actionTypes.SET_THEME: {
+        case actionNames.SET_THEME: {
           return {
             ...state,
             theme: action.theme
           }
         }
-        case actionTypes.LOCALE_SET_LOCALE: {
+        case actionNames.LOCALE_SET_LOCALE: {
           return {
             ...state,
             locale: locale(state.locale, action)

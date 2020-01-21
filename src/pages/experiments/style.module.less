@@ -2,11 +2,25 @@
 
 .container {
   ul {
-    list-style: disc;
-    padding-left: 20px;
-
+    align-items:  center;
+    display:      flex;
+    height:       200px;
     li {
-      margin: 10px 0;
+      margin: 10px;
+    }
+  }
+}
+
+@media (max-width: @tablet-break) {
+  .container {
+    ul {
+      flex-direction: column;
+      height:         initial;
+
+      li {
+        align-self: stretch;
+        margin: 10px 0;
+      }
     }
   }
 }

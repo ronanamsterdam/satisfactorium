@@ -1,13 +1,14 @@
+import * as actionNames   from 'statics/actions'
 
-export interface ActionBase {
-  type: String
-}
+import {ActionSetLocale} from './locale/types'
 
-export interface ActionSetDeviceFormFactor extends ActionBase {
+export interface ActionSetDeviceFormFactor {
+  type: typeof actionNames.DEVICE_FORM_FACTOR_SET,
   factor: String,
 }
 
-export interface ActionSetDeviceUserAgent extends ActionBase{
+export interface ActionSetDeviceUserAgent {
+  type: typeof actionNames.DEVICE_USER_AGENT_SET,
   agent: String,
 }
 
@@ -18,12 +19,21 @@ export interface Dimensions {
   outerWidth:   Number
 }
 
-export interface ActionSetDeviceDimensions extends ActionBase {
+export interface ActionSetDeviceDimensions {
+  type: typeof actionNames.DEVICE_DIMENSIONS_SET,
   dimensions: Dimensions,
 }
 
-export interface ActionSetTheme extends ActionBase {
+export interface ActionSetTheme {
+  type: typeof actionNames.SET_THEME,
   theme: String
 }
 
-export interface ActionAppInit extends ActionBase {}
+export interface ActionAppInit {}
+
+export type UxTypes =
+  ActionSetDeviceUserAgent |
+  ActionSetDeviceDimensions |
+  ActionSetDeviceFormFactor |
+  ActionSetTheme |
+  ActionSetLocale

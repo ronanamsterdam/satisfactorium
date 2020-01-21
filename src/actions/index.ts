@@ -1,4 +1,4 @@
-import actionNames from 'statics/actions';
+import * as actionNames from 'statics/actions';
 
 import squareGame from './square-game';
 import locale from './locale';

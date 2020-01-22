@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import { useLocale } from 'src/utils/hooks';
 import { localize } from 'src/utils/locale';
@@ -23,10 +22,18 @@ export default () => {
         <h3>{localize('experiments.text1')}</h3>
         <ul>
           <li>
-            <ActionCard tabIndex="11" to="/experiments/squares-game">{localize('experiments.item1')}</ActionCard>
+            <ActionCard
+              subContent={localize('experiments.subItem1')}
+              to="/experiments/squares-game">
+              {localize('experiments.item1')}
+            </ActionCard>
           </li>
           <li>
-            <ActionCard tabIndex="11" to="/experiments/squares">{localize('experiments.item2')}</ActionCard>
+            <ActionCard
+              subContent={localize('experiments.subItem2')}
+              to="/experiments/squares">
+              {localize('experiments.item2')}
+            </ActionCard>
           </li>
         </ul>
       </LoadedView>

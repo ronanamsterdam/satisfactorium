@@ -1,18 +1,16 @@
-import React, {useState} from 'react';
-import {useSelector} from 'redux';
+import React from 'react';
 import { Link } from "gatsby"
-
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
 import style from './style.module.less';
 
-export default function({isLink = true, path, children, ...props}) {
+export default function({isLink = true, path, children, subContent, ...props}) {
   return isLink ?
       <Link to={"/"+path}
         className={style.actionItem}
         {...props}>
           <div className={style.foreground}>
             {children}
+            <span className={style.subContent}>{subContent}</span>
           </div>
           <div className={style.background} />
       </Link>
@@ -20,6 +18,10 @@ export default function({isLink = true, path, children, ...props}) {
       <button
         className={style.actionItem}
         {...props}>
-          {children}
+          <div className={style.foreground}>
+            {children}
+            <span className={style.subContent}>{subContent}</span>
+          </div>
+          <div className={style.background} />
       </button>
 }

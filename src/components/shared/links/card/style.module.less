@@ -1,66 +1,75 @@
 @import '~style/helpers';
 
-@list-item-height: 100%;
-@card-item-height: 280px;
-
 .actionItem {
   display: block;
   position: relative;
   .foreground {
     .square-button();
     .transition(max-width, border-width, height, background-color, box-shadow);
-    height:       200px;
-    max-width:    130px;
-    overflow:     visible;
-    padding:      10px;
-    touch-action: manipulation;
-    z-index: 10;
+    display:          flex;
+    flex-direction:   column;
+    border:           none;
+    justify-content:  center;
+    height:           200px;
+    max-width:        130px;
+    overflow:         visible;
+    padding:          10px;
+    touch-action:     manipulation;
+    z-index:          10;
 
+    .subContent {
+      margin-top: 5px;
+      font-size:  12px;
+    }
   }
 
   &:before {
-    top: 0;
-    left: 0;
+    border-bottom:  none;
+    border-right:   none;
+    left:           0;
+    top:            0;
   }
 
   &:after {
-    right: 0;
-    bottom: 0;
+    border-left:  none;
+    border-top:   none;
+    bottom:       0;
+    right:        0;
   }
   &:before, &:after {
     .transition(border-width, top, left, right, bottom);
-    border-color: @white;
-    border-style: solid;
+    border-color:       @white;
+    border-style:       solid;
     border-radius:      @btn-border-radius;
-    border-width: 0;
-    content: '';
-    position: absolute;
-    z-index: 9;
-
-    width: 10px;
-    height: 10px;
+    border-width:       0;
+    content:            '';
+    height:             20px;
+    position:           absolute;
+    width:              20px;
+    z-index:            9;
   }
-
 
   &:hover, &:focus, &:active {
     .foreground {
       background-color: lighten(@brand-hover, 25%);
-      box-shadow: 0px 15px 45px -10px rgba(0, 0, 0, 0.6);
-      // border-width:     10px;
+      box-shadow:       0px 15px 45px -10px rgba(0, 0, 0, 0.6);
       color:            @white;
       height:           180px;
-      // max-width:        150px;
     }
     &:before, &:after {
-      border-width: 10px;
+      border-width: 5px;
     }
     &:before {
-      top: -5px;
-      left: -5px;
+      border-bottom:  none;
+      border-right:   none;
+      left:           -10px;
+      top:            -10px;
     }
     &:after {
-      right: -5px;
-      bottom: -5px;
+      border-left:  none;
+      border-top:   none;
+      bottom:       -10px;
+      right:        -10px;
     }
   }
 }
@@ -68,11 +77,11 @@
 body:global(.night) {
   .actionItem {
     .foreground {
-      background:       rgb(93, 123, 146);
+      background:       hsla(206, 22%, 7%, 1);
     }
     &:hover, &:focus {
       .foreground {
-        background:       #316777;
+        background: #316777;
         box-shadow: 5px 5px 1px #131313c7;
       }
     }
@@ -82,15 +91,21 @@ body:global(.night) {
 @media (max-width: @tablet-break) {
   .actionItem {
     .foreground {
-      max-width: 100%;
-      margin:       auto;
-      text-align: center;
-      height:       80px;
+      flex-direction:   row;
+      justify-content:  space-between;
+      height:           80px;
+      max-width:        100%;
+      margin:           auto;
+      text-align:       center;
+
+      .subContent {
+        margin-top: 0;
+        font-size: 12px;
+      }
     }
 
     &:hover, &:focus, &:active, {
       .foreground {
-        // max-width:    99%;
         height:       90px;
       }
     }

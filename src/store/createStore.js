@@ -1,4 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
+import createSagaMiddleware from 'redux-saga'
 
 import rootReducer              from '../reducers';
 import thunk                    from 'redux-thunk';
@@ -7,6 +8,8 @@ import { createMigrate, persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import middleware               from '../middleware';
+
+import {sagaGridMw} from '../middleware/blaster';
 
 import migrations from './migrations';
 
@@ -35,10 +38,13 @@ const persistedReducer = persistReducer(persistConfig, rootCombinedWithPersist)
 // INFO: in prod use env vars to separate dev using window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ vs prod not using it
 const composeEnhancers = (typeof window !== `undefined` && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
+const sagaMiddleware = createSagaMiddleware()
+
 const enhancer = composeEnhancers(
   applyMiddleware(
     ...middleware,
-      thunk,
+    thunk,
+    sagaMiddleware,
   )
 );
 
@@ -48,6 +54,9 @@ export default function configureStore(initialState) {
       initialState,
       enhancer
   );
+
+  // then run the saga
+  sagaMiddleware.run(sagaGridMw)
 
   if (module.hot) {
       module.hot.accept('../reducers', () =>

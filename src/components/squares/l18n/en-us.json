@@ -1,11 +1,14 @@
 {
   "squares": {
       "__root":       "__this is a system key__",
-      "text1"       : "this page is made to test latest react's (16.8.6) rendering capabilities",
-      "text2" : "try increasing the block's count bellow and try interacting with the squares.",
+      "text1"       : "this page is made to test latest react's (16.12.0) rendering capabilities",
+      "text2" : "Try increasing the block's count bellow and try interacting with the them.",
       "text3":"You'll see FPS frame drop at around ~4500 items count.",
       "text4":"You can set it to any number and watch the world burn 🔥",
       "fps": "fps",
-      "text5":"set blocks count here"
+      "text5":"set blocks count here",
+      "text5_1":"set blocks size here",
+      "text4_1":"You can also see the difference in plain render fps vs render interactive fps.",
+      "text4_2":"Especially noticeable in chrome. Try setting blocks count to ~1500 and then try to interact with them to see the fps difference."
   }
 }

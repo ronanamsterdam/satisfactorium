@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 
 import { useLocale } from 'src/utils/hooks';
 import {localize} from 'src/utils/locale';
@@ -16,6 +16,15 @@ export default function() {
   const min = 1;
   const [count, setCount] = useState(40);
 
+  const [size, setSize] = useState(1);
+
+  useEffect(()=> {
+    const el = document.body.querySelector(`.${style.container}`)
+    if (!!el) {
+      el.style.setProperty('--local-square-factor', size);
+    }
+  }, [size])
+
   const {isLocaleUpdating} = useLocale(__dirname)
 
   return (
@@ -29,29 +38,48 @@ export default function() {
               {localize(`${localeKey}.text2`)}
               {localize(`${localeKey}.text3`)}
               {localize(`${localeKey}.text4`)}
+              {localize(`${localeKey}.text4_1`)} {localize(`${localeKey}.text4_2`)}
             </p>
           </Vl>
           <h1 className={style.fps}><Vl loading={isLocaleUpdating}><p><Fps/> {localize(`${localeKey}.fps`)}</p></Vl></h1>
-          <div className={style.inputContainer}>
-            <label htmlFor="count-input"><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.text5`)} -> </Vl></label>
-            <input
-              id="count-input"
-              value={count}
-              type="number"
-              onChange={(e)=> {
-                const newVal = e && e.target && +e.target.value;
-                if (!isNaN(newVal) && newVal > min) {
-                  setCount(e.target.value);
-                } else {
-                  setCount(min);
-                }
-              }}
-            />
-          </div>
+          <ul className={style.inputContainer}>
+            <li>
+              <label htmlFor="count-input"><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.text5`)} : </Vl></label>
+              <input
+                id="count-input"
+                value={count}
+                type="number"
+                onChange={(e)=> {
+                  const newVal = e && e.target && +e.target.value;
+                  if (!isNaN(newVal) && newVal > min) {
+                    setCount(e.target.value);
+                  } else {
+                    setCount(min);
+                  }
+                }}
+              />
+            </li>
+            <li>
+              <label htmlFor="size-input"><Vl loading={isLocaleUpdating}>{localize(`${localeKey}.text5_1`)} : </Vl></label>
+              <input
+                id="size-input"
+                value={size}
+                type="number"
+                onChange={(e)=> {
+                  const newVal = e && e.target && +e.target.value;
+                  if (!isNaN(newVal) && newVal > min) {
+                    setSize(e.target.value);
+                  } else {
+                    setSize(min);
+                  }
+                }}
+              />
+            </li>
+          </ul>
         <div className={style.resultsContainer}>
             <div className={
                 [
-                    style.grid,
+                    style.localGrid,
                     style.searchResultsContainer,
                 ].join(' ')
             }>

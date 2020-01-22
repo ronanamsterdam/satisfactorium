@@ -107,7 +107,7 @@ export default function() {
                 <span>{localize(`${localeKey}.text2`)}</span>
               </Vl>
               <Vl loading={isLocaleUpdating}>
-                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text3`)}</span>
                 <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
               </Vl>
             </div>}

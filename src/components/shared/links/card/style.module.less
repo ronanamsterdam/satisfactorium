@@ -1,0 +1,119 @@
+@import '~style/helpers';
+
+button.actionItem {
+  background: none;
+  border: none;
+}
+
+.actionItem {
+  display: block;
+  position: relative;
+  .foreground {
+    .square-button();
+    .transition(max-width, border-width, height, background-color, box-shadow);
+    display:          flex;
+    font-size:        16px;
+    flex-direction:   column;
+    border:           none;
+    justify-content:  center;
+    height:           200px;
+    max-width:        130px;
+    overflow:         visible;
+    padding:          10px;
+    touch-action:     manipulation;
+    z-index:          10;
+
+    .subContent {
+      margin-top: 5px;
+      font-size:  12px;
+    }
+  }
+
+  &:before {
+    border-bottom:  none;
+    border-right:   none;
+    left:           0;
+    top:            0;
+  }
+
+  &:after {
+    border-left:  none;
+    border-top:   none;
+    bottom:       0;
+    right:        0;
+  }
+  &:before, &:after {
+    .transition(border-width, top, left, right, bottom);
+    border-color:       @white;
+    border-style:       solid;
+    border-radius:      @btn-border-radius;
+    border-width:       0;
+    content:            '';
+    height:             20px;
+    position:           absolute;
+    width:              20px;
+    z-index:            9;
+  }
+
+  &:hover, &:focus, &:active {
+    .foreground {
+      background-color: lighten(@brand-hover, 25%);
+      box-shadow:       0px 15px 45px -10px rgba(0, 0, 0, 0.6);
+      color:            @white;
+      height:           180px;
+    }
+    &:before, &:after {
+      border-width: 5px;
+    }
+    &:before {
+      border-bottom:  none;
+      border-right:   none;
+      left:           -10px;
+      top:            -10px;
+    }
+    &:after {
+      border-left:  none;
+      border-top:   none;
+      bottom:       -10px;
+      right:        -10px;
+    }
+  }
+}
+
+body:global(.night) {
+  .actionItem {
+    .foreground {
+      background:       hsla(206, 22%, 7%, 1);
+    }
+    &:hover, &:focus {
+      .foreground {
+        background: #316777;
+        box-shadow: 5px 5px 1px #131313c7;
+      }
+    }
+  }
+}
+
+@media (max-width: @tablet-break) {
+  .actionItem {
+    .foreground {
+      flex-direction:   row;
+      justify-content:  space-between;
+      height:           80px;
+      max-width:        100%;
+      margin:           auto;
+      text-align:       center;
+
+      .subContent {
+        margin-top: 0;
+        font-size: 12px;
+      }
+    }
+
+    &:hover, &:focus, &:active, {
+      .foreground {
+        height:       90px;
+      }
+    }
+  }
+}

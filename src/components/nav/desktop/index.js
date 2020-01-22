@@ -11,9 +11,9 @@ import {localize} from 'src/utils/locale'
 
 import Vl from 'components/shared/loaders/view';
 
-const getBackButton = ({returnPath = "/", isRoot = true}) => {
+const getBackButton = ({returnPath = "/", isRoot = true, tabIdx = 1}) => {
   return !isRoot ?
-    <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>⬇</span></Link>
+    <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={tabIdx} to={"/"+returnPath}><span>⬇</span></Link>
     : <div aria-label="go back" title="go back" disabled className={style.linkNotActive}><span>⬇</span></div>
 }
 
@@ -26,7 +26,6 @@ const Nav = ({ links = [], locale = {}, isLocaleUpdating = false}) => {
     <nav className={style.container}>
       <div className={style.content}>
         { !!links.length && <ul>
-          {<li className={style.backLink}>{getBackButton({returnPath, isRoot})}</li>}
           {
             links.map(({text, href}, idx) =>
               <li key={idx} className={localeCanTopBottom ? style.canTb : ''}>
@@ -40,6 +39,7 @@ const Nav = ({ links = [], locale = {}, isLocaleUpdating = false}) => {
                   </Vl>
               </li>)
           }
+          {<li className={style.backLink}>{getBackButton({returnPath, isRoot, tabIdx: links.length})}</li>}
           </ul>
         }
         <div className={style.settings}>

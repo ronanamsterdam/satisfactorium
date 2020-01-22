@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import { useLocale } from 'src/utils/hooks';
 import { localize } from 'src/utils/locale';
 
 import SEO from "components/seo"
 import LoadedView from 'components/shared/animated/div'
+import ActionCard from 'components/shared/links/card'
 
 import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
 
@@ -22,10 +22,18 @@ export default () => {
         <h3>{localize('experiments.text1')}</h3>
         <ul>
           <li>
-            <Link tabIndex="11" to="/experiments/squares-game">{localize('experiments.item1')}</Link>
+            <ActionCard
+              subContent={localize('experiments.subItem1')}
+              to="/experiments/squares-game">
+              {localize('experiments.item1')}
+            </ActionCard>
           </li>
           <li>
-            <Link tabIndex="11" to="/experiments/squares">{localize('experiments.item2')}</Link>
+            <ActionCard
+              subContent={localize('experiments.subItem2')}
+              to="/experiments/squares">
+              {localize('experiments.item2')}
+            </ActionCard>
           </li>
         </ul>
       </LoadedView>

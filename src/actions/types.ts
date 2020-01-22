@@ -13,10 +13,10 @@ export interface ActionSetDeviceUserAgent {
 }
 
 export interface Dimensions {
-  height:       Number,
-  width:        Number,
-  outerHeight:  Number,
-  outerWidth:   Number
+  height:       number,
+  width:        number,
+  outerHeight:  number,
+  outerWidth:   number
 }
 
 export interface ActionSetDeviceDimensions {

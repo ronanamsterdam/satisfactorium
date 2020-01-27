@@ -44,6 +44,7 @@ let config = {
         images: path.join(__dirname, 'src/images'),
         pages: path.join(__dirname, 'src/pages'),
         statics: path.join(__dirname, 'src/statics'),
+        apps: path.join(__dirname, 'src/apps'),
       }
     },
     `gatsby-plugin-react-helmet`,

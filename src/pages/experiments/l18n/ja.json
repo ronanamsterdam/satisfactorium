@@ -5,6 +5,8 @@
       "item1"      : "正方形ゲーム▢⇢◯ ",
       "subItem1"   : "React（リアクト）で作られたゲーム",
       "item2"      : "React（リアクト）パフォーマンステスト",
-      "subItem2"   : "レンダリングとインタラクティブ"
+      "subItem2"   : "レンダリングとインタラクティブ",
+      "item3"      : "React Charts",
+      "subItem3"   : "test of various react based data visualizations"
   }
 }

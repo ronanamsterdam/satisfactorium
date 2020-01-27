@@ -35,6 +35,13 @@ export default () => {
               {localize('experiments.item2')}
             </ActionCard>
           </li>
+          <li>
+            <ActionCard
+              subContent={localize('experiments.subItem3')}
+              to="/experiments/charts">
+              {localize('experiments.item3')}
+            </ActionCard>
+          </li>
         </ul>
       </LoadedView>
     </Vl>

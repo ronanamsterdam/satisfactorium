@@ -1,0 +1,3 @@
+[submodule "src/apps/exp-charts"]
+	path = src/apps/exp-charts
+	url = git@github.com:ronanamsterdam/exp-charts.git

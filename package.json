@@ -39,6 +39,7 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
+    "lerna": "^3.20.2",
     "less-vars-loader": "^1.1.0",
     "prettier": "^1.17.1",
     "react-test-renderer": "^16.8.6",
@@ -58,7 +59,8 @@
     "serve": "gatsby serve",
     "test": "jest",
     "test_cov": "jest --collect-coverage",
-    "bdp": "gatsby build && firebase deploy"
+    "bdp": "gatsby build && firebase deploy",
+    "strap": "lerna bootstrap"
   },
   "repository": {
     "type": "git",

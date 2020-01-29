@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { useLocale } from 'src/utils/hooks';
+import { useLocale } from 'common/utils/hooks';
 import { localize } from 'common/utils/locale';
 
 import actions from 'src/actions'
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import Square from "../square";
 import Timer from "./timer";
@@ -17,7 +17,7 @@ import style            from "./style.module.less";
 const localeKey = 'squareGameStats';
 
 export default function() {
-  const {isLocaleUpdating} = useLocale(__dirname, localeKey)
+  const {isLocaleUpdating} = useLocale(__dirname)
 
   const dispatch = useDispatch();
   const [isStart, setIsStart] = useState(false)

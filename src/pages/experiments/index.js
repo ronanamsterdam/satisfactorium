@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useLocale } from 'src/utils/hooks';
+import { useLocale } from 'common/utils/hooks';
 import { localize } from 'common/utils/locale';
 
 import SEO from "components/seo"
 import LoadedView from 'components/shared/animated/div'
 import ActionCard from 'components/shared/links/card'
 
-import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+import Vl, {VIEW_TYPES} from 'common/components/loaders/view';
 
 import style from './style.module.less'
 

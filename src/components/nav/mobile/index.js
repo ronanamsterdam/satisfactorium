@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 import {localize} from 'common/utils/locale';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import helper from "../helper"
 import style from "./style.module.less"

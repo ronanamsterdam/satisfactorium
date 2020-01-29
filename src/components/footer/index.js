@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { useLocale } from 'src/utils/hooks';
+import { useLocale } from 'common/utils/hooks';
 import {localize} from 'common/utils/locale';
 
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch';
 import LocaleSelect from 'components/shared/inputs/selects/locale';

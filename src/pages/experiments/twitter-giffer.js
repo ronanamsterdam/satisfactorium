@@ -1,6 +1,7 @@
 import React, {Suspense, lazy} from 'react';
 
-import { useLocale } from 'src/utils/hooks';
+import { useLocale } from 'common/utils/hooks';
+import Vl, {VIEW_TYPES} from 'common/components/loaders/view'
 import SEO from 'components/seo'
 
 const localeKey = "twitterGiffer";
@@ -12,8 +13,11 @@ export default () => {
   return (
     <>
       <SEO localeKey={localeKey}/>
-      <Suspense fallback={<div>loading stuff..</div>}>
-        <TwitterGiffer locale={locale} isLocaleUpdating={isLocaleUpdating} />
+      <Suspense fallback={<Vl type={VIEW_TYPES.BIG} />}>
+        {/* TODO: this is not ideal -> any time parent state changes - whole view is re-rendering */}
+        <Vl loading={isLocaleUpdating} type={VIEW_TYPES.BIG} >
+          <TwitterGiffer locale={locale} isLocaleUpdating={isLocaleUpdating} />
+        </Vl>
       </Suspense>
     </>
   )

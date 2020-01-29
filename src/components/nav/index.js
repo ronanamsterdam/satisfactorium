@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { StaticQuery, graphql } from "gatsby"
 
-import { useLocale, useView } from 'src/utils/hooks';
+import { useLocale, useView } from 'common/utils/hooks';
 
 export default function(props) {
 

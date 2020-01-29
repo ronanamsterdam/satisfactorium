@@ -3,7 +3,7 @@ import {useEffect, useState, lazy}  from 'react';
 import { useSelector }              from 'react-redux';
 
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
-import {updateLocale}           from 'src/utils/locale';
+import {updateLocale}           from 'common/utils/locale';
 
 export const useLocale = (
   fullPath = 'src/',

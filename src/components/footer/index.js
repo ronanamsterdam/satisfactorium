@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { useLocale } from 'src/utils/hooks';
-import {localize} from 'src/utils/locale';
+import {localize} from 'common/utils/locale';
 
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 

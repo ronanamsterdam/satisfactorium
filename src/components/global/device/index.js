@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import actions from 'src/actions';
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
-const debounce = require('src/utils').debounceCl();
+const debounce = require('common/utils').debounceCl();
 const coreStyleVars = require("!less-vars-loader?camelCase!src/common/style/variables.less");
 
 export default function() {

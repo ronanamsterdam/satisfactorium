@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 
-import {localize} from 'src/utils/locale';
+import {localize} from 'common/utils/locale';
 
 import Vl from 'components/shared/loaders/view';
 

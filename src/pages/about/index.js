@@ -4,7 +4,7 @@ import SEO from 'components/seo'
 import LoadedView from 'components/shared/animated/div'
 
 import { useLocale } from 'src/utils/hooks'
-import { localize } from 'src/utils/locale'
+import { localize } from 'common/utils/locale'
 
 import Vl, {VIEW_TYPES} from 'components/shared/loaders/view'
 

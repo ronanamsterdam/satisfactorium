@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 
 import { useLocale } from 'src/utils/hooks';
-import {localize} from 'src/utils/locale';
+import {localize} from 'common/utils/locale';
 
 import Vl from 'components/shared/loaders/view';
 

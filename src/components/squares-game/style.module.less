@@ -1,9 +1,19 @@
-@import '~style/helpers';
+@import '~common/style/helpers';
 
 .container {
     height: 100%;
     padding-bottom: 30px;
     touch-action: manipulation;
+
+    .grid {
+      display: grid;
+      grid-gap: 5px;
+      row-gap: 5px;
+      grid-template-columns: repeat(auto-fill, minmax(@square-size, auto));
+      width: 100%;
+      grid-template-rows: repeat(auto-fill, minmax(@square-size, auto));
+    }
+
     .content {
         .searchResultsContainer {
             &.searchResultsList {

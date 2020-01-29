@@ -6,7 +6,7 @@ import actions from 'src/actions';
 import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
 
 const debounce = require('src/utils').debounceCl();
-const coreStyleVars = require("!less-vars-loader?camelCase!src/style/variables.less");
+const coreStyleVars = require("!less-vars-loader?camelCase!src/common/style/variables.less");
 
 export default function() {
 

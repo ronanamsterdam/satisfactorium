@@ -14,6 +14,7 @@ module.exports = {
     "^statics\/\/(.*)$": '<rootDir>/src/statics$1',
     "^style\/\/(.*)$": '<rootDir>/src/style$1',
     "^apps\/\/(.*)$": '<rootDir>/src/apps$1',
+    "^common\/\/(.*)$": '<rootDir>/src/common$1',
   },
   testPathIgnorePatterns: [`node_modules`, `.cache`],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],

@@ -35,11 +35,19 @@ export default () => {
               {localize('experiments.item2')}
             </ActionCard>
           </li>
-          <li>
+          {/* TODO: */}
+          {/* <li>
             <ActionCard
               subContent={localize('experiments.subItem3')}
               to="/experiments/charts">
               {localize('experiments.item3')}
+            </ActionCard>
+          </li> */}
+          <li>
+            <ActionCard
+              subContent={localize('experiments.subItem4')}
+              to="/experiments/twitter-giffer">
+              {localize('experiments.item4')}
             </ActionCard>
           </li>
         </ul>

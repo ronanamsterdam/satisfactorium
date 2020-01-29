@@ -1,3 +1,9 @@
 [submodule "src/apps/exp-charts"]
 	path = src/apps/exp-charts
 	url = git@github.com:ronanamsterdam/exp-charts.git
+[submodule "src/apps/twitterGifExporter"]
+	path = src/apps/twitterGifExporter
+	url = git@github.com:ronanamsterdam/twitterGifExporter-web.git
+[submodule "src/common"]
+	path = src/common
+	url = git@github.com:ronanamsterdam/satisfactorium-common.git

@@ -22,7 +22,6 @@ export default function(props) {
           }
         `}
         render={data => {
-          // debugger;
           return (
             <Suspense fallback={<div
               style={ isMobile ? {}:{width: '50px'}}>

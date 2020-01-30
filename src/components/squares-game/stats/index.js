@@ -5,7 +5,7 @@ import { useLocale } from 'common/utils/hooks';
 import { localize } from 'common/utils/locale';
 
 import actions from 'src/actions'
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
 import Vl from 'common/components/loaders/view';
 
@@ -23,7 +23,7 @@ export default function() {
   const [isStart, setIsStart] = useState(false)
   const {factor} = useSelector(state => state.root.ux.device);
 
-  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
+  const isMobile = factor === device.DEVICE_FORM_FACTORS.MOBILE || factor === device.DEVICE_FORM_FACTORS.TABLET;
 
   const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor, bombRadius} = useSelector(state => ({
       ...state.squareGame,

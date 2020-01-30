@@ -1,7 +1,8 @@
 import * as actionNames from 'statics/actions';
 import {UxTypes}  from 'actions/types';
 
-import {DEVICE_FORM_FACTORS, THEMES}    from 'statics/strings/reducers/ux';
+import {THEMES}    from 'common/statics/theme';
+import {DEVICE_FORM_FACTORS}    from 'common/statics/device';
 
 import locale, {localeInitialState} from './locale';
 

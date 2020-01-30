@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector }  from "react-redux";
 import style            from "./style.module.less";
 
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
 export default function() {
   const [hovered, setHovered] = useState(false);
@@ -14,7 +14,7 @@ export default function() {
   };
 
   const onMouseOver = (e) => {
-    if (factor === DEVICE_FORM_FACTORS.DESKTOP) {
+    if (factor === device.DEVICE_FORM_FACTORS.DESKTOP) {
       handleHover(e)
     }
   };

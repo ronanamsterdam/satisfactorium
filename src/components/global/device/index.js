@@ -3,7 +3,7 @@ import  { useEffect } from 'react';
 
 import { useDispatch } from "react-redux";
 import actions from 'src/actions';
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
 const debounce = require('common/utils').debounceCl();
 const coreStyleVars = require("!less-vars-loader?camelCase!src/common/style/variables.less");
@@ -36,12 +36,12 @@ export default function() {
       const tabletBreak = parseInt(coreStyleVars.tabletBreak);
       const mobileBreak = parseInt(coreStyleVars.mobileBreak);
 
-      let factor = DEVICE_FORM_FACTORS.DESKTOP
+      let factor = device.DEVICE_FORM_FACTORS.DESKTOP
 
       if (innerWidth <= mobileBreak) {
-          factor = DEVICE_FORM_FACTORS.MOBILE;
+          factor = device.DEVICE_FORM_FACTORS.MOBILE;
       } else if (innerWidth <= tabletBreak) {
-          factor = DEVICE_FORM_FACTORS.TABLET;
+          factor = device.DEVICE_FORM_FACTORS.TABLET;
       }
 
       dispatch(actions.setDeviceFormFactor(factor));

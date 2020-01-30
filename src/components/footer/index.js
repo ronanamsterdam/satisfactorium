@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useLocale } from 'common/utils/hooks';
 import {localize} from 'common/utils/locale';
 
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
 import Vl from 'common/components/loaders/view';
 
@@ -15,7 +15,7 @@ import style from "./style.module.less"
 
 export default function () {
   const {factor} = useSelector(state => state.root.ux.device);
-  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
+  const isMobile = factor === device.DEVICE_FORM_FACTORS.MOBILE || factor === device.DEVICE_FORM_FACTORS.TABLET;
 
   const {isLocaleUpdating} = useLocale(__dirname)
 

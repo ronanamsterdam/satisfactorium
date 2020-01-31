@@ -22,7 +22,7 @@ export default function({isDone = false, isStart = false, bestTime, initialDate 
       setNewTime(Date.now() + Math.random());
     }, 1);
     return ()=>{isDone && cb(date); return timer && clearInterval(timer)};
-  },[newTime, isDone, isStart, cb, date]);
+  },[newTime, isDone, isStart]);
 
   useEffect(() => {
     setStartTime(Date.now());

@@ -45,7 +45,7 @@ export default function() {
       dispatch(actions.setLevelDelta(2))
       lvl === 1 && dispatch(actions.setTotalSquaresCount(30+2*(+lvl)))
     }
-  }, [factor, dispatch, isMobile, lvl])
+  }, [factor])
 
   const onTimerCb = (time) => isDone && dispatch(actions.levelDone({time, lvl}));
 

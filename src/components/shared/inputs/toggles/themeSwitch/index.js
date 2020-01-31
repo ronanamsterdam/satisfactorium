@@ -21,6 +21,7 @@ export default function() {
 
   return <div className={style.container}>
     <input id="dark-light-switch" checked={theme === THEMES.DARK} onChange={onToggleTheme} type="checkbox"/>
+    {/* eslint-disable-next-line */}
     <label htmlFor="dark-light-switch" ><span></span></label>
   </div>
 }

@@ -28,7 +28,6 @@ let config = {
       ]
   },
   plugins: [
-    'gatsby-plugin-root-import',
     {
       resolve: `gatsby-plugin-less`,
       options: {

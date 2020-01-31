@@ -10,6 +10,7 @@ import helper from "../helper"
 import style from "./style.module.less"
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
+  // eslint-disable-next-line
   return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>◀︎</span></Link>
 }
 
@@ -22,6 +23,7 @@ const Nav = ({ links = [], isLocaleUpdating = false }) => {
       <Link
         partiallyActive={true}
         activeClassName={style.linkActive}
+        // eslint-disable-next-line
         tabIndex={idx+1}
         to={href}>{localize(`nav.${text}`)}
       </Link>

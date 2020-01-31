@@ -18,7 +18,7 @@ export default function() {
       handleHover(e)
     }
   };
-
+  /* eslint-disable */
   return (
       <div className={style.container}>
           <div

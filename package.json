@@ -25,6 +25,7 @@
     "react-helmet": "^5.2.1",
     "react-pose": "^4.0.10",
     "react-redux": "^7.1.0",
+    "redux": "^4.0.5",
     "redux-localstorage": "^0.4.1",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
@@ -36,6 +37,7 @@
     "cross-env": "^6.0.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "gatsby-plugin-exclude": "^1.0.2",
     "gatsby-plugin-root-import": "^2.0.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
@@ -60,7 +62,8 @@
     "test": "jest",
     "test_cov": "jest --collect-coverage",
     "bdp": "gatsby build && firebase deploy",
-    "strap": "lerna bootstrap"
+    "strap": "lerna bootstrap",
+    "postinstall": "git submodule update --recursive --remote && npm run strap"
   },
   "repository": {
     "type": "git",

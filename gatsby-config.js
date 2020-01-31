@@ -28,7 +28,6 @@ let config = {
       ]
   },
   plugins: [
-    'gatsby-plugin-root-import',
     {
       resolve: `gatsby-plugin-less`,
       options: {
@@ -44,6 +43,8 @@ let config = {
         images: path.join(__dirname, 'src/images'),
         pages: path.join(__dirname, 'src/pages'),
         statics: path.join(__dirname, 'src/statics'),
+        apps: path.join(__dirname, 'src/apps'),
+        common: path.join(__dirname, 'src/common'),
       }
     },
     `gatsby-plugin-react-helmet`,

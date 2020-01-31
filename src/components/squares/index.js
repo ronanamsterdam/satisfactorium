@@ -1,9 +1,9 @@
 import React, { useState, useEffect }  from 'react';
 
-import { useLocale } from 'src/utils/hooks';
-import {localize} from 'src/utils/locale';
+import { useLocale } from 'common/utils/hooks';
+import {localize} from 'common/utils/locale';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import Square from './square';
 import Fps from './fps';

@@ -2,14 +2,15 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 
-import {localize} from 'src/utils/locale';
+import {localize} from 'common/utils/locale';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import helper from "../helper"
 import style from "./style.module.less"
 
 const getBackButton = ({returnPath = "/", isRoot = true}) => {
+  // eslint-disable-next-line
   return !isRoot && <Link aria-label="go back" title="go back" activeClassName={style.linkActive} tabIndex={1} to={"/"+returnPath}><span>◀︎</span></Link>
 }
 
@@ -22,6 +23,7 @@ const Nav = ({ links = [], isLocaleUpdating = false }) => {
       <Link
         partiallyActive={true}
         activeClassName={style.linkActive}
+        // eslint-disable-next-line
         tabIndex={idx+1}
         to={href}>{localize(`nav.${text}`)}
       </Link>

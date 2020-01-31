@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useLocale } from 'src/utils/hooks';
-import { localize } from 'src/utils/locale';
+import { useLocale } from 'common/utils/hooks';
+import { localize } from 'common/utils/locale';
 
 import SEO from "components/seo"
 import LoadedView from 'components/shared/animated/div'
 import ActionCard from 'components/shared/links/card'
 
-import Vl, {VIEW_TYPES} from 'components/shared/loaders/view';
+import Vl, {VIEW_TYPES} from 'common/components/loaders/view';
 
 import style from './style.module.less'
 
@@ -33,6 +33,21 @@ export default () => {
               subContent={localize('experiments.subItem2')}
               to="/experiments/squares">
               {localize('experiments.item2')}
+            </ActionCard>
+          </li>
+          {/* TODO: */}
+          {/* <li>
+            <ActionCard
+              subContent={localize('experiments.subItem3')}
+              to="/experiments/charts">
+              {localize('experiments.item3')}
+            </ActionCard>
+          </li> */}
+          <li>
+            <ActionCard
+              subContent={localize('experiments.subItem4')}
+              to="/experiments/twitter-giffer">
+              {localize('experiments.item4')}
             </ActionCard>
           </li>
         </ul>

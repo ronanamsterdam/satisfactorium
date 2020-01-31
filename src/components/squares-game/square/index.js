@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import style            from "./style.module.less";
 
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
 export default function({
   disabled = false,
@@ -55,7 +55,7 @@ export default function({
   useEffect(()=> cleanTimeouts);
 
   const onMouseOver = (e) => {
-    if (factor !== DEVICE_FORM_FACTORS.MOBILE && factor !== DEVICE_FORM_FACTORS.TABLET) {
+    if (factor !== device.DEVICE_FORM_FACTORS.MOBILE && factor !== device.DEVICE_FORM_FACTORS.TABLET) {
       handleHover(e)
     }
   }
@@ -74,7 +74,7 @@ export default function({
   };
 
   const handleFocus = (e) => {
-    if (factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET) {
+    if (factor === device.DEVICE_FORM_FACTORS.MOBILE || factor === device.DEVICE_FORM_FACTORS.TABLET) {
       handleHover(e)
     }
   }

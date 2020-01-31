@@ -2,7 +2,7 @@
 import  { useEffect } from 'react';
 import { useSelector } from "react-redux";
 
-import {THEMES}    from 'statics/strings/reducers/ux';
+import {THEMES}    from 'common/statics/theme';
 
 export default function() {
   const theme = useSelector(state => state.root.ux.theme)

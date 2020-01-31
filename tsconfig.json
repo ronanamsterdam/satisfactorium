@@ -1,5 +1,24 @@
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "target": "es5",
+
     "baseUrl": "src",
 
     "paths": {
@@ -8,7 +27,9 @@
       "style/*": ["style/*"],
       "images/*": ["images/*"],
       "pages/*": ["pages/*"],
-      "statics/*": ["statics/*"]
+      "statics/*": ["statics/*"],
+      "apps/*": ["apps/*"],
+      "common/*": ["common/*"]
     },
   }
 }

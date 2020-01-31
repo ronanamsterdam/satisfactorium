@@ -7,9 +7,9 @@ import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch'
 import helper from "../helper"
 import style from "./style.module.less"
 
-import {localize} from 'src/utils/locale'
+import {localize} from 'common/utils/locale'
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 const getBackButton = ({returnPath = "/", isRoot = true, tabIdx = 1}) => {
   return !isRoot ?

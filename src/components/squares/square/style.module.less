@@ -1,11 +1,10 @@
-@import '~style/helpers';
-
-@list-item-height: 100%;
-@card-item-height: 280px;
+@import '~common/style/helpers';
 
 .container {
-    height: @square-size;
-    width : @square-size;
+    @local_square-size: calc(70px / (1 + 0.05*var(--local-square-factor)));
+
+    height: @local_square-size;
+    width : @local_square-size;
     .content {
         height: 100%;
 

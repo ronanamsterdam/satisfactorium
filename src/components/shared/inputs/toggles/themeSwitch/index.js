@@ -2,7 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux";
 
 import actions from "src/actions";
-import {THEMES}    from 'statics/strings/reducers/ux';
+import {THEMES}    from 'common/statics/theme';
 
 import style from "./style.module.less"
 
@@ -21,6 +21,7 @@ export default function() {
 
   return <div className={style.container}>
     <input id="dark-light-switch" checked={theme === THEMES.DARK} onChange={onToggleTheme} type="checkbox"/>
+    {/* eslint-disable-next-line */}
     <label htmlFor="dark-light-switch" ><span></span></label>
   </div>
 }

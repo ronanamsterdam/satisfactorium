@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { useLocale } from 'src/utils/hooks';
-import {localize} from 'src/utils/locale';
+import { useLocale } from 'common/utils/hooks';
+import {localize} from 'common/utils/locale';
 
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import ThemeSwitch from 'components/shared/inputs/toggles/themeSwitch';
 import LocaleSelect from 'components/shared/inputs/selects/locale';
@@ -15,7 +15,7 @@ import style from "./style.module.less"
 
 export default function () {
   const {factor} = useSelector(state => state.root.ux.device);
-  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
+  const isMobile = factor === device.DEVICE_FORM_FACTORS.MOBILE || factor === device.DEVICE_FORM_FACTORS.TABLET;
 
   const {isLocaleUpdating} = useLocale(__dirname)
 

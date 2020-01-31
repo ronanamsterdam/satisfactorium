@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { useLocale } from 'src/utils/hooks';
-import { localize } from 'src/utils/locale';
+import { useLocale } from 'common/utils/hooks';
+import { localize } from 'common/utils/locale';
 
 import actions from 'src/actions'
-import {DEVICE_FORM_FACTORS}    from 'statics/strings/reducers/ux';
+import {device}    from 'common/statics';
 
-import Vl from 'components/shared/loaders/view';
+import Vl from 'common/components/loaders/view';
 
 import Square from "../square";
 import Timer from "./timer";
@@ -17,13 +17,13 @@ import style            from "./style.module.less";
 const localeKey = 'squareGameStats';
 
 export default function() {
-  const {isLocaleUpdating} = useLocale(__dirname, localeKey)
+  const {isLocaleUpdating} = useLocale(__dirname)
 
   const dispatch = useDispatch();
   const [isStart, setIsStart] = useState(false)
   const {factor} = useSelector(state => state.root.ux.device);
 
-  const isMobile = factor === DEVICE_FORM_FACTORS.MOBILE || factor === DEVICE_FORM_FACTORS.TABLET;
+  const isMobile = factor === device.DEVICE_FORM_FACTORS.MOBILE || factor === device.DEVICE_FORM_FACTORS.TABLET;
 
   const {totalSquares, activeSquares, bombsBlasted, bestTimes, lvl, probabilityFactor, bombRadius} = useSelector(state => ({
       ...state.squareGame,
@@ -107,7 +107,7 @@ export default function() {
                 <span>{localize(`${localeKey}.text2`)}</span>
               </Vl>
               <Vl loading={isLocaleUpdating}>
-                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text4`)}</span>
+                <span><b>{localize(`${localeKey}.proTip`)} #1:</b> {localize(`${localeKey}.text3`)}</span>
                 <span><b>{localize(`${localeKey}.proTip`)} #2:</b> {localize(`${localeKey}.text4`)}</span>
               </Vl>
             </div>}

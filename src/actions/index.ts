@@ -3,7 +3,7 @@ import * as actionNames from 'statics/actions';
 import squareGame from './square-game';
 import locale from './locale';
 
-import {THEMES}    from 'statics/strings/reducers/ux';
+import {THEMES}    from 'common/statics/theme';
 
 import * as actionTypes from './types'
 

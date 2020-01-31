@@ -1,7 +1,7 @@
 import * as actionNames  from 'statics/actions';
 import {UxTypes}  from 'actions/types';
 
-import * as supportedLocaleTypes  from 'statics/strings/reducers/ux';
+import * as supportedLocaleTypes  from 'common/statics/locale';
 
 export const localeInitialState = {
     collection:[

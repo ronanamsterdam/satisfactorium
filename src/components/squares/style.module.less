@@ -1,6 +1,18 @@
-@import '~style/helpers';
+@import '~common/style/helpers';
+@import './variables';
 
 .container {
+    --local-square-factor: 1;
+
+    .localGrid {
+      display: grid;
+      grid-gap: 5px;
+      row-gap: 5px;
+      grid-template-columns: repeat(auto-fill, minmax(@local_square-size, auto));
+      width: 100%;
+      grid-template-rows: repeat(auto-fill, minmax(@local_square-size, auto));
+    }
+
     .content {
         .searchResultsContainer {
             &.searchResultsList {
@@ -8,6 +20,8 @@
             }
         }
         .inputContainer {
+          display: flex;
+          justify-content: space-between;
           margin: 25px;
           input {
             .app-gen-input();
@@ -44,7 +58,7 @@
           pointer-events: none;
           position: sticky;
           top: 20px;
-          z-index: 1000;
+          z-index: 100;
 
           > * {
             backdrop-filter: blur(5px);
@@ -77,9 +91,19 @@
 
 @media (max-width: @tablet-break) {
   .container {
-    .inputContainer {
-      input {
-        margin: 10px 0 0;
+    .content {
+      .inputContainer {
+        flex-direction: column;
+        margin: 15px 0;
+
+        li:not(:first-child) {
+          margin-top: 10px;
+        }
+
+        input {
+          margin: 10px 0 0;
+          width: 100%;
+        }
       }
     }
   }

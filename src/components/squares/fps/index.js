@@ -21,7 +21,7 @@ export default function() {
     });
   });
 
-  useEffect(() => () => cancelAnimationFrame(requestRef), [frameTimeState]);
+  useEffect(() => () => cancelAnimationFrame(requestRef), [frameTimeState, requestRef]);
 
   return <>{frameTimeState.fps}</>
 }

@@ -5,6 +5,10 @@
         "item1"      : "Squares Game ▢ ⇢ ◯",
         "subItem1"   : "a game written in React",
         "item2"      : "React performance test",
-        "subItem2"   : "render and interactive"
+        "subItem2"   : "render and interactive",
+        "item3"      : "React Charts",
+        "subItem3"   : "test of various react based data visualizations",
+        "item4"      : "Twitter Giffer",
+        "subItem4"   : "converts any public twitter video-gif in to an actual gif"
     }
 }

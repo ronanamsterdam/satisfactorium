@@ -11,7 +11,7 @@ export default function({isLink = true, path, children, subContent, ...props}) {
   return <ActionView {...{isLink, to:"/"+path, className: style.actionItem, ...props}}>
     <div className={style.foreground}>
       {children}
-      <span className={style.subContent}>{subContent}</span>
+      <span className={style.subContent}>"{subContent}"</span>
     </div>
     <div className={style.background} />
   </ActionView>

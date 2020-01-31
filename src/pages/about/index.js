@@ -3,10 +3,10 @@ import React from 'react'
 import SEO from 'components/seo'
 import LoadedView from 'components/shared/animated/div'
 
-import { useLocale } from 'src/utils/hooks'
-import { localize } from 'src/utils/locale'
+import { useLocale } from 'common/utils/hooks'
+import { localize } from 'common/utils/locale'
 
-import Vl, {VIEW_TYPES} from 'components/shared/loaders/view'
+import Vl, {VIEW_TYPES} from 'common/components/loaders/view'
 
 export default function () {
 

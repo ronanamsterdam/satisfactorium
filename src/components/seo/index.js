@@ -10,12 +10,12 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { useLocale } from 'src/utils/hooks';
-import {localize} from 'src/utils/locale';
+import { useLocale } from 'common/utils/hooks';
+import {localize} from 'common/utils/locale';
 
 function SEO({ localeKey = '', description, lang, meta, title }) {
 
-  const { locale } = useLocale(__dirname, localeKey)
+  const { locale } = useLocale(__dirname, {rootKey:localeKey})
 
   const { site } = useStaticQuery(
     graphql`

@@ -32,6 +32,7 @@ let config = {
       resolve: `gatsby-plugin-less`,
       options: {
         javascriptEnabled: true,
+        paths: [path.resolve(__dirname, 'src')],
       },
     },
     {
